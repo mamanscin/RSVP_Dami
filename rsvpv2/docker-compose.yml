@@ -1,0 +1,20 @@
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      # SQLite database path — persisted on a Docker volume so data survives
+      # container restarts / updates.
+      - DATABASE_URL=file:/data/dev.db
+      # Set ADMIN_PASSWORD in a .env file (or in your shell) to enable the
+      # /admin section. Omit or leave empty to disable admin access.
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+    volumes:
+      - rsvp-data:/data
+    restart: unless-stopped
+
+volumes:
+  rsvp-data:
