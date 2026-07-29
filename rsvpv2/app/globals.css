@@ -94,6 +94,9 @@ html, body {
   color: var(--ink);
   font-family: var(--font-serif);
   -webkit-font-smoothing: antialiased;
+  /* Prevent horizontal scroll caused by decorative elements
+     (e.g. the entrance door panels translating in/out of view). */
+  overflow-x: hidden;
 }
 
 body {

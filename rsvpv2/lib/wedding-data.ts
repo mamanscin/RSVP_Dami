@@ -5,7 +5,7 @@ export const wedding = {
   bride: {
     fullName: "Puteri Safa Natasha",
     shortName: "Puteri",
-    father: "Megat Sharizal bin Amri",
+    father: "Megat Sharizal Amri bin Abdul Hanim",
     mother: "Siti Rahayu binti Ahmad",
     contact: "+60 12-234 5678",
   },

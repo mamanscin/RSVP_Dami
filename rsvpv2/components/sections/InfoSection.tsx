@@ -42,13 +42,15 @@ export function InfoSection() {
 
       {/* Parents inviting — groom's on the left, bride's on the right */}
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:gap-6">
-        <div className="text-center sm:text-right space-y-1">
+        <div className="flex flex-col items-center sm:items-end text-center sm:text-right">
           <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--leaf-700)" }}>
             {t.info.groom}
           </p>
+          {/* Reserve the same vertical space for each father name so the inner
+              "&" below lines up on both sides regardless of how the name wraps. */}
           <h3
-            className="font-display text-xl sm:text-2xl"
-            style={{ color: "var(--leaf-700)" }}
+            className="font-display text-xl sm:text-2xl flex-1 flex items-end justify-center sm:justify-end"
+            style={{ color: "var(--leaf-700)", minHeight: "2.6em" }}
           >
             {wedding.groom.father}
           </h3>
@@ -73,13 +75,13 @@ export function InfoSection() {
           &amp;
         </span>
 
-        <div className="text-center sm:text-left space-y-1">
+        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
           <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--leaf-700)" }}>
             {t.info.bride}
           </p>
           <h3
-            className="font-display text-xl sm:text-2xl"
-            style={{ color: "var(--leaf-700)" }}
+            className="font-display text-xl sm:text-2xl flex-1 flex items-end justify-center sm:justify-start"
+            style={{ color: "var(--leaf-700)", minHeight: "2.6em" }}
           >
             {wedding.bride.father}
           </h3>
