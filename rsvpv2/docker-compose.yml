@@ -20,19 +20,30 @@ services:
       dockerfile: Dockerfile
     ports:
       - "${PORT:-3000}:3000"
-    environment:
-      # SQLite database path — persisted on a Docker volume so data survives
-      # container restarts / updates.
-      - DATABASE_URL=file:/data/dev.db
-      # Set ADMIN_PASSWORD in a .env file (or in your shell) to enable the
-      # /admin section. Omit or leave empty to disable admin access.
-      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
-    volumes:
-      - rsvp-data:/data
     depends_on:
       migrate:
         condition: service_completed_successfully
+    environment:
+      - DATABASE_URL=file:/data/dev.db
+      - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+    volumes:
+      - rsvp-data:/data
+    networks:
+      - proxy
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.rsvp.rule=Host(`rsvp.pola-studios.com`)
+      - traefik.http.routers.rsvp.entrypoints=websecure
+      - traefik.http.routers.rsvp.tls=true
+      - traefik.http.routers.rsvp.tls.certresolver=letsencrypt
+      - traefik.http.routers.rsvp.service=rsvp
+      - traefik.http.services.rsvp.loadbalancer.server.port=3000
     restart: unless-stopped
 
 volumes:
   rsvp-data:
+
+networks:
+  proxy:
+    external: true
+    name: proxy
