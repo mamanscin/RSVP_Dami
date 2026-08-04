@@ -11,6 +11,7 @@ import { notFound } from "next/navigation";
 import { FloatingLeaves } from "@/components/FloatingLeaves";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { ScrollToTop } from "@/components/ScrollToTop";
+import { ScrollToHash } from "@/components/ScrollToHash";
 import { FloatingNav } from "@/components/FloatingNav";
 import { I18nProvider } from "@/components/I18nProvider";
 
@@ -71,6 +72,7 @@ export default async function RootLayout({
           <LanguageSwitcher />
           <main className="flex-1 w-full">{children}</main>
           <FloatingNav />
+          <ScrollToHash />
           <ScrollToTop />
         </I18nProvider>
       </body>

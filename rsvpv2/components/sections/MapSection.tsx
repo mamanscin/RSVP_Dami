@@ -30,6 +30,35 @@ export function MapSection() {
         style={{ background: "var(--leaf-50)", borderRadius: "12px" }}
       />
 
+      <div className="space-y-3">
+        <p
+          className="text-center font-script text-2xl"
+          style={{ color: "var(--leaf-700)" }}
+        >
+          {t.map.videoTitle}
+        </p>
+        <div
+          className="w-full overflow-hidden"
+          style={{
+            background: "var(--leaf-50)",
+            borderRadius: "12px",
+            aspectRatio: "16 / 9",
+          }}
+        >
+          <iframe
+            title={t.map.videoTitle}
+            src="https://www.youtube.com/embed/ry6zyjr92xo"
+            width="100%"
+            height="100%"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            referrerPolicy="strict-origin-when-cross-origin"
+            allowFullScreen
+            className="border-0 w-full h-full block"
+          />
+        </div>
+      </div>
+
       <div className="text-center space-y-4">
         <div>
           <p
