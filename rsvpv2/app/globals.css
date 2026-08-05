@@ -197,7 +197,9 @@ body::after {
   z-index: 1;
 }
 
-body > * {
+/* Keep the page content above the decorative layers without overriding
+   positioning on fixed overlays such as the language switcher and nav. */
+body > main {
   position: relative;
   z-index: 2;
 }
