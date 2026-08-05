@@ -72,70 +72,11 @@
     "title": "Atur Cara",
     "subtitle": "Gambaran hari tersebut",
     "events": [
-      { "time": "5:30 AM", "label": "Bangun, sarapan ringan & persiapan" },
       {
-        "time": "6:30 AM",
-        "label": "Solekan dimulakan, persiapan busana nikah"
+        "time": "11:00 AM – 3:00 PM",
+        "label": "Jamuan Makan"
       },
-      { "section": "Nikah" },
-      {
-        "time": "9:30 AM",
-        "items": [
-          "Ketibaan keluarga terdekat",
-          "Susun goodies",
-          "Ketibaan pengantin"
-        ]
-      },
-      {
-        "time": "9:45 AM",
-        "items": [
-          "Penyediaan jurunikah dan saksi",
-          "Langkah masuk pengantin lelaki",
-          "Langkah masuk pengantin perempuan"
-        ]
-      },
-      { "section": "Sesi Ijab Kabul Dimulakan" },
-      {
-        "time": "10:00 AM",
-        "items": [
-          "Menandatangani dokumen & doa",
-          "Sesi serah mas kahwin",
-          "Pertukaran cincin",
-          "Sesi salam restu / Gambar keluarga ringkas"
-        ]
-      },
-      { "time": "11:00 AM", "label": "Persiapan sanding" },
-      {
-        "time": "11:00 AM â€“ 12:00 PM",
-        "label": "Persiapan solekan & busana sanding"
-      },
-      {
-        "time": "12:00 PM â€“ 1:15 PM",
-        "label": "Sesi foto luar (busana sanding)"
-      },
-      {
-        "time": "1:15 PM â€“ 1:30 PM",
-        "label": "Sentuhan akhir & bersolek semula"
-      },
-      { "section": "Resepsi" },
-      {
-        "time": "1:30 PM",
-        "items": ["Perarakan keluarga", "Ketibaan rasmi â€” Pengantin"]
-      },
-      {
-        "time": "2:00 PM",
-        "items": [
-          "Upacara Bersanding / Doa",
-          "Makan beradab",
-          "Potong kek",
-          "Sesi fotografi"
-        ]
-      },
-      {
-        "time": "3:30 PM â€“ 3:45 PM",
-        "label": "Pengumuman penutup"
-      },
-      { "time": "4:00 PM", "label": "Penutup majlis" }
+      { "time": "1:00 PM", "label": "Ketibaan Pengantin" }
     ]
   },
   "rsvp": {

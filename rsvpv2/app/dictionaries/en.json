@@ -72,64 +72,11 @@
     "title": "Itinerary",
     "subtitle": "The day at a glance",
     "events": [
-      { "time": "5:30 AM", "label": "Wake up, light breakfast and prep" },
-      { "time": "6:30 AM", "label": "Makeup starts, nikah outfit prep" },
-      { "section": "Nikah" },
       {
-        "time": "9:30 AM",
-        "items": [
-          "Immediate family arrives",
-          "Susun goodies",
-          "Pengantin arrives"
-        ]
+        "time": "11:00 AM – 3:00 PM",
+        "label": "Reception"
       },
-      {
-        "time": "9:45 AM",
-        "items": [
-          "Jurunikah and saksi preparation",
-          "Langkah masuk pengantin lelaki",
-          "Langkah masuk pengantin perempuan"
-        ]
-      },
-      { "section": "Sesi Ijab Kabul Dimulakan" },
-      {
-        "time": "10:00 AM",
-        "items": [
-          "Signing documents & doa",
-          "Sesi serah mas kahwin",
-          "Ring exchange",
-          "Sesi salam restu / Brief family photos"
-        ]
-      },
-      { "time": "11:00 AM", "label": "Sanding prep" },
-      { "time": "11:00 AM – 12:00 PM", "label": "Sanding makeup, outfit prep" },
-      {
-        "time": "12:00 PM – 1:15 PM",
-        "label": "Outdoor photoshoot (sanding attire)"
-      },
-      {
-        "time": "1:15 PM – 1:30 PM",
-        "label": "Final touch up, freshen up"
-      },
-      { "section": "Resepsi" },
-      {
-        "time": "1:30 PM",
-        "items": ["Perarakan keluarga", "Grand entrance — Pengantin"]
-      },
-      {
-        "time": "2:00 PM",
-        "items": [
-          "Bersanding ceremony / Doa",
-          "Makan beradab",
-          "Cake cutting",
-          "Photo session"
-        ]
-      },
-      {
-        "time": "3:30 PM – 3:45 PM",
-        "label": "Closing announcement"
-      },
-      { "time": "4:00 PM", "label": "Wrap up" }
+      { "time": "1:00 PM", "label": "Arrival of the Bride & Groom" }
     ]
   },
   "rsvp": {
