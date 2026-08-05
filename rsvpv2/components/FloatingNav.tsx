@@ -140,7 +140,7 @@ export function FloatingNav() {
                 className="absolute -top-9 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-full px-3 py-1 text-xs font-medium opacity-0 -translate-y-1 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-200 pointer-events-none"
                 style={{
                   background: "var(--glass-92)",
-                  color: "var(--leaf-700)",
+                  color: "var(--highlight)",
                   border: "1px solid rgba(255,255,255,0.7)",
                   boxShadow: "0 4px 12px rgba(45, 74, 34, 0.10)",
                 }}

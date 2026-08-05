@@ -44,7 +44,7 @@ function renderEvent(ev: ItineraryEvent, position: number) {
         <span aria-hidden className="timeline-dot" />
         <p
           className="timeline-time text-xs uppercase tracking-[0.25em]"
-          style={{ color: "var(--leaf-700)" }}
+          style={{ color: "var(--highlight)" }}
         >
           <TimeText value={ev.time} />
         </p>
@@ -54,12 +54,12 @@ function renderEvent(ev: ItineraryEvent, position: number) {
               <li
                 key={i}
                 className="flex gap-2 text-base"
-                style={{ color: "var(--ink)" }}
+                style={{ color: "var(--text-body)" }}
               >
                 <span
                   aria-hidden
                   className="leading-none mt-2"
-                  style={{ color: "var(--leaf-500)" }}
+                  style={{ color: "var(--highlight)" }}
                 >
                   •
                 </span>
@@ -77,7 +77,7 @@ function renderEvent(ev: ItineraryEvent, position: number) {
       <span aria-hidden className="timeline-dot" />
       <p
         className="timeline-time text-xs uppercase tracking-[0.25em]"
-        style={{ color: "var(--leaf-700)" }}
+        style={{ color: "var(--highlight)" }}
       >
         <TimeText value={ev.time} />
       </p>
@@ -86,7 +86,7 @@ function renderEvent(ev: ItineraryEvent, position: number) {
         style={{
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
-          color: "var(--ink)",
+          color: "var(--highlight)",
         }}
       >
         {ev.label}

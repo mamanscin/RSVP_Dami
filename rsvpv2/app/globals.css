@@ -1,5 +1,53 @@
 @import "tailwindcss";
-
+/* ─── Custom typography from the wedding invitation ──────────
+   Loaded as web fonts so the look & feel of the printed invite
+   carries through the digital RSVP (Garamond body, Lucy Rose
+   script accents, High Spirited display, Minion for elegant
+   serif headings).  All four weights / styles of Minion
+   Variable Concept are bundled.
+   ───────────────────────────────────────────────────────── */
+@font-face {
+  font-family: "Garamond";
+  src: url("/fonts/GARA.TTF") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Garamond";
+  src: url("/fonts/GARAIT.TTF") format("truetype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Minion Display";
+  src: url("/fonts/MinionVariableConcept-Roman.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Minion Display";
+  src: url("/fonts/MinionVariableConcept-Italic.otf") format("opentype");
+  font-weight: 400;
+  font-style: italic;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Lucy Rose PERSONAL";
+  src: url("/fonts/LucyRosePERSONAL-Regular.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+@font-face {
+  font-family: "High Spirited";
+  src: url("/fonts/High%20Spirited.ttf") format("truetype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
 /* ─── Design tokens ─────────────────────────────────────────
    Translated from the reference site's plum/sage/pink to a
    lemon / forest-green palette while preserving the design DNA:
@@ -48,6 +96,15 @@
   --danger: #b3402e;
   --danger-soft: #f3d4ca;
 
+  /* Text colour roles — distinguished for emphasis hierarchy on
+     the public invitation.
+       --highlight  → names, section titles, dates, venue, eyebrow
+                      labels, ampersands, and other "stand-out" text.
+       --text-body  → supporting body copy, descriptions, detail
+                      values, form input text, and similar. */
+  --highlight: #608d88;
+  --text-body: #505e46;
+
   /* Theme aliases for tailwind v4 @theme inline */
   --color-background: var(--cream);
   --color-foreground: var(--ink);
@@ -80,11 +137,12 @@
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
 
-  /* Font tokens — Playfair for display, EB Garamond for body,
-     Dancing Script for accents, Geist for UI controls. */
-  --font-display: var(--font-playfair), "Cormorant Garamond", "Playfair Display", Georgia, serif;
-  --font-serif:   var(--font-eb-garamond), "EB Garamond", Garamond, Georgia, serif;
-  --font-script:  var(--font-dancing), "Dancing Script", "Great Vibes", cursive;
+  /* Font tokens — Minion for display (matches the printed invite),
+     Garamond for body, Lucy Rose PERSONAL / High Spirited for
+     script accents, Geist for UI controls. */
+  --font-display: "Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  --font-serif:   "Garamond", "EB Garamond", Garamond, Georgia, serif;
+  --font-script:  "High Spirited", "Lucy Rose PERSONAL", "Dancing Script", "Great Vibes", cursive;
   --font-sans:    var(--font-geist-sans), system-ui, -apple-system, sans-serif;
 }
 
@@ -101,13 +159,47 @@ html, body {
 
 body {
   /* Fixed lemon-cream wash with subtle radial highlights.
-     Mimics the reference's blurred watercolor background. */
+     Mimics the reference's blurred watercolor background.
+     The paper-texture overlay is layered via the ::before
+     pseudo-element below so it can be tuned independently. */
   background-image:
     radial-gradient(circle at 15% 12%, rgba(252, 211, 77, 0.18) 0%, transparent 38%),
     radial-gradient(circle at 88% 88%, rgba(169, 200, 130, 0.20) 0%, transparent 45%),
     radial-gradient(circle at 50% 50%, rgba(255, 251, 235, 0.8) 0%, var(--cream) 70%);
   background-attachment: fixed;
   min-height: 100vh;
+  position: relative;
+}
+
+/* Layered background overlays:
+   1. ::before  → watercolour lemon cluster (under the paper).
+   2. ::after   → paper texture, multiply over the lemons.
+   Both are position: fixed and stretch to fill the viewport so
+   the look follows the screen height. */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/illustrations/lemon-border.png") center / cover no-repeat;
+  opacity: 0.7;
+  pointer-events: none;
+  z-index: 0;
+}
+
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background: url("/illustrations/paper-texture.jpg") center / cover no-repeat;
+  opacity: 0.22;
+  mix-blend-mode: multiply;
+  pointer-events: none;
+  z-index: 1;
+}
+
+body > * {
+  position: relative;
+  z-index: 2;
 }
 
 /* Hide scrollbars globally for the cleaner editorial look */
@@ -130,7 +222,7 @@ body {
   font-weight: 400;
   font-style: italic;
   font-size: clamp(1.75rem, 4vw, 2.5rem);
-  color: var(--leaf-700);
+  color: var(--highlight);
   text-align: center;
   letter-spacing: 0.01em;
 }
@@ -141,7 +233,7 @@ body {
   width: 60px;
   height: 3px;
   margin: 12px auto 0;
-  background: linear-gradient(135deg, var(--leaf-500), var(--leaf-700));
+  background: linear-gradient(135deg, var(--leaf-500), var(--highlight));
   border-radius: 2px;
 }
 
@@ -149,7 +241,7 @@ body {
   font-family: var(--font-serif);
   font-weight: 300;
   font-size: 1.05rem;
-  color: var(--ink-soft);
+  color: var(--text-body);
   text-align: center;
   margin-top: 0.75rem;
 }
@@ -159,7 +251,7 @@ body {
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  color: var(--leaf-600);
+  color: var(--highlight);
   font-size: 1.1rem;
   margin-bottom: 1rem;
 }
@@ -214,7 +306,7 @@ body {
 
 .btn-outline {
   background: transparent;
-  color: var(--leaf-700);
+  color: var(--highlight);
   border: 2px solid var(--leaf-500);
 }
 .btn-outline:hover { background: var(--leaf-50); }
@@ -243,11 +335,14 @@ body {
 /* ─── Form fields ─────────────────────────────────────────── */
 .field-label {
   display: block;
-  font-family: var(--font-serif);
-  font-size: 0.95rem;
-  font-weight: 500;
-  color: var(--leaf-700);
+  font-family:
+    "Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
+  font-size: 1.4rem;
+  font-weight: 400;
+  font-style: italic;
+  color: var(--highlight);
   margin-bottom: 0.45rem;
+  letter-spacing: 0.01em;
 }
 
 .field-input,
@@ -255,11 +350,12 @@ body {
 .field-textarea {
   width: 100%;
   padding: 0.75rem 1rem;
-  border: 2px solid var(--leaf-500);
+  border: 1.5px solid var(--leaf-300);
   border-radius: 12px;
-  background: rgba(255, 251, 235, 0.92);
-  color: var(--ink);
-  font-family: var(--font-display);
+  background: rgba(255, 251, 235, 0.85);
+  color: var(--text-body);
+  font-family:
+    "Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
   font-size: 1rem;
   transition: box-shadow 0.2s, border-color 0.2s;
 }
@@ -283,6 +379,8 @@ body {
   color: var(--danger);
   font-size: 0.82rem;
   margin-top: 0.35rem;
+  font-family:
+    "Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif;
 }
 
 /* ─── Bottom slide-up nav ─────────────────────────────────── */
@@ -410,7 +508,7 @@ body {
   transition: background 0.15s;
 }
 .lang-menu button:hover { background: var(--lemon-100); }
-.lang-menu button.active { color: var(--leaf-700); font-weight: 600; }
+.lang-menu button.active { color: var(--highlight); font-weight: 600; }
 
 /* ─── Sliding-door entrance ─────────────────────────────────
    Framer-Motion now drives the door translation; we only keep
@@ -550,16 +648,16 @@ body {
   font-family: var(--font-display);
   font-style: italic;
   font-size: 1.05rem;
-  color: var(--leaf-700);
+  color: var(--highlight);
   letter-spacing: 0.05em;
 }
 
 /* ─── Couple hero card ────────────────────────────────────── */
 .couple-name {
-  font-family: var(--font-display);
+  font-family: var(--font-script);
   font-weight: 400;
   font-size: clamp(2.4rem, 9vw, 4rem);
-  color: var(--leaf-800);
+  color: var(--highlight);
   line-height: 1.05;
   letter-spacing: 0.01em;
 }
@@ -567,7 +665,7 @@ body {
 .couple-amp {
   font-family: var(--font-script);
   font-size: clamp(2rem, 7vw, 3rem);
-  color: var(--leaf-600);
+  color: var(--highlight);
   display: block;
   margin: 0.25rem 0;
 }
@@ -577,7 +675,7 @@ body {
   font-weight: 600;
   font-style: italic;
   font-size: clamp(1.5rem, 5vw, 2rem);
-  color: var(--leaf-700);
+  color: var(--highlight);
   letter-spacing: 0.05em;
 }
 

@@ -27,14 +27,14 @@ export function InfoSection() {
       {/* Greeting + blessing */}
       <div className="text-center space-y-2">
         <p
-          className="font-script text-xl sm:text-2xl"
-          style={{ color: "var(--leaf-700)" }}
+          className="italic text-xl sm:text-2xl"
+          style={{ color: "var(--highlight)", fontFamily: "var(--font-serif)" }}
         >
           {t.info.greeting}
         </p>
         <p
           className="text-sm italic"
-          style={{ color: "var(--ink-muted)" }}
+          style={{ color: "var(--text-body)" }}
         >
           {t.info.blessing}
         </p>
@@ -43,26 +43,26 @@ export function InfoSection() {
       {/* Parents inviting — groom's on the left, bride's on the right */}
       <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:gap-6">
         <div className="flex flex-col items-center sm:items-end text-center sm:text-right">
-          <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--leaf-700)" }}>
+          <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>
             {t.info.groom}
           </p>
           {/* Reserve the same vertical space for each father name so the inner
               "&" below lines up on both sides regardless of how the name wraps. */}
           <h3
-            className="font-display text-xl sm:text-2xl flex-1 flex items-end justify-center sm:justify-end"
-            style={{ color: "var(--leaf-700)", minHeight: "2.6em" }}
+            className="font-display text-xl sm:text-2xl w-full flex items-center justify-center sm:justify-end"
+            style={{ color: "var(--highlight)", minHeight: "3.8em" }}
           >
             {wedding.groom.father}
           </h3>
           <p
             className="couple-amp"
-            style={{ fontSize: "1.4rem", color: "var(--leaf-600)", lineHeight: 1 }}
+            style={{ fontSize: "1.4rem", color: "var(--highlight)", lineHeight: 1 }}
           >
             &amp;
           </p>
           <h3
             className="font-display text-xl sm:text-2xl"
-            style={{ color: "var(--leaf-700)" }}
+            style={{ color: "var(--highlight)" }}
           >
             {wedding.groom.mother}
           </h3>
@@ -70,30 +70,30 @@ export function InfoSection() {
 
         <span
           className="couple-amp"
-          style={{ fontSize: "2rem", color: "var(--leaf-600)" }}
+          style={{ fontSize: "2rem", color: "var(--highlight)" }}
         >
           &amp;
         </span>
 
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-          <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--leaf-700)" }}>
+          <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>
             {t.info.bride}
           </p>
           <h3
-            className="font-display text-xl sm:text-2xl flex-1 flex items-end justify-center sm:justify-start"
-            style={{ color: "var(--leaf-700)", minHeight: "2.6em" }}
+            className="font-display text-xl sm:text-2xl w-full flex items-center justify-center sm:justify-start"
+            style={{ color: "var(--highlight)", minHeight: "3.8em" }}
           >
             {wedding.bride.father}
           </h3>
           <p
             className="couple-amp"
-            style={{ fontSize: "1.4rem", color: "var(--leaf-600)", lineHeight: 1 }}
+            style={{ fontSize: "1.4rem", color: "var(--highlight)", lineHeight: 1 }}
           >
             &amp;
           </p>
           <h3
             className="font-display text-xl sm:text-2xl"
-            style={{ color: "var(--leaf-700)" }}
+            style={{ color: "var(--highlight)" }}
           >
             {wedding.bride.mother}
           </h3>
@@ -104,50 +104,54 @@ export function InfoSection() {
       <div className="text-center space-y-2">
         <p
           className="font-display italic text-lg sm:text-xl"
-          style={{ color: "var(--leaf-700)" }}
+          style={{ color: "var(--highlight)" }}
         >
           {t.info.invitationLine}
         </p>
         <p
           className="text-xs uppercase tracking-[0.25em]"
-          style={{ color: "var(--leaf-600)" }}
+          style={{ color: "var(--highlight)" }}
         >
           {t.info.honorifics}
         </p>
         <p
           className="font-display italic text-lg sm:text-xl pt-1"
-          style={{ color: "var(--leaf-700)" }}
+          style={{ color: "var(--highlight)" }}
         >
           {t.info.weddingOfDaughter}
         </p>
       </div>
 
-      {/* Couple names in script (the centerpiece) */}
+      {/* Couple names — High Spirited (the centerpiece of the invite) */}
       <div className="text-center">
         <p
-          className="font-script text-leaf-700"
+          className="text-leaf-700"
           style={{
-            fontFamily: "var(--font-script)",
+            fontFamily: '"High Spirited", "Lucy Rose", cursive',
             fontSize: "clamp(2.8rem, 8vw, 5rem)",
             lineHeight: 1.1,
-            color: "var(--leaf-700)",
+            color: "var(--highlight)",
           }}
         >
           {wedding.bride.fullName}
         </p>
         <p
-          className="couple-amp my-1"
-          style={{ fontSize: "1.8rem", color: "var(--leaf-600)" }}
+          className="my-1"
+          style={{
+            fontFamily: '"High Spirited", "Lucy Rose", cursive',
+            fontSize: "clamp(2.2rem, 6vw, 3rem)",
+            color: "var(--highlight)",
+            lineHeight: 1,
+          }}
         >
           &amp;
         </p>
         <p
-          className="font-script"
           style={{
-            fontFamily: "var(--font-script)",
+            fontFamily: '"High Spirited", "Lucy Rose", cursive',
             fontSize: "clamp(2.8rem, 8vw, 5rem)",
             lineHeight: 1.1,
-            color: "var(--leaf-700)",
+            color: "var(--highlight)",
           }}
         >
           {wedding.groom.fullName}
@@ -178,7 +182,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
     <div className="text-center">
       <dt
         className="text-xs uppercase tracking-[0.25em]"
-        style={{ color: "var(--leaf-700)" }}
+        style={{ color: "var(--highlight)" }}
       >
         {label}
       </dt>
@@ -187,7 +191,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
         style={{
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
-          color: "var(--ink)",
+          color: "var(--text-body)",
         }}
       >
         {value}

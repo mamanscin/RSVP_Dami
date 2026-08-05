@@ -48,7 +48,7 @@ export function WishesList() {
 
   if (wishes === null) {
     return (
-      <div className="text-sm py-4 text-center" style={{ color: "var(--ink-muted)" }}>
+      <div className="text-sm py-4 text-center" style={{ color: "var(--text-body)" }}>
         <span className="inline-block animate-pulse">…</span>
       </div>
     );
@@ -56,7 +56,7 @@ export function WishesList() {
 
   if (wishes.length === 0) {
     return (
-      <p className="italic py-4 text-center" style={{ color: "var(--ink-muted)" }}>
+      <p className="italic py-4 text-center" style={{ color: "var(--text-body)" }}>
         {t.info.wishesEmpty}
       </p>
     );
@@ -77,14 +77,14 @@ export function WishesList() {
               className="text-lg italic whitespace-pre-wrap"
               style={{
                 fontFamily: "var(--font-display)",
-                color: "var(--ink)",
+                color: "var(--text-body)",
               }}
             >
               {w.message}
             </p>
             <p
               className="mt-2 text-xs uppercase tracking-[0.25em]"
-              style={{ color: "var(--leaf-700)" }}
+              style={{ color: "var(--highlight)" }}
             >
               — {w.name}
             </p>

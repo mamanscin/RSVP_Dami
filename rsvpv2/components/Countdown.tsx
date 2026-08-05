@@ -50,12 +50,12 @@ export function Countdown() {
                 border: "1px solid rgba(255, 255, 255, 0.6)",
               }}
             >
-              <div className="text-2xl font-medium" style={{ color: "var(--leaf-700)" }}>
+              <div className="text-2xl font-medium" style={{ color: "var(--highlight)" }}>
                 --
               </div>
               <div
                 className="mt-1 text-[0.65rem] uppercase tracking-[0.2em]"
-                style={{ color: "var(--leaf-700)" }}
+                style={{ color: "var(--highlight)" }}
               >
                 &nbsp;
               </div>
@@ -91,7 +91,7 @@ export function Countdown() {
     <div className="mt-10 mx-auto max-w-md">
       <p
         className="text-xs uppercase tracking-[0.3em]"
-        style={{ color: "var(--leaf-700)" }}
+        style={{ color: "var(--highlight)" }}
       >
         {t.entrance.countdown.heading}
       </p>
@@ -111,13 +111,13 @@ export function Countdown() {
           >
             <div
               className="text-2xl font-medium tabular-nums"
-              style={{ color: "var(--leaf-700)" }}
+              style={{ color: "var(--highlight)" }}
             >
               {String(value).padStart(2, "0")}
             </div>
             <div
               className="mt-1 text-[0.65rem] uppercase tracking-[0.2em]"
-              style={{ color: "var(--leaf-700)" }}
+              style={{ color: "var(--highlight)" }}
             >
               {label}
             </div>
@@ -127,7 +127,7 @@ export function Countdown() {
       {message && (
         <p
           className="mt-4 font-script text-2xl"
-          style={{ color: "var(--leaf-700)" }}
+          style={{ color: "var(--highlight)" }}
         >
           {message}
         </p>

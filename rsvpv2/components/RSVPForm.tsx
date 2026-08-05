@@ -186,9 +186,49 @@ export function RSVPForm() {
     <form
       onSubmit={handleSubmit}
       noValidate
-      className="space-y-10"
       aria-label={t.rsvp.title}
+      className="relative max-w-xl mx-auto px-6 sm:px-10 py-10 sm:py-12 space-y-10 rounded-[28px]"
+      style={{
+        // Invitation-card surface: cream wash + soft shadow +
+        // hairline border that picks up the printed invite frame.
+        background:
+          "linear-gradient(180deg, rgba(255,251,235,0.85) 0%, rgba(254,249,239,0.78) 100%)",
+        border: "1px solid rgba(66, 92, 44, 0.18)",
+        boxShadow:
+          "0 30px 60px -30px rgba(45, 74, 34, 0.25), 0 1px 0 rgba(255,255,255,0.6) inset",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+        // Body text inside the form (buttons, textarea, error
+        // message) uses Minion Display for legibility. The
+        // field labels and the submit CTA explicitly override
+        // fontFamily below to keep their script feel.
+        fontFamily:
+          '"Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif',
+      }}
     >
+      {/* Inner lemon cluster — small, soft, watermark-y */}
+      <img
+        src="/illustrations/lemons-set-3.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-6 -left-6 w-24 sm:w-28 opacity-50 mix-blend-multiply"
+        style={{ filter: "saturate(0.92) brightness(1.02) hue-rotate(-4deg)" }}
+      />
+      <img
+        src="/illustrations/lemons-set-4.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -bottom-6 -right-6 w-24 sm:w-28 opacity-50 mix-blend-multiply"
+        style={{ filter: "saturate(0.92) brightness(1.02)" }}
+      />
+
+      {/* Hairline frame to match the printed invitation border */}
+      <div
+        aria-hidden
+        className="pointer-events-none absolute inset-3 rounded-[22px]"
+        style={{ border: "1px solid rgba(66, 92, 44, 0.18)" }}
+      />
+
       {errors._form && (
         <p
           role="alert"
@@ -246,7 +286,19 @@ export function RSVPForm() {
         <button
           type="submit"
           disabled={submitting}
-          className="btn btn-primary"
+          className="inline-flex items-center justify-center gap-2 rounded-full px-9 py-3 tracking-wide transition disabled:opacity-60 disabled:cursor-not-allowed hover:-translate-y-0.5"
+          style={{
+            fontFamily:
+              '"Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif',
+            fontSize: "1.25rem",
+            fontStyle: "italic",
+            color: "var(--cream)",
+            background:
+              "linear-gradient(135deg, var(--leaf-500), var(--leaf-700))",
+            border: "1px solid rgba(45, 68, 34, 0.4)",
+            boxShadow:
+              "0 6px 18px -4px rgba(45, 74, 34, 0.45), 0 1px 0 rgba(255,255,255,0.15) inset",
+          }}
         >
           {submitting ? t.rsvp.submitting : t.rsvp.submit}
         </button>
@@ -273,20 +325,23 @@ function AttendanceField({
         <button
           type="button"
           onClick={() => onChange("yes")}
-          className="rounded-2xl border-2 px-4 py-3 font-medium transition inline-flex items-center justify-center gap-2"
-          style={
-            value === "yes"
+          className="rounded-2xl border-2 px-4 py-3 transition inline-flex items-center justify-center gap-2 hover:shadow-md"
+          style={{
+            fontFamily:
+              '"Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif',
+            fontSize: "1.1rem",
+            ...(value === "yes"
               ? {
                   borderColor: "var(--leaf-500)",
                   background: "var(--leaf-50)",
-                  color: "var(--leaf-700)",
+                  color: "var(--highlight)",
                 }
               : {
                   borderColor: "var(--leaf-200)",
-                  color: "var(--ink-soft)",
+                  color: "var(--text-body)",
                   background: "transparent",
-                }
-          }
+                }),
+          }}
         >
           <CheckIcon size={18} />
           <span>{t.rsvp.yes}</span>
@@ -294,20 +349,23 @@ function AttendanceField({
         <button
           type="button"
           onClick={() => onChange("no")}
-          className="rounded-2xl border-2 px-4 py-3 font-medium transition inline-flex items-center justify-center gap-2"
-          style={
-            value === "no"
+          className="rounded-2xl border-2 px-4 py-3 transition inline-flex items-center justify-center gap-2 hover:shadow-md"
+          style={{
+            fontFamily:
+              '"Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif',
+            fontSize: "1.1rem",
+            ...(value === "no"
               ? {
-                  borderColor: "var(--ink-soft)",
+                  borderColor: "var(--text-body)",
                   background: "var(--lemon-50)",
-                  color: "var(--ink)",
+                  color: "var(--text-body)",
                 }
               : {
                   borderColor: "var(--leaf-200)",
-                  color: "var(--ink-soft)",
+                  color: "var(--text-body)",
                   background: "transparent",
-                }
-          }
+                }),
+          }}
         >
           <EnvelopeIcon size={18} />
           <span>{t.rsvp.no}</span>
@@ -364,7 +422,7 @@ function GuestCountField({
         >
           +
         </button>
-        <span className="text-xs italic ml-2" style={{ color: "var(--ink-muted)" }}>
+        <span className="text-xs italic ml-2" style={{ color: "var(--text-body)" }}>
           {t.rsvp.guestCountHint}
         </span>
       </div>
@@ -396,10 +454,16 @@ function GuestList({
           }}
         >
           <p
-            className="text-xs uppercase tracking-[0.25em]"
-            style={{ color: "var(--leaf-700)" }}
+            className="text-center"
+            style={{
+              fontFamily:
+                '"High Spirited", "Lucy Rose PERSONAL", cursive',
+              fontSize: "1.25rem",
+              color: "var(--highlight)",
+              letterSpacing: "0.04em",
+            }}
           >
-            {t.rsvp.guestName} #{i + 1}
+            — {t.rsvp.guestName} #{i + 1} —
           </p>
           <div data-field={`name-${i}`}>
             <label htmlFor={`name-${i}`} className="field-label">
@@ -449,32 +513,90 @@ function SuccessPanel({
   t: Dictionary;
 }) {
   return (
-    <div className="text-center space-y-6 py-12 page-rise">
+    <div
+      className="relative max-w-xl mx-auto px-6 sm:px-10 py-12 sm:py-16 text-center space-y-6 rounded-[28px] page-rise"
+      style={{
+        background:
+          "linear-gradient(180deg, rgba(255,251,235,0.85) 0%, rgba(254,249,239,0.78) 100%)",
+        border: "1px solid rgba(66, 92, 44, 0.18)",
+        boxShadow:
+          "0 30px 60px -30px rgba(45, 74, 34, 0.25), 0 1px 0 rgba(255,255,255,0.6) inset",
+        backdropFilter: "blur(6px)",
+        WebkitBackdropFilter: "blur(6px)",
+      }}
+    >
+      {/* Lemon corner illustrations */}
+      <img
+        src="/illustrations/lemons-set-3.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-6 -left-6 w-24 sm:w-28 opacity-50 mix-blend-multiply"
+        style={{ filter: "saturate(0.92) brightness(1.02) hue-rotate(-4deg)" }}
+      />
+      <img
+        src="/illustrations/lemons-set-4.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -bottom-6 -right-6 w-24 sm:w-28 opacity-50 mix-blend-multiply"
+        style={{ filter: "saturate(0.92) brightness(1.02)" }}
+      />
+
+      {/* Inner hairline frame */}
       <div
-        className="inline-flex items-center justify-center gap-2"
-        style={{ color: "var(--leaf-600)" }}
+        aria-hidden
+        className="pointer-events-none absolute inset-3 rounded-[22px]"
+        style={{ border: "1px solid rgba(66, 92, 44, 0.18)" }}
+      />
+
+      {/* Heart + leaf + sparkle row */}
+      <div
+        className="inline-flex items-center justify-center gap-2 relative"
+        style={{ color: "var(--highlight)" }}
         aria-hidden
       >
         <LeafIcon size={28} />
         <SparklesIcon size={22} />
         <LemonIcon size={28} />
       </div>
+
       <h2
+        className="relative"
         style={{
-          fontFamily: "var(--font-display)",
-          fontSize: "1.9rem",
-          color: "var(--leaf-700)",
+          fontFamily:
+            '"High Spirited", "Lucy Rose PERSONAL", cursive',
+          fontSize: "clamp(2.4rem, 6vw, 3.2rem)",
+          color: "var(--highlight)",
+          lineHeight: 1.1,
+          textShadow: "0 1px 0 rgba(255,255,255,0.6)",
         }}
       >
         {t.rsvp.successTitle}
       </h2>
+
       <p
-        className="max-w-md mx-auto"
-        style={{ color: "var(--ink-soft)" }}
+        className="relative max-w-md mx-auto italic"
+        style={{
+          fontFamily: "var(--font-serif)",
+          color: "var(--text-body)",
+        }}
       >
         {t.rsvp.successMessage}
       </p>
-      <button type="button" onClick={onAnother} className="btn btn-ghost">
+
+      <button
+        type="button"
+        onClick={onAnother}
+        className="relative inline-flex items-center justify-center rounded-full px-7 py-2.5 transition hover:-translate-y-0.5"
+        style={{
+          fontFamily:
+            '"High Spirited", "Lucy Rose PERSONAL", cursive',
+          fontSize: "1.25rem",
+          color: "var(--highlight)",
+          background: "var(--lemon-50)",
+          border: "1px solid var(--leaf-300)",
+          boxShadow: "0 4px 12px -2px rgba(45, 74, 34, 0.18)",
+        }}
+      >
         {t.rsvp.another}
       </button>
     </div>

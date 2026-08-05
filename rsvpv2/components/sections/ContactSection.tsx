@@ -55,13 +55,13 @@ function FamilyBlock({
     <div className="text-center space-y-4">
       <p
         className="text-xs uppercase tracking-[0.3em]"
-        style={{ color: "var(--leaf-700)" }}
+        style={{ color: "var(--highlight)" }}
       >
         {eyebrow}
       </p>
-      <div className="space-y-3" style={{ color: "var(--ink)" }}>
+      <div className="space-y-3" style={{ color: "var(--text-body)" }}>
         <ContactRow name={father} phone={phone} whatsappNumber={whatsappNumber} />
-        <p style={{ color: "var(--ink-muted)" }}>&amp;</p>
+        <p style={{ color: "var(--text-body)" }}>&amp;</p>
         <ContactRow name={mother} phone={phone} whatsappNumber={whatsappNumber} />
       </div>
     </div>
@@ -79,7 +79,13 @@ function ContactRow({
 }) {
   return (
     <div className="flex flex-col items-center gap-2">
-      <p style={{ fontFamily: "var(--font-display)", fontSize: "1.25rem" }}>
+      <p
+        style={{
+          fontFamily: "var(--font-display)",
+          fontSize: "1.25rem",
+          color: "var(--highlight)",
+        }}
+      >
         {name}
       </p>
       <div className="flex items-center justify-center gap-2">

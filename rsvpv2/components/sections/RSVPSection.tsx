@@ -3,20 +3,78 @@
 import { useI18n } from "@/components/I18nProvider";
 import { RSVPForm } from "@/components/RSVPForm";
 
+/**
+ * RSVP section — visually echoes the printed wedding invitation.
+ *  - Cream paper background (set in globals.css on body).
+ *  - Two watercolor lemon illustrations flank the heading
+ *    (top-left + bottom-right) so the section reads like an
+ *    invitation card.
+ *  - Heading uses the handwritten "Lucy Rose" / "HighSpirited"
+ *    fonts while the subtitle stays in Garamond to match the
+ *    invite's editorial feel.
+ */
 export function RSVPSection() {
   const { t } = useI18n();
   return (
-    <div className="space-y-10">
-      <header className="text-center space-y-2">
-        <div className="divider-ornament" aria-hidden>
-          <span>🍋</span>
-          <span>✦</span>
-          <span>🌿</span>
-        </div>
-        <h2 className="section-title">{t.rsvp.title}</h2>
-        <p className="section-subtitle">{t.rsvp.subtitle}</p>
+    <section
+      id="rsvp"
+      className="relative isolate overflow-hidden py-16 sm:py-20 md:py-24"
+    >
+      {/* Top-left lemon cluster — small, soft, watermark-y */}
+      <img
+        src="/illustrations/lemons-set-4.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-32 sm:w-40 md:w-48 opacity-60 mix-blend-multiply"
+        style={{ filter: "saturate(0.92) brightness(1.02)" }}
+      />
+      {/* Bottom-right lemon cluster — mirrors the top */}
+      <img
+        src="/illustrations/lemons-set-3.png"
+        alt=""
+        aria-hidden="true"
+        className="pointer-events-none select-none absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-32 sm:w-40 md:w-48 opacity-60 mix-blend-multiply"
+        style={{ filter: "saturate(0.92) brightness(1.02) hue-rotate(-4deg)" }}
+      />
+
+      {/* Decorative thin rule above the heading — invitation card style */}
+      <div className="mx-auto mb-8 flex max-w-md items-center justify-center gap-3 text-[var(--leaf-600)]/80">
+        <span aria-hidden className="h-px w-16 bg-[var(--leaf-400)]/60" />
+        <span aria-hidden className="text-xl">🍋</span>
+        <span aria-hidden className="h-px w-16 bg-[var(--leaf-400)]/60" />
+      </div>
+
+      <header className="relative text-center space-y-3">
+        <h2
+          className="text-[var(--highlight)] text-[clamp(1.75rem,4vw,2.5rem)] leading-tight tracking-wide drop-shadow-sm"
+          style={{ fontFamily: "var(--font-serif)", textShadow: "0 1px 0 rgba(255,255,255,0.6)" }}
+        >
+          {t.rsvp.title}
+        </h2>
+        <p
+          className="italic text-[var(--text-body)] text-base sm:text-lg max-w-xl mx-auto"
+          style={{ fontFamily: "var(--font-serif)" }}
+        >
+          {t.rsvp.subtitle}
+        </p>
+        <p
+          className="font-script text-[var(--highlight)] text-2xl sm:text-3xl pt-2 opacity-90"
+          style={{ fontFamily: "var(--font-script)" }}
+        >
+          ♡
+        </p>
       </header>
-      <RSVPForm />
-    </div>
+
+      <div className="relative mt-10">
+        <RSVPForm />
+      </div>
+
+      {/* Bottom decorative rule */}
+      <div className="mx-auto mt-10 flex max-w-md items-center justify-center gap-3 text-[var(--leaf-600)]/70">
+        <span aria-hidden className="h-px w-24 bg-[var(--leaf-400)]/50" />
+        <span aria-hidden className="text-2xl">🌿</span>
+        <span aria-hidden className="h-px w-24 bg-[var(--leaf-400)]/50" />
+      </div>
+    </section>
   );
 }

@@ -105,7 +105,10 @@ export function Entrance() {
         <motion.div
           className="door-panel"
           style={{
-            background: "var(--leaf-700)",
+            backgroundImage: 'url("/illustrations/lemon-border.png")',
+            backgroundSize: "200% 100%",
+            backgroundPosition: "left center",
+            backgroundRepeat: "no-repeat",
             width: "50%",
             height: "100%",
           }}
@@ -117,7 +120,10 @@ export function Entrance() {
         <motion.div
           className="door-panel"
           style={{
-            background: "var(--leaf-500)",
+            backgroundImage: 'url("/illustrations/lemon-border.png")',
+            backgroundSize: "200% 100%",
+            backgroundPosition: "right center",
+            backgroundRepeat: "no-repeat",
             width: "50%",
             height: "100%",
           }}
@@ -133,22 +139,27 @@ export function Entrance() {
         {open && (
           <motion.div
             key="entrance-content"
-            className="relative z-10 flex flex-col items-center justify-center text-center px-6 py-24"
+            className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-2xl mx-auto px-6 sm:px-10 py-10 sm:py-14 rounded-[2rem]"
+            style={{
+              background: "rgba(255, 251, 235, 0.5)",
+              border: "1px solid rgba(255, 255, 255, 0.6)",
+              backdropFilter: "blur(4px)",
+            }}
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: CONTENT_DELAY }}
           >
-            <p
-              className="font-script text-3xl"
-              style={{ color: "var(--leaf-700)" }}
+            <h2
+              className="italic text-3xl"
+              style={{ color: "var(--highlight)", fontFamily: "var(--font-serif)" }}
             >
               {t.entrance.dear} {t.entrance.guest}
-            </p>
+            </h2>
 
             <p
               className="mt-4 max-w-xl text-lg italic"
-              style={{ color: "var(--ink-soft)" }}
+              style={{ color: "var(--text-body)" }}
             >
               {t.entrance.invitation}
             </p>
@@ -162,36 +173,42 @@ export function Entrance() {
             <p className="wedding-date mt-8">{t.entrance.date}</p>
             <p
               className="mt-2 text-sm uppercase tracking-[0.25em]"
-              style={{ color: "var(--leaf-700)" }}
+              style={{ color: "var(--highlight)" }}
             >
               {t.entrance.venue}
             </p>
 
             <Countdown />
-
-            <motion.span
-              aria-hidden
-              className="block mt-12 text-xs uppercase tracking-[0.3em]"
-              style={{ color: "var(--leaf-700)" }}
-              initial={{ opacity: 0, y: -4 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 1.4, duration: 0.6 }}
-            >
-              scroll
-              <motion.span
-                className="block mx-auto mt-1"
-                style={{ lineHeight: 1 }}
-                animate={{ y: [0, 6, 0] }}
-                transition={{
-                  repeat: Infinity,
-                  duration: 1.6,
-                  ease: "easeInOut",
-                }}
-              >
-                <ArrowDownIcon size={22} />
-              </motion.span>
-            </motion.span>
           </motion.div>
+        )}
+      </AnimatePresence>
+
+      {/* Scroll hint — pinned 80% down the screen */}
+      <AnimatePresence>
+        {open && (
+          <motion.span
+            aria-hidden
+            className="absolute left-0 right-0 z-10 flex flex-col items-center text-xs uppercase tracking-[0.3em]"
+            style={{ color: "var(--highlight)", top: "80%" }}
+            initial={{ opacity: 0, y: -4 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0 }}
+            transition={{ delay: 1.4, duration: 0.6 }}
+          >
+            scroll
+            <motion.span
+              className="block mx-auto mt-1"
+              style={{ lineHeight: 1 }}
+              animate={{ y: [0, 6, 0] }}
+              transition={{
+                repeat: Infinity,
+                duration: 1.6,
+                ease: "easeInOut",
+              }}
+            >
+              <ArrowDownIcon size={22} />
+            </motion.span>
+          </motion.span>
         )}
       </AnimatePresence>
 

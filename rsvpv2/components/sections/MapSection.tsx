@@ -32,8 +32,8 @@ export function MapSection() {
 
       <div className="space-y-3">
         <p
-          className="text-center font-script text-2xl"
-          style={{ color: "var(--leaf-700)" }}
+          className="text-center italic text-3xl"
+          style={{ color: "var(--highlight)", fontFamily: "var(--font-serif)" }}
         >
           {t.map.videoTitle}
         </p>
@@ -62,12 +62,12 @@ export function MapSection() {
       <div className="text-center space-y-4">
         <div>
           <p
-            className="font-script text-3xl"
-            style={{ color: "var(--leaf-700)" }}
+            className="italic text-4xl"
+            style={{ color: "var(--highlight)", fontFamily: "var(--font-serif)" }}
           >
             {wedding.venue.name}
           </p>
-          <p className="mt-1" style={{ color: "var(--ink-soft)" }}>
+          <p className="mt-1" style={{ color: "var(--text-body)" }}>
             {wedding.venue.address}
           </p>
         </div>
