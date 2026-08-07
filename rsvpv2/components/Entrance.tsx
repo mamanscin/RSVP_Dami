@@ -226,12 +226,6 @@ export function Entrance() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <span
-              className="font-script text-2xl italic"
-              style={{ color: "white", textShadow: "0 1px 4px rgba(0,0,0,0.35)" }}
-            >
-              tap to begin
-            </span>
             <motion.span
               className="px-8 py-4 text-lg"
               style={{

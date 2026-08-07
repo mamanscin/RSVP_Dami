@@ -18,25 +18,8 @@ export function RSVPSection() {
   return (
     <section
       id="rsvp"
-      className="relative isolate overflow-hidden py-16 sm:py-20 md:py-24"
+      className="relative isolate overflow-hidden"
     >
-      {/* Top-left lemon cluster — small, soft, watermark-y */}
-      <img
-        src="/illustrations/lemons-set-4.png"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute -top-4 -left-4 sm:-top-6 sm:-left-6 w-32 sm:w-40 md:w-48 opacity-60 mix-blend-multiply"
-        style={{ filter: "saturate(0.92) brightness(1.02)" }}
-      />
-      {/* Bottom-right lemon cluster — mirrors the top */}
-      <img
-        src="/illustrations/lemons-set-3.png"
-        alt=""
-        aria-hidden="true"
-        className="pointer-events-none select-none absolute -bottom-4 -right-4 sm:-bottom-6 sm:-right-6 w-32 sm:w-40 md:w-48 opacity-60 mix-blend-multiply"
-        style={{ filter: "saturate(0.92) brightness(1.02) hue-rotate(-4deg)" }}
-      />
-
       {/* Decorative thin rule above the heading — invitation card style */}
       <div className="mx-auto mb-8 flex max-w-md items-center justify-center gap-3 text-[var(--leaf-600)]/80">
         <span aria-hidden className="h-px w-16 bg-[var(--leaf-400)]/60" />
