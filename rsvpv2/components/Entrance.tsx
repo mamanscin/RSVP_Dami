@@ -237,16 +237,18 @@ export function Entrance() {
               />
             </div>
 
-            <h2
-              className="italic text-3xl"
-              style={{ color: "var(--highlight)", fontFamily: "var(--font-serif)" }}
-            >
+            <h2 className="section-title">
               {t.entrance.dear} {t.entrance.guest}
             </h2>
 
             <p
-              className="mt-4 max-w-xl text-lg italic"
-              style={{ color: "var(--text-body)" }}
+              className="mt-4 max-w-xl"
+              style={{
+                color: "var(--text-body)",
+                fontFamily: "var(--font-serif)",
+                fontWeight: 300,
+                fontSize: "1.05rem",
+              }}
             >
               {t.entrance.invitation}
             </p>

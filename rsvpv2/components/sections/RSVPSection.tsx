@@ -28,17 +28,19 @@ export function RSVPSection() {
       </div>
 
       <header className="relative text-center space-y-3">
-        <h2
-          className="text-[var(--highlight)] text-[clamp(1.75rem,4vw,2.5rem)] leading-tight tracking-wide drop-shadow-sm"
-          style={{ fontFamily: "var(--font-serif)", textShadow: "0 1px 0 rgba(255,255,255,0.6)" }}
-        >
-          {t.rsvp.title}
-        </h2>
-        <p
-          className="italic text-[var(--text-body)] text-base sm:text-lg max-w-xl mx-auto"
-          style={{ fontFamily: "var(--font-serif)" }}
-        >
-          {t.rsvp.subtitle}
+        <h2 className="section-title">{t.rsvp.title}</h2>
+        <p className="section-subtitle">
+          {t.rsvp.subtitle
+            .split(/(seats are limited|tempat duduk adalah terhad)/i)
+            .map((part, i) =>
+              /seats are limited|tempat duduk adalah terhad/i.test(part) ? (
+                <strong key={i} style={{ fontWeight: 700 }}>
+                  {part}
+                </strong>
+              ) : (
+                <span key={i}>{part}</span>
+              )
+            )}
         </p>
       </header>
 

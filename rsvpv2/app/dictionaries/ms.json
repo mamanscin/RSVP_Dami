@@ -18,7 +18,7 @@
   },
   "entrance": {
     "dear": "Untuk",
-    "guest": "Tetamu",
+    "guest": "Yang Diraikan Bersama",
     "invitation": "Anda dijemput ke majlis perkahwinan",
     "and": "dan",
     "date": "Isnin, 31 Ogos 2026",
@@ -81,12 +81,12 @@
   },
   "rsvp": {
     "title": "RSVP",
-    "subtitle": "Sila maklumkan jika anda dapat hadir",
+    "subtitle": "Sila maklumkan jika anda dapat hadir, kerana tempat duduk adalah terhad dan maklum balas anda akan membantu kami membuat persiapan yang diperlukan.",
     "attending": "Adakah anda akan hadir?",
     "yes": "Ya, saya akan hadir",
     "no": "Maaf, tidak dapat hadir",
     "guestCount": "Berapa ramai yang akan hadir?",
-    "guestCountHint": "Termasuk diri sendiri (1â€“10 tetamu)",
+    "guestCountHint": "Termasuk diri sendiri (1-10 tetamu)",
     "guestName": "Nama Tetamu",
     "guestNamePlaceholder": "Nama penuh",
     "phone": "Nombor Telefon",
