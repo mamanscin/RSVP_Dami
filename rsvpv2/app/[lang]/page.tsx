@@ -29,9 +29,22 @@ export default async function HomePage() {
         <RSVPSection />
       </SectionReveal>
 
-      <SectionReveal id="contact" className="section max-w-3xl mx-auto px-4 sm:px-6 pb-40 sm:pb-48">
+      <SectionReveal id="contact" className="section max-w-3xl mx-auto px-4 sm:px-6 pb-10 sm:pb-10">
         <ContactSection />
       </SectionReveal>
+
+      {/* Bottom illustration — always fills the available screen width while
+          preserving its natural aspect ratio, including on small screens.
+          Pulled up with negative margin so it overlaps ~10% of the contact section above. */}
+      <img
+        src="/illustrations/bottom.png"
+        alt=""
+        aria-hidden
+        width={3508}
+        height={1207}
+        draggable={false}
+        className="block h-auto w-full max-w-none select-none pointer-events-none -mt-[10%]"
+      />
     </>
   );
 }
