@@ -40,12 +40,6 @@ export function RSVPSection() {
         >
           {t.rsvp.subtitle}
         </p>
-        <p
-          className="font-script text-[var(--highlight)] text-2xl sm:text-3xl pt-2 opacity-90"
-          style={{ fontFamily: "var(--font-script)" }}
-        >
-          ♡
-        </p>
       </header>
 
       <div className="relative mt-10">
