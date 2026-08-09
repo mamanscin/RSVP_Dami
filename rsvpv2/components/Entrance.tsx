@@ -211,7 +211,7 @@ export function Entrance() {
         {open && (
           <motion.div
             key="entrance-content"
-            className="relative z-10 flex flex-col items-center justify-center text-center w-full max-w-2xl mx-auto px-6 sm:px-10 py-10 sm:py-14 rounded-[2rem]"
+            className="relative z-10 flex flex-col items-center justify-start text-center w-full max-w-2xl mx-auto px-6 sm:px-10 pb-10 sm:pb-14 rounded-[2rem]"
             style={{
               background: "rgba(255, 251, 235, 0.5)",
               border: "1px solid rgba(255, 255, 255, 0.6)",
@@ -222,16 +222,33 @@ export function Entrance() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.7, ease: EASE, delay: CONTENT_DELAY }}
           >
-            <h2
-              className="italic text-3xl"
-              style={{ color: "var(--highlight)", fontFamily: "var(--font-serif)" }}
-            >
+            <div className="flex justify-center w-full mb-6">
+              <img
+                src="/illustrations/top.png"
+                alt=""
+                aria-hidden
+                draggable={false}
+                className="select-none pointer-events-none block"
+                style={{
+                  width: "min(55%, 220px)",
+                  height: "auto",
+                  maxWidth: "100%",
+                }}
+              />
+            </div>
+
+            <h2 className="section-title">
               {t.entrance.dear} {t.entrance.guest}
             </h2>
 
             <p
-              className="mt-4 max-w-xl text-lg italic"
-              style={{ color: "var(--text-body)" }}
+              className="mt-4 max-w-xl"
+              style={{
+                color: "var(--text-body)",
+                fontFamily: "var(--font-serif)",
+                fontWeight: 300,
+                fontSize: "1.05rem",
+              }}
             >
               {t.entrance.invitation}
             </p>

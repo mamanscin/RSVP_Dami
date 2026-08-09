@@ -16,7 +16,6 @@ export function MapSection() {
           <span>🌿</span>
         </div>
         <h2 className="section-title">{t.map.title}</h2>
-        <p className="section-subtitle">{t.map.subtitle}</p>
       </header>
 
       <iframe

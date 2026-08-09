@@ -457,8 +457,9 @@ function GuestList({
             className="text-center"
             style={{
               fontFamily:
-                '"High Spirited", "Lucy Rose PERSONAL", cursive',
-              fontSize: "1.25rem",
+                '"Minion Display", serif',
+              fontSize: "2rem",
+              fontWeight: 500,
               color: "var(--highlight)",
               letterSpacing: "0.04em",
             }}
