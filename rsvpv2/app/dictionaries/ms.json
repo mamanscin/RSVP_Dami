@@ -53,24 +53,24 @@
     "venueLabel": "Tempat",
     "venueValue": "The Glass Galore, Tamarind Square, Cyberjaya",
     "timeLabel": "Masa",
-    "timeValue": "11:00 pagi â€“ 4:00 petang",
-    "dresscode": "Pakaian",
-    "dresscodeValue": "Hijau untuk pengantin lelaki Â· Kuning untuk pengantin perempuan Â· Busana tradisional dialu-alukan",
-    "wishesTitle": "Ucapan daripada Tetamu",
+    "timeValue": "11:00 pagi - 3:00 petang",
+    "dresscode": "Kod Pakaian",
+    "dresscodeValue": "Wanita: Pakaian tradisional atau batik\nLelaki: Pakaian tradisional, batik atau kemeja berkolar",
+    "wishesTitle": "Ucapan Tetamu",
     "wishesEmpty": "Jadilah yang pertama meninggalkan ucapan untuk pengantin.",
     "wishesFrom": "daripada"
   },
   "map": {
-    "title": "Cari Lokasi",
+    "title": "Lokasi",
     "subtitle": "The Glass Galore, Tamarind Square, Cyberjaya",
     "directions": "Dapatkan Arah",
     "parking": "Tempat letak kereta percuma disediakan",
     "landmark": "Tanda aras: Di tengah-tengah CBD Cyberjaya",
-    "videoTitle": "Arah Perjalanan"
+    "videoTitle": "Panduan ke Lokasi"
   },
   "itinerary": {
     "title": "Atur Cara",
-    "subtitle": "Gambaran hari tersebut",
+    "subtitle": "Tentatif majlis",
     "events": [
       {
         "time": "11:00 AM – 3:00 PM",
@@ -91,12 +91,12 @@
     "guestNamePlaceholder": "Nama penuh",
     "phone": "Nombor Telefon",
     "phonePlaceholder": "+60 12-345 6789",
-    "wishes": "Ucapan (tidak wajib)",
-    "wishesPlaceholder": "Tinggalkan ucapan manis untuk pengantin...",
+    "wishes": "Ucapan",
+    "wishesPlaceholder": "Tinggalkan ucapan untuk pengantin...",
     "submit": "Hantar RSVP",
     "submitting": "Menghantar...",
     "successTitle": "Terima kasih!",
-    "successMessage": "RSVP anda telah direkodkan. Jumpa anda di hari istimewa!",
+    "successMessage": "RSVP anda telah diterima. Jumpa anda di hari istimewa kami!",
     "another": "Hantar RSVP Lain",
     "errors": {
       "attendance": "Sila pilih sama ada anda akan hadir.",
