@@ -33,8 +33,12 @@ export function InfoSection() {
           {t.info.greeting}
         </p>
         <p
-          className="text-sm italic"
-          style={{ color: "var(--text-body)" }}
+          style={{
+            color: "var(--text-body)",
+            fontFamily: "var(--font-serif)",
+            fontWeight: 300,
+            fontSize: "1.05rem",
+          }}
         >
           {t.info.blessing}
         </p>
