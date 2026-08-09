@@ -158,34 +158,22 @@ html, body {
 }
 
 body {
-  /* Fixed lemon-cream wash with subtle radial highlights.
-     Mimics the reference's blurred watercolor background.
-     The paper-texture overlay is layered via the ::before
-     pseudo-element below so it can be tuned independently. */
-  background-image:
-    radial-gradient(circle at 15% 12%, rgba(252, 211, 77, 0.18) 0%, transparent 38%),
-    radial-gradient(circle at 88% 88%, rgba(169, 200, 130, 0.20) 0%, transparent 45%),
-    radial-gradient(circle at 50% 50%, rgba(255, 251, 235, 0.8) 0%, var(--cream) 70%);
+  /* The printed invitation's lemon border, used as the full-page
+     background. The cream base colour (set on html, body above)
+     shows while the image loads. The paper-texture overlay is
+     layered via the ::after pseudo-element below. */
+  background-image: url("/illustrations/lemon-border.png");
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
   background-attachment: fixed;
   min-height: 100vh;
   position: relative;
 }
 
-/* Layered background overlays:
-   1. ::before  → watercolour lemon cluster (under the paper).
-   2. ::after   → paper texture, multiply over the lemons.
-   Both are position: fixed and stretch to fill the viewport so
-   the look follows the screen height. */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background: url("/illustrations/lemon-border.png") center / cover no-repeat;
-  opacity: 0.7;
-  pointer-events: none;
-  z-index: 0;
-}
-
+/* Paper-texture overlay: multiplies over the lemon border so the
+   watercolour wash keeps its grain. Position: fixed and stretched
+   to fill the viewport so the look follows the screen height. */
 body::after {
   content: "";
   position: fixed;
@@ -549,11 +537,31 @@ body > main {
 }
 .page-rise { animation: page-rise 0.7s ease-out both; }
 
-/* ─── Wishes list fade-mask ───────────────────────────────── */
+/* ─── Wishes list — slow continuous scroll ─────────────────── */
+/* The viewport height is set in JS to the tallest wish so only one
+   message is visible at a time; the duplicated list inside slides up
+   seamlessly via the wishes-scroll keyframes. */
 .wishes-scroller {
   position: relative;
   max-height: 280px;
-  overflow-y: auto;
+  overflow-y: hidden;
+  scrollbar-width: none;
+}
+
+.wishes-scroller ul {
+  margin: 0;
+  will-change: transform;
+}
+
+/* Pause while the guest is reading / hovering */
+.wishes-scroller:hover ul,
+.wishes-scroller:focus-within ul {
+  animation-play-state: paused;
+}
+
+@keyframes wishes-scroll {
+  from { transform: translateY(0); }
+  to   { transform: translateY(-50%); }
 }
 
 /* ─── Timeline (itinerary) ────────────────────────────────── */
