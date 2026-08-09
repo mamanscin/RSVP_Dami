@@ -41,7 +41,7 @@ export function InfoSection() {
       </div>
 
       {/* Parents inviting — groom's on the left, bride's on the right */}
-      <div className="grid grid-cols-[1fr_auto_1fr] items-center gap-4 sm:gap-6">
+      <div className="grid grid-cols-2 items-center gap-8 sm:gap-16">
         <div className="flex flex-col items-center sm:items-end text-center sm:text-right">
           <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>
             {t.info.groom}
@@ -67,13 +67,6 @@ export function InfoSection() {
             {wedding.groom.mother}
           </h3>
         </div>
-
-        <span
-          className="couple-amp"
-          style={{ fontSize: "2rem", color: "var(--highlight)" }}
-        >
-          &amp;
-        </span>
 
         <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
           <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>

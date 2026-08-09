@@ -24,13 +24,15 @@ export function ContactSection() {
           eyebrow={t.contact.brideFamily}
           father={t.contact.brideFather}
           mother={t.contact.brideMother}
-          contact={wedding.bride.contact}
+          fatherContact={wedding.bride.fatherContact}
+          motherContact={wedding.bride.motherContact}
         />
         <FamilyBlock
           eyebrow={t.contact.groomFamily}
           father={t.contact.groomFather}
           mother={t.contact.groomMother}
-          contact={wedding.groom.contact}
+          fatherContact={wedding.groom.fatherContact}
+          motherContact={wedding.groom.motherContact}
         />
       </div>
     </div>
@@ -41,16 +43,15 @@ function FamilyBlock({
   eyebrow,
   father,
   mother,
-  contact,
+  fatherContact,
+  motherContact,
 }: {
   eyebrow: string;
   father: string;
   mother: string;
-  contact: string;
+  fatherContact: string;
+  motherContact: string;
 }) {
-  const phone = contact.replace(/[^\d+]/g, "");
-  const whatsappNumber = phone.replace(/^\+/, "");
-
   return (
     <div className="text-center space-y-4">
       <p
@@ -60,23 +61,17 @@ function FamilyBlock({
         {eyebrow}
       </p>
       <div className="space-y-3" style={{ color: "var(--text-body)" }}>
-        <ContactRow name={father} phone={phone} whatsappNumber={whatsappNumber} />
+        <ContactRow name={father} phone={fatherContact} />
         <p style={{ color: "var(--text-body)" }}>&amp;</p>
-        <ContactRow name={mother} phone={phone} whatsappNumber={whatsappNumber} />
+        <ContactRow name={mother} phone={motherContact} />
       </div>
     </div>
   );
 }
 
-function ContactRow({
-  name,
-  phone,
-  whatsappNumber,
-}: {
-  name: string;
-  phone: string;
-  whatsappNumber: string;
-}) {
+function ContactRow({ name, phone }: { name: string; phone: string }) {
+  const cleanPhone = phone.replace(/[^\d+]/g, "");
+  const whatsappNumber = cleanPhone.replace(/^\+/, "");
   return (
     <div className="flex flex-col items-center gap-2">
       <p

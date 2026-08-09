@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { useI18n } from "./I18nProvider";
+import { InvitationCard } from "./InvitationCard";
 
 export type StoredWish = {
   name: string;
@@ -63,35 +64,37 @@ export function WishesList() {
   }
 
   return (
-    <div className="wishes-scroller">
-      <ul className="space-y-0 pt-8 pb-8">
-        {wishes.map((w, i) => (
-          <li
-            key={`${w.date}-${i}`}
-            className="py-6"
-            style={{
-              borderTop: i === 0 ? "none" : "1px solid var(--hairline)",
-            }}
-          >
-            <p
-              className="text-lg italic whitespace-pre-wrap"
+    <InvitationCard>
+      <div className="wishes-scroller">
+        <ul className="space-y-0 pt-8 pb-8">
+          {wishes.map((w, i) => (
+            <li
+              key={`${w.date}-${i}`}
+              className="py-6"
               style={{
-                fontFamily: "var(--font-display)",
-                color: "var(--text-body)",
+                borderTop: i === 0 ? "none" : "1px solid var(--hairline)",
               }}
             >
-              {w.message}
-            </p>
-            <p
-              className="mt-2 text-xs uppercase tracking-[0.25em]"
-              style={{ color: "var(--highlight)" }}
-            >
-              — {w.name}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </div>
+              <p
+                className="text-lg italic whitespace-pre-wrap"
+                style={{
+                  fontFamily: "var(--font-display)",
+                  color: "var(--text-body)",
+                }}
+              >
+                {w.message}
+              </p>
+              <p
+                className="mt-2 text-xs uppercase tracking-[0.25em]"
+                style={{ color: "var(--highlight)" }}
+              >
+                — {w.name}
+              </p>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </InvitationCard>
   );
 }
 
