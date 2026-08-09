@@ -272,13 +272,13 @@ export function Entrance() {
         )}
       </AnimatePresence>
 
-      {/* Scroll hint — pinned 80% down the screen */}
+      {/* Scroll hint — pinned near the bottom of the screen */}
       <AnimatePresence>
         {open && (
           <motion.span
             aria-hidden
             className="absolute left-0 right-0 z-10 flex flex-col items-center text-xs uppercase tracking-[0.3em]"
-            style={{ color: "var(--highlight)", top: "80%" }}
+            style={{ color: "var(--highlight)", top: "90%" }}
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}

@@ -653,7 +653,7 @@ body > main {
 }
 
 .couple-amp {
-  font-family: var(--font-serif);
+  font-family: var(--font-script);
   font-style: italic;
   font-size: clamp(2rem, 7vw, 3rem);
   color: var(--highlight);
