@@ -192,6 +192,7 @@ function DetailRow({ label, value }: { label: string; value: string }) {
           fontFamily: "var(--font-display)",
           fontStyle: "italic",
           color: "var(--text-body)",
+          whiteSpace: "pre-line",
         }}
       >
         {value}
