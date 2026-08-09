@@ -100,38 +100,59 @@ export function Entrance() {
 
   return (
     <div className="relative w-full" style={{ minHeight: "100vh" }}>
-      {/* Doors */}
+      {/* Doors — the artwork is anchored to the viewport centre. Each
+          half renders a full-viewport-width layer with a centred `cover`
+          background, so both halves always meet exactly at the middle of
+          the screen (the seam never drifts with the viewport size) and
+          the outer edges of the artwork are cropped by the screen edges
+          instead of being stretched. */}
       <div className="absolute inset-0 flex">
+        {/* Left door */}
         <motion.div
-          className="door-panel"
-          style={{
-            backgroundImage: 'url("/illustrations/lemon-border.png")',
-            backgroundSize: "200% 100%",
-            backgroundPosition: "left center",
-            backgroundRepeat: "no-repeat",
-            width: "50%",
-            height: "100%",
-          }}
+          className="door-panel relative overflow-hidden"
+          style={{ width: "50%", height: "100%" }}
           initial={{ x: "0%" }}
           animate={{ x: open ? "-100%" : "0%" }}
           transition={{ duration: DOOR_DURATION, ease: EASE }}
           aria-hidden
-        />
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              left: 0,
+              width: "100vw",
+              backgroundImage: 'url("/illustrations/lemon-border.png")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </motion.div>
+        {/* Right door */}
         <motion.div
-          className="door-panel"
-          style={{
-            backgroundImage: 'url("/illustrations/lemon-border.png")',
-            backgroundSize: "200% 100%",
-            backgroundPosition: "right center",
-            backgroundRepeat: "no-repeat",
-            width: "50%",
-            height: "100%",
-          }}
+          className="door-panel relative overflow-hidden"
+          style={{ width: "50%", height: "100%" }}
           initial={{ x: "0%" }}
           animate={{ x: open ? "100%" : "0%" }}
           transition={{ duration: DOOR_DURATION, ease: EASE }}
           aria-hidden
-        />
+        >
+          <div
+            style={{
+              position: "absolute",
+              top: 0,
+              bottom: 0,
+              right: 0,
+              width: "100vw",
+              backgroundImage: 'url("/illustrations/lemon-border.png")',
+              backgroundSize: "cover",
+              backgroundPosition: "center",
+              backgroundRepeat: "no-repeat",
+            }}
+          />
+        </motion.div>
       </div>
 
       {/* Reveal content */}
