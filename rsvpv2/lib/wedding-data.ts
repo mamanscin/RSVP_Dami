@@ -7,14 +7,16 @@ export const wedding = {
     shortName: "Puteri",
     father: "Megat Sharizal Amri bin Abdul Halim",
     mother: "Siti Rahayu binti Ahmad",
-    contact: "+60 12-234 5678",
+    fatherContact: "+60 11-3676 7583",
+    motherContact: "+60 16-546 4119",
   },
   groom: {
     fullName: "Amir Izzudin",
     shortName: "Amir",
     father: "Zamri bin Marsid",
     mother: "Ritalaily binti Ishak",
-    contact: "+60 19-345 6789",
+    fatherContact: "+60 16-258 0677",
+    motherContact: "+60 14-638 3457",
   },
   date: {
     iso: "2026-08-31T05:30:00+08:00",
