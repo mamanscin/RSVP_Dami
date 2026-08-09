@@ -24,12 +24,20 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Create a non-root user for security
+# Create a non-root user for security, plus a writable data dir for SQLite.
+# /app is chowned once (single dir, cheap) so the app user can run npm ci.
 RUN addgroup --system --gid 1001 nodejs \
-    && adduser --system --uid 1001 nextjs
+    && adduser --system --uid 1001 nextjs \
+    && mkdir -p /data && chmod 777 /data \
+    && chown nextjs:nodejs /app
 
-# Install production dependencies (including prisma & @prisma/client for
-# runtime migrations)
+ENV HOME=/app
+
+# Install production dependencies as the app user so node_modules is owned
+# by nextjs from the start. Avoids a recursive chown of the whole tree,
+# which triggers a pathological overlayfs copy-up that can hang the build.
+USER nextjs
+
 COPY package.json package-lock.json ./
 RUN npm ci && npm cache clean --force
 
@@ -45,14 +53,8 @@ COPY --from=builder /app/public ./public
 COPY --from=builder /app/next.config.ts ./
 COPY --from=builder /app/tsconfig.json ./
 
-# Create the data directory for the SQLite database. Make it world-writable
-# so the nextjs user can write even when the Docker volume is root-owned.
-RUN mkdir -p /data && chmod 777 /data && chown -R nextjs:nodejs /app
-
-USER nextjs
-
 EXPOSE 3000
 
 # On startup, apply any pending database migrations (or push the schema if
 # no migrations exist yet), then start the Next.js server.
-CMD ["sh", "-c", "npx prisma migrate deploy 2>/dev/null || npx prisma db push && npm start"]
+CMD ["sh", "-c", "npx prisma migrate deploy || npx prisma db push && npm start"]

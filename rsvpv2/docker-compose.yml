@@ -5,14 +5,13 @@ services:
       context: .
       dockerfile: Dockerfile
       target: runner
+    user: root
     command: >
-      sh -c "npx prisma migrate deploy 2>/dev/null || npx prisma db push"
+      sh -c "chown -R nextjs:nodejs /data && chmod 775 /data && npx prisma migrate deploy || (npx prisma db push && chown -R nextjs:nodejs /data && chmod 775 /data)"
     environment:
       - DATABASE_URL=file:/data/dev.db
     volumes:
       - rsvp-data:/data
-    profiles:
-      - setup
 
   app:
     build:
