@@ -282,7 +282,7 @@ export function RSVPForm() {
         />
       </div>
 
-      <div className="pt-2 flex justify-center">
+      <div className="pt-2 pb-6 -mt-6 flex justify-center">
         <button
           type="submit"
           disabled={submitting}

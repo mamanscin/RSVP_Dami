@@ -289,3 +289,25 @@ export function ContactIcon(props: IconProps) {
     </Base>
   );
 }
+
+export function PawIcon(props: IconProps) {
+  // Filled paw silhouette: 4 toe pads arranged in an arc + a large main pad.
+  const { size = 18, width, height, ...rest } = props;
+  return (
+    <svg
+      width={width ?? size}
+      height={height ?? size}
+      viewBox="0 0 24 24"
+      fill="currentColor"
+      stroke="none"
+      aria-hidden="true"
+      {...rest}
+    >
+      <ellipse cx="5" cy="8" rx="1.8" ry="2.5" transform="rotate(-20 5 8)" />
+      <ellipse cx="9.5" cy="5.5" rx="1.8" ry="2.5" />
+      <ellipse cx="14.5" cy="5.5" rx="1.8" ry="2.5" />
+      <ellipse cx="19" cy="8" rx="1.8" ry="2.5" transform="rotate(20 19 8)" />
+      <path d="M12 10.5C8 10.5 4.5 13 4.5 17c0 2.5 2 4.5 4.5 4.5 1.1 0 1.8-.5 3-.5s1.9.5 3 .5c2.5 0 4.5-2 4.5-4.5 0-4-3.5-6.5-7.5-6.5z" />
+    </svg>
+  );
+}

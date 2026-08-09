@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useI18n } from "./I18nProvider";
 import { Countdown } from "./Countdown";
-import { ArrowDownIcon } from "./Icons";
+import { ArrowDownIcon, PawIcon } from "./Icons";
 
 const EASE = [0.77, 0, 0.175, 1] as const;
 const DOOR_DURATION = 1.1;
@@ -100,6 +100,57 @@ export function Entrance() {
 
   return (
     <div className="relative w-full" style={{ minHeight: "100vh" }}>
+      {/* Polar bear & fox illustration — sits above the doors but below
+          the tap-to-open button so it reads as "underneath" the AP
+          monogram / date / paw affordance. On open it slides down and
+          fades out in sync with the doors parting.
+
+          The framer-motion wrapper only handles the y/opacity animation.
+          Centering is done by the inner <img> via flex on the wrapper,
+          so motion's own `transform` (which would otherwise clobber a
+          static `translateX(-50%)`) never conflicts with the layout. */}
+      <AnimatePresence>
+        {!open && (
+          <motion.div
+            key="entrance-bear"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              y: 120,
+              transition: { duration: DOOR_DURATION, ease: EASE },
+            }}
+            transition={{ duration: 0.6, ease: EASE }}
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: "4vh",
+              display: "flex",
+              justifyContent: "center",
+              zIndex: 10,
+              pointerEvents: "none",
+            }}
+          >
+            <img
+              src="/illustrations/polarberpox1.png"
+              alt=""
+              aria-hidden
+              draggable={false}
+              className="select-none"
+              style={{
+                display: "block",
+                width: "min(70vw, 520px)",
+                height: "auto",
+                maxWidth: "50vh",
+                userSelect: "none",
+                pointerEvents: "none",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Doors — the artwork is anchored to the viewport centre. Each
           half renders a full-viewport-width layer with a centred `cover`
           background, so both halves always meet exactly at the middle of
@@ -233,35 +284,82 @@ export function Entrance() {
         )}
       </AnimatePresence>
 
-      {/* Tap-to-open */}
+      {/* Tap-to-open — invisible overlay, AP.svg is the visible affordance */}
       <AnimatePresence>
         {!open && (
           <motion.button
             key="entrance-cta"
             type="button"
             onClick={handleOpen}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 cursor-pointer"
+            style={{
+              background: "transparent",
+              border: "none",
+              padding: 0,
+            }}
             aria-label={t.entrance.openDoors}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            <motion.span
-              className="px-8 py-4 text-lg"
+            {/* AP.svg as the button */}
+            <span
+              className="block"
               style={{
-                background: "linear-gradient(135deg, var(--leaf-500), var(--leaf-700))",
-                color: "white",
-                boxShadow: "0 6px 22px rgba(252,211,77,0.45)",
-                borderRadius: "999px",
-                fontFamily: "var(--font-serif)",
-                fontWeight: 500,
-                letterSpacing: "0.04em",
+                width: "min(22vw, 160px)",
+                height: "auto",
+                pointerEvents: "none",
               }}
-              animate={{ scale: [1, 1.04, 1] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
             >
-              {t.entrance.openDoors}
+              <img
+                src="/illustrations/SVG/AP.svg"
+                alt=""
+                aria-hidden
+                draggable={false}
+                style={{
+                  display: "block",
+                  width: "100%",
+                  height: "auto",
+                  pointerEvents: "none",
+                  userSelect: "none",
+                }}
+              />
+            </span>
+
+            {/* Wedding date — sits between the monogram and the paw icon */}
+            <motion.span
+              aria-hidden
+              className="block"
+              style={{
+                fontFamily: "var(--font-serif)",
+                fontStyle: "italic",
+                fontSize: "clamp(1rem, 2.2vw, 1.35rem)",
+                letterSpacing: "0.25em",
+                color: "var(--ink)",
+                opacity: 0.75,
+                pointerEvents: "none",
+              }}
+              animate={{ opacity: [0.6, 0.85, 0.6] }}
+              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
+            >
+              31.08.2026
+            </motion.span>
+
+            {/* Tap indicator — paw icon at 50% opacity, pulsing like a finger tap */}
+            <motion.span
+              aria-hidden
+              className="block"
+              style={{ color: "var(--leaf-700)", opacity: 0.5, pointerEvents: "none" }}
+              animate={{ scale: [1, 1, 0.78, 1, 1] }}
+              transition={{
+                duration: 1.8,
+                repeat: Infinity,
+                ease: "easeInOut",
+                times: [0, 0.4, 0.5, 0.6, 1],
+              }}
+            >
+              <PawIcon size={28} />
             </motion.span>
           </motion.button>
         )}
