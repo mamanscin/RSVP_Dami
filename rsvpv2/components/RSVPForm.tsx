@@ -3,7 +3,7 @@
 import { useMemo, useState } from "react";
 import { useI18n } from "./I18nProvider";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
-import { LeafIcon, SparklesIcon, LemonIcon, CheckIcon, EnvelopeIcon } from "./Icons";
+import { CheckIcon, EnvelopeIcon } from "./Icons";
 
 type Guest = {
   name: string;
@@ -548,22 +548,11 @@ function SuccessPanel({
         style={{ border: "1px solid rgba(66, 92, 44, 0.18)" }}
       />
 
-      {/* Heart + leaf + sparkle row */}
-      <div
-        className="inline-flex items-center justify-center gap-2 relative"
-        style={{ color: "var(--highlight)" }}
-        aria-hidden
-      >
-        <LeafIcon size={28} />
-        <SparklesIcon size={22} />
-        <LemonIcon size={28} />
-      </div>
-
       <h2
         className="relative"
         style={{
-          fontFamily:
-            '"High Spirited", "Lucy Rose PERSONAL", cursive',
+          fontFamily: "var(--font-display)",
+          fontStyle: "italic",
           fontSize: "clamp(2.4rem, 6vw, 3.2rem)",
           color: "var(--highlight)",
           lineHeight: 1.1,
@@ -588,8 +577,7 @@ function SuccessPanel({
         onClick={onAnother}
         className="relative inline-flex items-center justify-center rounded-full px-7 py-2.5 transition hover:-translate-y-0.5"
         style={{
-          fontFamily:
-            '"High Spirited", "Lucy Rose PERSONAL", cursive',
+          fontFamily: "var(--font-serif)",
           fontSize: "1.25rem",
           color: "var(--highlight)",
           background: "var(--lemon-50)",

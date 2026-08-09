@@ -555,26 +555,6 @@ body > main {
   max-height: 280px;
   overflow-y: auto;
 }
-.wishes-scroller::before,
-.wishes-scroller::after {
-  content: "";
-  position: sticky;
-  display: block;
-  left: 0;
-  right: 0;
-  height: 32px;
-  pointer-events: none;
-}
-.wishes-scroller::before {
-  top: 0;
-  background: linear-gradient(to bottom, var(--cream), transparent);
-  margin-bottom: -32px;
-}
-.wishes-scroller::after {
-  bottom: 0;
-  background: linear-gradient(to top, var(--cream), transparent);
-  margin-top: -32px;
-}
 
 /* ─── Timeline (itinerary) ────────────────────────────────── */
 .timeline {
@@ -665,7 +645,8 @@ body > main {
 }
 
 .couple-amp {
-  font-family: var(--font-script);
+  font-family: var(--font-serif);
+  font-style: italic;
   font-size: clamp(2rem, 7vw, 3rem);
   color: var(--highlight);
   display: block;
