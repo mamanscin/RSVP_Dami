@@ -100,6 +100,57 @@ export function Entrance() {
 
   return (
     <div className="relative w-full" style={{ minHeight: "100vh" }}>
+      {/* Polar bear & fox illustration — sits above the doors but below
+          the tap-to-open button so it reads as "underneath" the AP
+          monogram / date / paw affordance. On open it slides down and
+          fades out in sync with the doors parting.
+
+          The framer-motion wrapper only handles the y/opacity animation.
+          Centering is done by the inner <img> via flex on the wrapper,
+          so motion's own `transform` (which would otherwise clobber a
+          static `translateX(-50%)`) never conflicts with the layout. */}
+      <AnimatePresence>
+        {!open && (
+          <motion.div
+            key="entrance-bear"
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{
+              opacity: 0,
+              y: 120,
+              transition: { duration: DOOR_DURATION, ease: EASE },
+            }}
+            transition={{ duration: 0.6, ease: EASE }}
+            style={{
+              position: "absolute",
+              left: 0,
+              right: 0,
+              bottom: "4vh",
+              display: "flex",
+              justifyContent: "center",
+              zIndex: 10,
+              pointerEvents: "none",
+            }}
+          >
+            <img
+              src="/illustrations/polarberpox1.png"
+              alt=""
+              aria-hidden
+              draggable={false}
+              className="select-none"
+              style={{
+                display: "block",
+                width: "min(70vw, 520px)",
+                height: "auto",
+                maxWidth: "50vh",
+                userSelect: "none",
+                pointerEvents: "none",
+              }}
+            />
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Doors — the artwork is anchored to the viewport centre. Each
           half renders a full-viewport-width layer with a centred `cover`
           background, so both halves always meet exactly at the middle of
