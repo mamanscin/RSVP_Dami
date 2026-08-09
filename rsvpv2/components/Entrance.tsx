@@ -253,15 +253,13 @@ export function Entrance() {
             transition={{ duration: 0.4 }}
           >
             {/* AP.svg as the button */}
-            <motion.span
+            <span
               className="block"
               style={{
                 width: "min(22vw, 160px)",
                 height: "auto",
                 pointerEvents: "none",
               }}
-              animate={{ scale: [1, 1.04, 1] }}
-              transition={{ duration: 1.8, repeat: Infinity, ease: "easeInOut" }}
             >
               <img
                 src="/illustrations/SVG/AP.svg"
@@ -276,7 +274,7 @@ export function Entrance() {
                   userSelect: "none",
                 }}
               />
-            </motion.span>
+            </span>
 
             {/* Wedding date — sits between the monogram and the paw icon */}
             <motion.span
