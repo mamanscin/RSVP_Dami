@@ -183,14 +183,21 @@ body::before {
   left: 0;
   /* Fill the full physical screen (under the notch and home indicator
      on iOS thanks to viewport-fit=cover). The image is 2443x1748 —
-     wider than tall — so on a tall phone viewport, `cover` +
-     `position: center` only fills the middle band of the screen,
-     leaving flat colour above and below. `auto 100%` sizes by height
-     so the artwork reaches the top and bottom of the screen, with
-     some of the left/right cropped. `background-position: top center`
-     anchors the artwork to the top of the safe area so the
-     decorative bottom edge stays at the very bottom of the screen. */
-  background: url("/illustrations/lemon-border.png") top center / auto 100% no-repeat;
+     wider than tall — so `cover` + `center` keeps its aspect ratio
+     while always filling the viewport (see the sizing note below). */
+  /* `cover` + `center` keeps the artwork's aspect ratio while
+     guaranteeing it always fills the full viewport:
+       • On a wide screen (viewport ratio > image ratio 2443/1748 ≈
+         1.398) the image is scaled to the screen WIDTH and centred,
+         so it overflows top & bottom (height ≥ screen height) and the
+         outer edges are cropped by the screen edges instead of leaving
+         flat colour on the sides.
+       • On a tall/narrow screen the image is scaled to the screen
+         HEIGHT, so the width overflows and is cropped left/right —
+         the height is never less than the screen height.
+     This works on iOS because the element itself is `position: fixed`
+     (not `background-attachment: fixed`, which iOS ignores). */
+  background: url("/illustrations/lemon-border.png") center / cover no-repeat;
   z-index: 0;
   pointer-events: none;
 }
