@@ -86,6 +86,29 @@ export function GlobeIcon(props: IconProps) {
   );
 }
 
+export function SpeakerOnIcon(props: IconProps) {
+  // Speaker with two sound-wave arcs. The arcs carry `data-wave` so
+  // the playing state can pulse them via CSS.
+  return (
+    <Base {...props}>
+      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+      <path data-wave="1" d="M15.5 8.5a5 5 0 0 1 0 7" />
+      <path data-wave="2" d="M18.5 5.5a9 9 0 0 1 0 13" />
+    </Base>
+  );
+}
+
+export function SpeakerOffIcon(props: IconProps) {
+  // Speaker with an X through where the sound waves would be.
+  return (
+    <Base {...props}>
+      <path d="M11 5 6 9H2v6h4l5 4V5Z" />
+      <line x1="22" y1="9" x2="16" y2="15" />
+      <line x1="16" y1="9" x2="22" y2="15" />
+    </Base>
+  );
+}
+
 export function PhoneIcon(props: IconProps) {
   return (
     <Base {...props}>

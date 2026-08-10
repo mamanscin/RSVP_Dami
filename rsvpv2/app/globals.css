@@ -477,6 +477,62 @@ body > main {
 }
 .lang-pill:hover { transform: scale(1.04); background: var(--glass-92); }
 
+/* ─── Floating music toggle pill (top-left, mirrors .lang-pill) ── */
+.music-pill {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.85rem;
+  border-radius: 999px;
+  background: var(--glass-70);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border: 1px solid rgba(255, 255, 255, 0.6);
+  color: var(--leaf-700);
+  font-family: var(--font-serif);
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: transform 0.2s ease, background 0.2s ease, color 0.2s ease,
+    box-shadow 0.2s ease;
+}
+.music-pill:hover {
+  transform: scale(1.04);
+  background: var(--glass-92);
+}
+/* When the music is playing, recolour the icon to the highlight hue
+   and gently pulse the sound-wave arcs so the pill feels "alive". */
+.music-pill--playing {
+  color: var(--highlight);
+}
+.music-pill--playing:hover {
+  box-shadow: 0 4px 14px rgba(45, 74, 34, 0.18);
+}
+
+@keyframes music-wave-pulse {
+  0%, 100% { opacity: 0.45; transform: scale(0.92); }
+  50%      { opacity: 1;    transform: scale(1.05); }
+}
+.music-pill--playing svg [data-wave] {
+  transform-box: fill-box;
+  transform-origin: 0% 50%; /* anchor to the speaker mouth so the arcs grow outward */
+  animation: music-wave-pulse 1.4s ease-in-out infinite;
+}
+.music-pill--playing svg [data-wave="2"] {
+  animation-delay: 0.3s;
+}
+
+/* Respect users who've asked for reduced motion: drop the wave pulse. */
+@media (prefers-reduced-motion: reduce) {
+  .music-pill--playing svg [data-wave] {
+    animation: none;
+  }
+}
+
 .lang-menu {
   margin-top: 0.4rem;
   border-radius: 16px;
