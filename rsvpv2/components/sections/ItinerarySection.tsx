@@ -82,7 +82,7 @@ function renderEvent(ev: ItineraryEvent, position: number) {
         <TimeText value={ev.time} />
       </p>
       <h3
-        className="timeline-content mt-2 text-lg"
+        className="timeline-content text-lg"
         style={{
           fontFamily: "var(--font-display)",
           fontStyle: "italic",

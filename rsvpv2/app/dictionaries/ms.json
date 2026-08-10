@@ -73,10 +73,11 @@
     "subtitle": "Tentatif majlis",
     "events": [
       {
-        "time": "11:00 AM – 3:00 PM",
-        "label": "Jamuan Makan"
+        "time": "11:00 AM",
+        "label": "Ketibaan Tetamu"
       },
-      { "time": "1:00 PM", "label": "Ketibaan Pengantin" }
+      { "time": "1:00 PM", "label": "Perarakan Pengantin" },
+      { "time": "3:00 PM", "label": "Majlis bersurai" }
     ]
   },
   "rsvp": {

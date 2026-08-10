@@ -73,10 +73,11 @@
     "subtitle": "The day at a glance",
     "events": [
       {
-        "time": "11:00 AM – 3:00 PM",
-        "label": "Reception"
+        "time": "11:00 AM",
+        "label": "Guest Arrival"
       },
-      { "time": "1:00 PM", "label": "Arrival of the Bride & Groom" }
+      { "time": "1:00 PM", "label": "Arrival of the Bride & Groom" },
+      { "time": "3:00 PM", "label": "End of Ceremony" }
     ]
   },
   "rsvp": {
