@@ -99,7 +99,10 @@ export function Entrance() {
   }
 
   return (
-    <div className="relative w-full" style={{ minHeight: "100vh" }}>
+    <div
+      className="relative w-full flex items-center justify-center"
+      style={{ minHeight: "100vh" }}
+    >
       {/* Polar bear & fox illustration — sits above the doors but below
           the tap-to-open button so it reads as "underneath" the AP
           monogram / date / paw affordance. On open it slides down and

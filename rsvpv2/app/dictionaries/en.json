@@ -42,10 +42,10 @@
     "invitationLine": "With hearts full of gratitude, we kindly invite and welcome",
     "weddingOfDaughter": "to the wedding celebration of our son and daughter",
     "honorifics": "Tan Sri | Puan Sri | Dato' Seri | Dato' | Datin | Tuan | Puan",
-    "bride": "The Bride",
+    "bride": "Bride's Family",
     "brideName": "Puteri Safa Natasha",
     "brideParents": "Daughter of Megat Sharizal Amri bin Abdul Halim & Siti Rahayu",
-    "groom": "The Groom",
+    "groom": "Groom's Family",
     "groomName": "Amir Izzudin",
     "groomParents": "Son of Zamri & Ritalaily",
     "dateLabel": "Date",
@@ -73,10 +73,11 @@
     "subtitle": "The day at a glance",
     "events": [
       {
-        "time": "11:00 AM – 3:00 PM",
-        "label": "Reception"
+        "time": "11:00 AM",
+        "label": "Guest Arrival"
       },
-      { "time": "1:00 PM", "label": "Arrival of the Bride & Groom" }
+      { "time": "1:00 PM", "label": "Arrival of the Bride & Groom" },
+      { "time": "3:00 PM", "label": "End of Ceremony" }
     ]
   },
   "rsvp": {

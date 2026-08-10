@@ -10,6 +10,7 @@ import { getDictionary, hasLocale, type Locale } from "./dictionaries";
 import { notFound } from "next/navigation";
 import { FloatingLeaves } from "@/components/FloatingLeaves";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { MusicPlayer } from "@/components/MusicPlayer";
 import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { FloatingNav } from "@/components/FloatingNav";
@@ -79,6 +80,7 @@ export default async function RootLayout({
       <body className="min-h-screen flex flex-col antialiased">
         <I18nProvider locale={lang as Locale} dict={dict}>
           <FloatingLeaves count={14} />
+          <MusicPlayer />
           <LanguageSwitcher />
           <main className="flex-1 w-full">{children}</main>
           <FloatingNav />
