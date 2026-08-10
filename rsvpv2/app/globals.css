@@ -158,17 +158,41 @@ html, body {
 }
 
 body {
-  /* The printed invitation's lemon border, used as the full-page
-     background. The cream base colour (set on html, body above)
-     shows while the image loads. The paper-texture overlay is
-     layered via the ::after pseudo-element below. */
-  background-image: url("/illustrations/lemon-border.png");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
+  /* Cream base shows while the pseudo-element background loads. The
+     paper-texture overlay is layered via the ::after pseudo-element
+     below. */
   min-height: 100vh;
   position: relative;
+}
+
+/* The printed invitation's lemon border, used as the full-page
+   background. `position: fixed` with `inset: 0` is well supported on
+   every modern browser (iOS Safari, desktop, etc.) and keeps the
+   image sized to the viewport regardless of scroll. Note: we
+   deliberately do NOT use `background-attachment: fixed` because iOS
+   Safari does not implement it — when it is ignored, the body
+   background's `background-size: cover` sizes the image against the
+   body's full scrollable height, producing a stretched/scaled-up
+   background that scrolls with the page. */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  /* Fill the full physical screen (under the notch and home indicator
+     on iOS thanks to viewport-fit=cover). The image is 2443x1748 —
+     wider than tall — so on a tall phone viewport, `cover` +
+     `position: center` only fills the middle band of the screen,
+     leaving flat colour above and below. `auto 100%` sizes by height
+     so the artwork reaches the top and bottom of the screen, with
+     some of the left/right cropped. `background-position: top center`
+     anchors the artwork to the top of the safe area so the
+     decorative bottom edge stays at the very bottom of the screen. */
+  background: url("/illustrations/lemon-border.png") top center / auto 100% no-repeat;
+  z-index: 0;
+  pointer-events: none;
 }
 
 /* Paper-texture overlay: multiplies over the lemon border so the
@@ -177,7 +201,12 @@ body {
 body::after {
   content: "";
   position: fixed;
-  inset: 0;
+  /* Same safe-area extension as body::before so the paper texture
+     covers the same area as the lemon border. */
+  top: calc(-1 * env(safe-area-inset-top, 0px));
+  right: 0;
+  bottom: calc(-1 * env(safe-area-inset-bottom, 0px));
+  left: 0;
   background: url("/illustrations/paper-texture.jpg") center / cover no-repeat;
   opacity: 0.22;
   mix-blend-mode: multiply;

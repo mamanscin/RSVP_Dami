@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Geist,
   Playfair_Display,
@@ -43,6 +43,16 @@ export const metadata: Metadata = {
   title: "Puteri & Amir — Wedding Invitation",
   description:
     "You are cordially invited to the wedding of Puteri & Amir on 31 August 2026.",
+};
+
+// `viewportFit: "cover"` is required for iOS Safari to honour
+// `env(safe-area-inset-*)` in CSS, which lets the background extend
+// under the notch and home indicator. Without this, the inset values
+// resolve to 0 on notched iPhones.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  viewportFit: "cover",
 };
 
 export async function generateStaticParams() {
