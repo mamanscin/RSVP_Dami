@@ -42,10 +42,10 @@
     "invitationLine": "Dengan penuh kesyukuran, kami menjemput dan mempersilakan",
     "weddingOfDaughter": "ke majlis perkahwinan putera dan puteri kami",
     "honorifics": "Tan Sri | Puan Sri | Dato' Seri | Dato' | Datin | Tuan | Puan",
-    "bride": "Pengantin Perempuan",
+    "bride": "Keluarga Pengantin Perempuan",
     "brideName": "Puteri Safa Natasha",
     "brideParents": "Anak kepada Megat Sharizal Amri bin Abdul Halim & Siti Rahayu",
-    "groom": "Pengantin Lelaki",
+    "groom": "Keluarga Pengantin Lelaki",
     "groomName": "Amir Izzudin",
     "groomParents": "Anak kepada Zamri & Ritalaily",
     "dateLabel": "Tarikh",
@@ -91,6 +91,7 @@
     "guestName": "Nama Tetamu",
     "guestNamePlaceholder": "Nama penuh",
     "phone": "Nombor Telefon",
+    "phoneOptional": "Nombor Telefon",
     "phonePlaceholder": "+60 12-345 6789",
     "wishes": "Ucapan",
     "wishesPlaceholder": "Tinggalkan ucapan untuk pengantin...",
@@ -104,6 +105,7 @@
       "guestCount": "Sila masukkan bilangan tetamu (1â€“10).",
       "name": "Sila masukkan nama anda.",
       "phone": "Sila masukkan nombor telefon yang sah.",
+      "atLeastOnePhone": "Sila masukkan sekurang-kurangnya satu nombor telefon yang boleh dihubungi.",
       "guestDetails": "Sila lengkapkan nama dan telefon untuk setiap tetamu.",
       "tooManyGuests": "Bilangan tetamu tidak sama dengan nama yang dimasukkan."
     }

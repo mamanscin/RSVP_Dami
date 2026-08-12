@@ -102,13 +102,23 @@ export async function POST(request: NextRequest) {
     );
   }
 
-  const guests = (b.guests as GuestInput[]).map((g) => {
-    const normalised = normalizeGuest(g, primaryName);
-    if (normalised.phone && !PHONE_RE.test(normalised.phone)) {
-      throw new Error("invalid_phone");
-    }
-    return normalised;
-  });
+  const guests = (b.guests as GuestInput[]).map((g) =>
+    normalizeGuest(g, primaryName)
+  );
+
+  if (guests.some((g) => g.phone && !PHONE_RE.test(g.phone))) {
+    return NextResponse.json(
+      { ok: false, error: "One or more phone numbers are invalid" },
+      { status: 400 }
+    );
+  }
+
+  if (!guests.some((g) => g.phone)) {
+    return NextResponse.json(
+      { ok: false, error: "At least one valid phone number is required" },
+      { status: 400 }
+    );
+  }
 
   if (guests.some((g) => !g.name)) {
     return NextResponse.json(
@@ -153,12 +163,6 @@ export async function POST(request: NextRequest) {
       { status: 201 }
     );
   } catch (err) {
-    if (err instanceof Error && err.message === "invalid_phone") {
-      return NextResponse.json(
-        { ok: false, error: "One or more phone numbers are invalid" },
-        { status: 400 }
-      );
-    }
     console.error("rsvp.post failed", err);
     return NextResponse.json(
       { ok: false, error: "Internal server error" },
