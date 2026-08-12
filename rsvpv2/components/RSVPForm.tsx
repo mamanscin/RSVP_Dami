@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { forwardRef, useEffect, useMemo, useRef, useState } from "react";
 import { useI18n } from "./I18nProvider";
 import type { Dictionary } from "@/app/[lang]/dictionaries";
 import { CheckIcon, EnvelopeIcon } from "./Icons";
@@ -37,6 +37,20 @@ export function RSVPForm() {
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
   const [done, setDone] = useState(false);
+  const successRef = useRef<HTMLDivElement | null>(null);
+
+  // After a successful submit, smooth-scroll the success panel into the
+  // middle of the viewport so the user actually sees the confirmation.
+  useEffect(() => {
+    if (!done) return;
+    const id = window.requestAnimationFrame(() => {
+      const el = successRef.current;
+      if (el && "scrollIntoView" in el) {
+        el.scrollIntoView({ behavior: "smooth", block: "center" });
+      }
+    });
+    return () => window.cancelAnimationFrame(id);
+  }, [done]);
 
   function setAttending(value: "yes" | "no") {
     setForm((f) => ({ ...f, attending: value }));
@@ -187,7 +201,7 @@ export function RSVPForm() {
     setDone(false);
   }
 
-  if (done) return <SuccessPanel onAnother={reset} t={t} />;
+  if (done) return <SuccessPanel ref={successRef} onAnother={reset} t={t} />;
 
   return (
     <form
@@ -522,15 +536,13 @@ function GuestList({
   );
 }
 
-function SuccessPanel({
-  onAnother,
-  t,
-}: {
+const SuccessPanel = forwardRef<HTMLDivElement, {
   onAnother: () => void;
   t: Dictionary;
-}) {
+}>(function SuccessPanel({ onAnother, t }, ref) {
   return (
     <div
+      ref={ref}
       className="relative max-w-xl mx-auto px-6 sm:px-10 py-12 sm:py-16 text-center space-y-6 rounded-[28px] page-rise"
       style={{
         background:
@@ -606,4 +618,4 @@ function SuccessPanel({
       </button>
     </div>
   );
-}
+});
