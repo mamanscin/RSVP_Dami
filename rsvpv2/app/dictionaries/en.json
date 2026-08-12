@@ -91,6 +91,7 @@
     "guestName": "Guest Name",
     "guestNamePlaceholder": "Full name",
     "phone": "Phone Number",
+    "phoneOptional": "Phone Number",
     "phonePlaceholder": "+60 12-345 6789",
     "wishes": "Wishes (optional)",
     "wishesPlaceholder": "Leave a sweet message for the couple...",
@@ -104,6 +105,7 @@
       "guestCount": "Please enter the number of guests (1–10).",
       "name": "Please enter your name.",
       "phone": "Please enter a valid phone number.",
+      "atLeastOnePhone": "Please enter at least one valid phone number.",
       "guestDetails": "Please complete the name and phone for each guest.",
       "tooManyGuests": "The number of guests does not match the names entered."
     }

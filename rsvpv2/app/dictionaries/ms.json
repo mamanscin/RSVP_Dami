@@ -91,6 +91,7 @@
     "guestName": "Nama Tetamu",
     "guestNamePlaceholder": "Nama penuh",
     "phone": "Nombor Telefon",
+    "phoneOptional": "Nombor Telefon",
     "phonePlaceholder": "+60 12-345 6789",
     "wishes": "Ucapan",
     "wishesPlaceholder": "Tinggalkan ucapan untuk pengantin...",
@@ -104,6 +105,7 @@
       "guestCount": "Sila masukkan bilangan tetamu (1â€“10).",
       "name": "Sila masukkan nama anda.",
       "phone": "Sila masukkan nombor telefon yang sah.",
+      "atLeastOnePhone": "Sila masukkan sekurang-kurangnya satu nombor telefon yang boleh dihubungi.",
       "guestDetails": "Sila lengkapkan nama dan telefon untuk setiap tetamu.",
       "tooManyGuests": "Bilangan tetamu tidak sama dengan nama yang dimasukkan."
     }

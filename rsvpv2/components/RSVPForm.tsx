@@ -83,16 +83,23 @@ export function RSVPForm() {
       }
       form.guests.forEach((g, i) => {
         if (!g.name.trim()) errs[`name-${i}`] = t.rsvp.errors.name;
-        if (!g.phone.trim() || !PHONE_RE.test(g.phone.trim())) {
+        if (g.phone.trim() && !PHONE_RE.test(g.phone.trim())) {
           errs[`phone-${i}`] = t.rsvp.errors.phone;
         }
       });
     } else if (form.attending === "no") {
       const primary = form.guests[0];
       if (!primary.name.trim()) errs["name-0"] = t.rsvp.errors.name;
-      if (!primary.phone.trim() || !PHONE_RE.test(primary.phone.trim())) {
+      if (primary.phone.trim() && !PHONE_RE.test(primary.phone.trim())) {
         errs["phone-0"] = t.rsvp.errors.phone;
       }
+    }
+
+    const hasValidPhone = form.guests.some((g) =>
+      PHONE_RE.test(g.phone.trim())
+    );
+    if (!hasValidPhone) {
+      errs["_atLeastOnePhone"] = t.rsvp.errors.atLeastOnePhone;
     }
     return errs;
   }
@@ -282,6 +289,15 @@ export function RSVPForm() {
         />
       </div>
 
+      {errors._atLeastOnePhone && (
+        <p
+          role="alert"
+          data-field="_atLeastOnePhone"
+          className="field-error text-center -mb-4"
+        >
+          {errors._atLeastOnePhone}
+        </p>
+      )}
       <div className="pt-2 pb-6 -mt-6 flex justify-center">
         <button
           type="submit"
@@ -485,7 +501,7 @@ function GuestList({
           </div>
           <div data-field={`phone-${i}`}>
             <label htmlFor={`phone-${i}`} className="field-label">
-              {t.rsvp.phone}
+              {t.rsvp.phoneOptional}
             </label>
             <input
               id={`phone-${i}`}

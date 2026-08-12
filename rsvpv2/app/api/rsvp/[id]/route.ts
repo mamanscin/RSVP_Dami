@@ -4,7 +4,17 @@ import { requireAdmin } from "@/lib/auth";
 
 const PHONE_RE = /^[+\d][\d\s\-()]{6,}$/;
 
+type GuestInput = { name?: unknown; phone?: unknown };
 type Params = { params: Promise<{ id: string }> };
+
+function isPrismaNotFound(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    error.code === "P2025"
+  );
+}
 
 // PATCH /api/rsvp/[id] — update an RSVP (admin only).
 export async function PATCH(request: NextRequest, { params }: Params) {
@@ -67,7 +77,8 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       );
     }
     // Validate up-front so we can return 400 instead of 500 on bad input.
-    for (const g of b.guests as any[]) {
+    let hasPhone = false;
+    for (const g of b.guests as GuestInput[]) {
       const name = typeof g?.name === "string" ? g.name.trim() : "";
       if (!name) {
         return NextResponse.json(
@@ -79,15 +90,25 @@ export async function PATCH(request: NextRequest, { params }: Params) {
         typeof g?.phone === "string" && g.phone.trim().length > 0
           ? g.phone.trim()
           : null;
-      if (phone && !PHONE_RE.test(phone)) {
-        return NextResponse.json(
-          { ok: false, error: "One or more phone numbers are invalid" },
-          { status: 400 },
-        );
+      if (phone) {
+        hasPhone = true;
+        if (!PHONE_RE.test(phone)) {
+          return NextResponse.json(
+            { ok: false, error: "One or more phone numbers are invalid" },
+            { status: 400 },
+          );
+        }
       }
     }
-    const guests = (b.guests as any[]).map((g: any) => {
-      const name = typeof g?.name === "string" ? g.name.trim().slice(0, 120) : "";
+    if (!hasPhone) {
+      return NextResponse.json(
+        { ok: false, error: "At least one valid phone number is required" },
+        { status: 400 },
+      );
+    }
+    const guests = (b.guests as GuestInput[]).map((g) => {
+      const name =
+        typeof g?.name === "string" ? g.name.trim().slice(0, 120) : "";
       const phone =
         typeof g?.phone === "string" && g.phone.trim().length > 0
           ? g.phone.trim().slice(0, 40)
@@ -127,7 +148,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
     return NextResponse.json({ ok: true, rsvp: updated });
   } catch (err) {
     // Prisma "record not found"
-    if ((err as any)?.code === "P2025") {
+    if (isPrismaNotFound(err)) {
       return NextResponse.json(
         { ok: false, error: "RSVP not found" },
         { status: 404 },
@@ -152,7 +173,7 @@ export async function DELETE(request: NextRequest, { params }: Params) {
     await prisma.rsvp.delete({ where: { id } });
     return NextResponse.json({ ok: true });
   } catch (err) {
-    if ((err as any)?.code === "P2025") {
+    if (isPrismaNotFound(err)) {
       return NextResponse.json(
         { ok: false, error: "RSVP not found" },
         { status: 404 },
