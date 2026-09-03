@@ -28,19 +28,19 @@ choice is then persisted in a `locale` cookie.
 
 ## Run it
 
-The app uses **SQLite** by default — no external database required.
+The app uses **PostgreSQL** in production. Render supplies the database
+connection automatically through `render.yaml`.
 
 ```bash
 npm install
-npx prisma migrate dev --name init   # creates prisma/dev.db
+npx prisma migrate dev --name init   # requires a PostgreSQL DATABASE_URL
 npm run dev                          # http://localhost:3000
 npm run build                        # production build (Turbopack)
 npm run lint
 ```
 
-> Want Postgres instead? Change `provider = "sqlite"` to `"postgresql"`
-> in `prisma/schema.prisma`, point `DATABASE_URL` at your DB, and run
-> `npx prisma migrate dev` again. The API code does not need to change.
+For local development, set `DATABASE_URL` to a PostgreSQL database before
+running Prisma commands. The API code does not need a database-specific change.
 
 ## Customise the wedding
 
@@ -62,8 +62,8 @@ npm run lint
   dictionary pattern: `app/[lang]/dictionaries.ts` lazy-loads per-locale
   JSON, the root layout passes the dict into a small client-side
   `I18nProvider` context so client components can call `useI18n()`.
-- **RSVP persistence** — submissions are written to SQLite via Prisma
-  (`prisma/dev.db`). The `Rsvp` and `Wish` tables are defined in
+- **RSVP persistence** — submissions are written to PostgreSQL via Prisma.
+  The `Rsvp` and `Wish` tables are defined in
   `prisma/schema.prisma`. The browser calls `POST /api/rsvp` and
   `POST /api/wishes`; both route handlers live in `app/api/`.
 - **Google Maps iframe** is loaded directly — no API key required for
