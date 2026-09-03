@@ -61,6 +61,11 @@ export function RSVPForm() {
     });
   }
 
+  function setGuestCount(n: number) {
+    const safe = Math.min(10, Math.max(1, Math.floor(n) || 1));
+    setForm((f) => ({ ...f, guestCount: safe }));
+  }
+
   function setGuest(i: number, patch: Partial<Guest>) {
     setForm((f) => {
       const guests = f.guests.map((g, idx) =>
@@ -79,12 +84,14 @@ export function RSVPForm() {
     if (!form.attending) errs.attending = t.rsvp.errors.attendance;
 
     if (form.attending === "yes") {
-      form.guests.forEach((g, i) => {
-        if (!g.name.trim()) errs[`name-${i}`] = t.rsvp.errors.name;
-        if (g.phone.trim() && !PHONE_RE.test(g.phone.trim())) {
-          errs[`phone-${i}`] = t.rsvp.errors.phone;
-        }
-      });
+      if (!form.guestCount || form.guestCount < 1) {
+        errs.guestCount = t.rsvp.errors.guestCount;
+      }
+      const primary = form.guests[0];
+      if (!primary.name.trim()) errs["name-0"] = t.rsvp.errors.name;
+      if (primary.phone.trim() && !PHONE_RE.test(primary.phone.trim())) {
+        errs["phone-0"] = t.rsvp.errors.phone;
+      }
     } else if (form.attending === "no") {
       const primary = form.guests[0];
       if (!primary.name.trim()) errs["name-0"] = t.rsvp.errors.name;
@@ -134,7 +141,7 @@ export function RSVPForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           attending: form.attending,
-          guestCount: 1,
+          guestCount: form.guestCount,
           guests: form.guests.slice(0, 1),
           wishes: wishesText || null,
           locale,
@@ -254,6 +261,15 @@ export function RSVPForm() {
         t={t}
       />
 
+      {form.attending === "yes" && (
+        <GuestCountField
+          value={form.guestCount}
+          error={errors.guestCount}
+          onChange={setGuestCount}
+          t={t}
+        />
+      )}
+
       {(form.attending === "yes" || form.attending === "no") && (
         <GuestList
           guests={form.guests}
@@ -309,6 +325,61 @@ export function RSVPForm() {
         </button>
       </div>
     </form>
+  );
+}
+
+function GuestCountField({
+  value,
+  error,
+  onChange,
+  t,
+}: {
+  value: number;
+  error?: string;
+  onChange: (n: number) => void;
+  t: Dictionary;
+}) {
+  return (
+    <div data-field="guestCount">
+      <label htmlFor="guestCount" className="field-label">
+        {t.rsvp.guestCount}
+      </label>
+      <div className="flex items-center gap-3 flex-wrap">
+        <button
+          type="button"
+          onClick={() => onChange(value - 1)}
+          className="btn btn-ghost"
+          style={{ width: "44px", height: "44px", padding: 0, fontSize: "1.25rem" }}
+          aria-label="−"
+        >
+          −
+        </button>
+        <input
+          id="guestCount"
+          type="number"
+          inputMode="numeric"
+          min={1}
+          max={10}
+          value={value}
+          onChange={(e) => onChange(Number(e.target.value))}
+          className="field-input text-center"
+          style={{ width: "84px" }}
+        />
+        <button
+          type="button"
+          onClick={() => onChange(value + 1)}
+          className="btn btn-ghost"
+          style={{ width: "44px", height: "44px", padding: 0, fontSize: "1.25rem" }}
+          aria-label="+"
+        >
+          +
+        </button>
+        <span className="text-xs italic ml-2" style={{ color: "var(--text-body)" }}>
+          {t.rsvp.guestCountHint}
+        </span>
+      </div>
+      {error && <p className="field-error">{error}</p>}
+    </div>
   );
 }
 
@@ -394,7 +465,7 @@ function GuestList({
 }) {
   return (
     <div className="space-y-10">
-      {guests.map((g, i) => (
+      {guests.slice(0, 1).map((g, i) => (
         <div
           key={i}
           className="space-y-5"
@@ -414,7 +485,7 @@ function GuestList({
               letterSpacing: "0.04em",
             }}
           >
-            — {t.rsvp.guestName} #{i + 1} —
+            — {t.rsvp.guestName} —
           </p>
           <div data-field={`name-${i}`}>
             <label htmlFor={`name-${i}`} className="field-label">

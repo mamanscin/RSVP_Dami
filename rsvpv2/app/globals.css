@@ -55,17 +55,17 @@
    ─────────────────────────────────────────────────────────── */
 
 :root {
-  /* Brand — replaces the reference's plum/mauve with deep leaf-green */
-  --leaf-50:  #f3f8ec;
-  --leaf-100: #e2eed1;
-  --leaf-200: #c9deb0;
-  --leaf-300: #a9c882;
-  --leaf-400: #87ad5b;
-  --leaf-500: #6b9243;
-  --leaf-600: #557735;
-  --leaf-700: #425c2c;
-  --leaf-800: #2f4422;
-  --leaf-900: #1d2c14;
+  /* Brand blue palette used by buttons, borders, navigation, and accents. */
+  --leaf-50:  #eff6ff;
+  --leaf-100: #dbeafe;
+  --leaf-200: #bfdbfe;
+  --leaf-300: #93c5fd;
+  --leaf-400: #60a5fa;
+  --leaf-500: #3b82f6;
+  --leaf-600: #2563eb;
+  --leaf-700: #1d4ed8;
+  --leaf-800: #1e40af;
+  --leaf-900: #1e3a8a;
 
   /* Lemon — replaces the reference's soft pink accent */
   --lemon-50:  #fffbeb;
@@ -83,14 +83,14 @@
   --glass-92:     rgba(255, 251, 235, 0.94);
 
   /* Ink (text) */
-  --ink:        #1d2c14;
-  --ink-soft:   #425c2c;
-  --ink-muted:  #6a7a52;
-  --ink-faint:  #99a07f;
+  --ink:        #172554;
+  --ink-soft:   #1e3a8a;
+  --ink-muted:  #51658f;
+  --ink-faint:  #8fa1c2;
 
   /* Hairline (replaces plum 1px divider) */
-  --hairline: rgba(66, 92, 44, 0.22);
-  --hairline-strong: rgba(66, 92, 44, 0.45);
+  --hairline: rgba(30, 64, 175, 0.22);
+  --hairline-strong: rgba(30, 64, 175, 0.45);
 
   /* Error / danger */
   --danger: #b3402e;

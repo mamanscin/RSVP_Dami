@@ -60,16 +60,21 @@ export async function POST(request: NextRequest) {
   }
 
   const guestCountRaw = Number(b.guestCount);
-  if (guestCountRaw !== 1) {
+  if (
+    !Number.isFinite(guestCountRaw) ||
+    !Number.isInteger(guestCountRaw) ||
+    guestCountRaw < 1 ||
+    guestCountRaw > 10
+  ) {
     return NextResponse.json(
-      { ok: false, error: "Only one guest is allowed per invitation" },
+      { ok: false, error: "guestCount must be an integer 1..10" },
       { status: 400 }
     );
   }
 
   if (!Array.isArray(b.guests) || b.guests.length !== 1) {
     return NextResponse.json(
-      { ok: false, error: "Exactly one guest is allowed per invitation" },
+      { ok: false, error: "Exactly one guest contact is required" },
       { status: 400 }
     );
   }
