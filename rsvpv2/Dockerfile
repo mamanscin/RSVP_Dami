@@ -3,6 +3,11 @@ FROM node:20-alpine AS builder
 
 WORKDIR /app
 
+# Prisma validates the datasource during image builds as well as at runtime.
+# Render supplies the runtime value, but a local build-time SQLite URL is
+# needed so prisma generate can complete before the service starts.
+ENV DATABASE_URL=file:/data/dev.db
+
 # Copy package files first for better layer caching
 COPY package.json package-lock.json ./
 RUN npm ci
