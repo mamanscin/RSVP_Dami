@@ -197,7 +197,7 @@ body::before {
          the height is never less than the screen height.
      This works on iOS because the element itself is `position: fixed`
      (not `background-attachment: fixed`, which iOS ignores). */
-  background: url("/illustrations/red-flower.png") center / cover no-repeat;
+  background: url("/illustrations/red-flower.png")top center / auto 100% no-repeat;
   z-index: 0;
   pointer-events: none;
 }
