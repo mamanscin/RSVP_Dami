@@ -31,9 +31,12 @@ export function Countdown() {
   const [remaining, setRemaining] = useState<Remaining | null>(null);
 
   useEffect(() => {
-    setRemaining(compute(target));
+    const initialUpdate = window.setTimeout(() => setRemaining(compute(target)), 0);
     const id = setInterval(() => setRemaining(compute(target)), 1000);
-    return () => clearInterval(id);
+    return () => {
+      window.clearTimeout(initialUpdate);
+      clearInterval(id);
+    };
   }, [target]);
 
   if (!remaining) {

@@ -12,7 +12,7 @@ export function ItinerarySection() {
     <div className="space-y-10">
       <header className="text-center space-y-2">
         <div className="divider-ornament" aria-hidden>
-          <span>🍋</span>
+          <span>🌹</span>
           <span>✦</span>
           <span>🌿</span>
         </div>

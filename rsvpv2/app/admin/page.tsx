@@ -1,5 +1,6 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 import { isAdminConfigured, isAdminRequest } from "@/lib/auth";
 import { prisma } from "@/lib/db";
 import { AdminDashboard, type AdminRsvp } from "@/components/admin/AdminDashboard";
@@ -7,11 +8,13 @@ import { AdminDashboard, type AdminRsvp } from "@/components/admin/AdminDashboar
 export const dynamic = "force-dynamic";
 
 export const metadata = {
-  title: "Admin · Puteri & Amir",
+  title: "Admin · Ummi & Danish",
   robots: { index: false, follow: false },
 };
 
 export default async function AdminPage() {
+  await connection();
+
   if (!isAdminConfigured()) {
     return (
       <main className="min-h-screen flex items-center justify-center px-4">

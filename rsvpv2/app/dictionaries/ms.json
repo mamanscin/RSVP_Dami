@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Puteri & Amir",
+    "title": "Ummi & Danish",
     "tagline": "Kami akan berkahwin",
     "saveTheDate": "Simpan Tarikh"
   },
@@ -21,8 +21,8 @@
     "guest": "Yang Diraikan Bersama",
     "invitation": "Anda dijemput ke majlis perkahwinan",
     "and": "dan",
-    "date": "Isnin, 31 Ogos 2026",
-    "venue": "The Glass Galore, Tamarind Square, Cyberjaya",
+    "date": "Sabtu, 24 Oktober 2026",
+    "venue": "Camelia Event Space @ Fiesta Mall, Axis Pandan",
     "openDoors": "Buka Pintu",
     "countdown": {
       "heading": "Menghitung hari ke majlis",
@@ -43,29 +43,31 @@
     "weddingOfDaughter": "ke majlis perkahwinan putera dan puteri kami",
     "honorifics": "Tan Sri | Puan Sri | Dato' Seri | Dato' | Datin | Tuan | Puan",
     "bride": "Keluarga Pengantin Perempuan",
-    "brideName": "Puteri Safa Natasha",
-    "brideParents": "Anak kepada Megat Sharizal Amri bin Abdul Halim & Siti Rahayu",
+    "brideName": "Ummi Ishami",
+    "brideParents": "Anak kepada Afandi & Julianah",
     "groom": "Keluarga Pengantin Lelaki",
-    "groomName": "Amir Izzudin",
-    "groomParents": "Anak kepada Zamri & Ritalaily",
+    "groomName": "Danish Putra",
+    "groomParents": "Anak kepada Mohd Faiz & Azura",
     "dateLabel": "Tarikh",
-    "dateValue": "Isnin, 31 Ogos 2026",
+    "dateValue": "Sabtu, 24 Oktober 2026",
     "venueLabel": "Tempat",
-    "venueValue": "The Glass Galore, Tamarind Square, Cyberjaya",
+    "venueValue": "Camelia Event Space @ Fiesta Mall, Axis Pandan",
     "timeLabel": "Masa",
-    "timeValue": "11:00 pagi - 3:00 petang",
+    "timeValue": "11:00 pagi - 4:00 petang",
     "dresscode": "Kod Pakaian",
-    "dresscodeValue": "Wanita: Pakaian tradisional atau batik\nLelaki: Pakaian tradisional, batik atau kemeja berkolar",
+    "dresscodeValue": "Pakaian sopan, sesuai dengan suasana rasmi majlis",
+    "dressTheme": "Tema Pakaian",
+    "dressThemeValue": "Keluarga Pengantin Perempuan: Dusty Pink\nKeluarga Pengantin Lelaki: Sage Green",
     "wishesTitle": "Ucapan Tetamu",
     "wishesEmpty": "Jadilah yang pertama meninggalkan ucapan untuk pengantin.",
     "wishesFrom": "daripada"
   },
   "map": {
     "title": "Lokasi",
-    "subtitle": "The Glass Galore, Tamarind Square, Cyberjaya",
+    "subtitle": "Camelia Event Space @ Fiesta Mall, Axis Pandan",
     "directions": "Dapatkan Arah",
     "parking": "Tempat letak kereta percuma disediakan",
-    "landmark": "Tanda aras: Di tengah-tengah CBD Cyberjaya",
+    "landmark": "Tanda aras: Di Fiesta Mall, Ampang Jaya",
     "videoTitle": "Panduan ke Lokasi"
   },
   "itinerary": {
@@ -77,7 +79,7 @@
         "label": "Ketibaan Tetamu"
       },
       { "time": "1:00 PM", "label": "Perarakan Pengantin" },
-      { "time": "3:00 PM", "label": "Majlis bersurai" }
+      { "time": "4:00 PM", "label": "Majlis bersurai" }
     ]
   },
   "rsvp": {
@@ -114,13 +116,13 @@
     "title": "Hubungi",
     "subtitle": "Hubungi kami jika ada sebarang pertanyaan",
     "brideFamily": "Keluarga Pengantin Perempuan",
-    "brideFather": "Megat Sharizal Amri bin Abdul Halim",
-    "brideMother": "Siti Rahayu binti Ahmad",
-    "brideContact": "+60 12-234 5678",
+    "brideFather": "Afandi Bin Samat",
+    "brideMother": "Julianah Binti Ramli",
+    "brideContact": "+60 11-3933 1968",
     "groomFamily": "Keluarga Pengantin Lelaki",
-    "groomFather": "Zamri bin Marsid",
-    "groomMother": "Ritalaily binti Ishak",
-    "groomContact": "+60 19-345 6789"
+    "groomFather": "Mohd Faiz Bin Ismail",
+    "groomMother": "Azura Binti Zahari",
+    "groomContact": "+60 16-415 0970"
   },
   "footer": {
     "madeWith": "Dibuat dengan penuh kasih untuk",

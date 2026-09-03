@@ -3,34 +3,34 @@
 
 export const wedding = {
   bride: {
-    fullName: "Puteri Safa Natasha",
-    shortName: "Puteri",
-    father: "Megat Sharizal Amri bin Abdul Halim",
-    mother: "Siti Rahayu binti Ahmad",
-    fatherContact: "+60 11-3676 7583",
-    motherContact: "+60 16-546 4119",
+    fullName: "Ummi Ishami Binti Afandi",
+    shortName: "Ummi",
+    father: "Afandi Bin Samat",
+    mother: "Julianah Binti Ramli",
+    fatherContact: "+60 12-918 9676",
+    motherContact: "+60 12-357 8145",
   },
   groom: {
-    fullName: "Amir Izzudin",
-    shortName: "Amir",
-    father: "Zamri bin Marsid",
-    mother: "Ritalaily binti Ishak",
-    fatherContact: "+60 16-258 0677",
-    motherContact: "+60 14-638 3457",
+    fullName: "Muhammad Danish Putra Bin Mohd Faiz",
+    shortName: "Danish",
+    father: "Mohd Faiz Bin Ismail",
+    mother: "Azura Binti Zahari",
+    fatherContact: "+60 16-476 0747",
+    motherContact: "+60 19-255 0970",
   },
   date: {
-    iso: "2026-08-31T05:30:00+08:00",
+    iso: "2026-10-24T05:30:00+08:00",
     // Displayed via dictionary; this is the canonical source for sorting.
   },
   venue: {
-    name: "The Glass Galore",
-    address: "Tamarind Square, Cyberjaya, Selangor, Malaysia",
-    // Tamarind Square, Cyberjaya — approximate centre of the commercial block.
-    lat: 2.9213,
-    lng: 101.6559,
+    name: "Camelia Event Space @ Fiesta Mall, Axis Pandan",
+    address: "F7, Level 1, Fiesta Mall @ Axis Pandan, Jalan Cempaka, Taman Cempaka, 68000 Ampang, Selangor",
+
+    lat: 3.136638,
+    lng: 101.747030,
     googleMapsUrl:
-      "https://maps.google.com/maps?q=The+Glass+Galore+Tamarind+Square+Cyberjaya&hl=en&z=16&output=embed",
+      "https://maps.google.com/maps?q=Camelia+Event+Space%2C+%40+Fiesta+Mall%2C+Axis+Pandan&hl=en&z=16&output=embed",
     directionsUrl:
-      "https://www.google.com/maps/dir/?api=1&destination=The+Glass+Galore+Tamarind+Square+Cyberjaya",
+      "https://www.google.com/maps/dir/?api=1&destination=Camelia+Event+Space%2C+%40+Fiesta+Mall%2C+Axis+Pandan",
   },
 };

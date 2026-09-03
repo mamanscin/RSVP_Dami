@@ -21,7 +21,7 @@ import { SpeakerOnIcon, SpeakerOffIcon } from "./Icons";
  */
 
 // URL-encode the spaces in "Close to You.mp3".
-const AUDIO_SRC = "/media/Close%20to%20You.mp3";
+const AUDIO_SRC = "/media/兩世情深 (電視劇《兩世歡》原聲配樂).mp3";
 const FADE_IN_MS = 4000; // 4 s slow fade-in
 const FADE_OUT_MS = 600; // quick fade-out on toggle
 const TARGET_VOLUME = 0.55; // soft background level

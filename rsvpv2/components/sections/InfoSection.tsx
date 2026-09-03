@@ -17,7 +17,7 @@ export function InfoSection() {
       {/* Top: Walimatulurus header card */}
       <header className="text-center space-y-3">
         <div className="divider-ornament" aria-hidden>
-          <span>🍋</span>
+          <span>🌹</span>
           <span>✦</span>
           <span>🌿</span>
         </div>
@@ -161,6 +161,9 @@ export function InfoSection() {
         <DetailRow label={t.info.timeLabel} value={t.info.timeValue} />
         <DetailRow label={t.info.venueLabel} value={t.info.venueValue} />
         <DetailRow label={t.info.dresscode} value={t.info.dresscodeValue} />
+        <div className="sm:col-span-2">
+          <DetailRow label={t.info.dressTheme} value={t.info.dressThemeValue} />
+        </div>
       </dl>
 
       {/* Wishes */}

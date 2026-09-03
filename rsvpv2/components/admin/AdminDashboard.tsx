@@ -2,6 +2,8 @@
 
 import { useCallback, useMemo, useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { wedding } from "@/lib/wedding-data";
 
 type Guest = { name: string; phone: string | null };
 
@@ -175,7 +177,7 @@ export function AdminDashboard({
               className="text-xs uppercase tracking-[0.25em]"
               style={{ color: "var(--leaf-700)" }}
             >
-              Admin · Puteri &amp; Amir
+              Admin · {wedding.bride.shortName} &amp; {wedding.groom.shortName}
             </p>
             <h1
               className="text-3xl sm:text-4xl font-serif mt-1"
@@ -185,7 +187,7 @@ export function AdminDashboard({
             </h1>
           </div>
           <div className="flex items-center gap-2">
-            <a
+            <Link
               href="/"
               className="text-sm rounded-xl px-3 py-2 transition"
               style={{
@@ -195,7 +197,7 @@ export function AdminDashboard({
               }}
             >
               View invitation
-            </a>
+            </Link>
             <button
               type="button"
               onClick={handleLogout}
@@ -519,7 +521,7 @@ function RsvpRow({
                 border: "1px solid var(--lemon-100)",
               }}
             >
-              "{rsvp.wishes}"
+              &quot;{rsvp.wishes}&quot;
             </p>
           )}
         </div>
@@ -846,7 +848,7 @@ function WishRow({
             className="text-sm italic"
             style={{ color: "var(--ink-soft)" }}
           >
-            "{wish.message}"
+            &quot;{wish.message}&quot;
           </p>
         </div>
         <div className="flex sm:flex-col gap-2">

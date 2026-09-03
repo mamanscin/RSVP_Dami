@@ -24,11 +24,10 @@ ENV NEXT_TELEMETRY_DISABLED=1
 ENV PORT=3000
 ENV HOSTNAME="0.0.0.0"
 
-# Create a non-root user for security, plus a writable data dir for SQLite.
+# Create a non-root user for security.
 # /app is chowned once (single dir, cheap) so the app user can run npm ci.
 RUN addgroup --system --gid 1001 nodejs \
     && adduser --system --uid 1001 nextjs \
-    && mkdir -p /data && chmod 777 /data \
     && chown nextjs:nodejs /app
 
 ENV HOME=/app
@@ -55,6 +54,5 @@ COPY --from=builder /app/tsconfig.json ./
 
 EXPOSE 3000
 
-# On startup, apply any pending database migrations (or push the schema if
-# no migrations exist yet), then start the Next.js server.
-CMD ["sh", "-c", "npx prisma migrate deploy || npx prisma db push && npm start"]
+# On startup, apply pending database migrations before starting the server.
+CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]

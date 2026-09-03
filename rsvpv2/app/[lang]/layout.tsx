@@ -41,9 +41,9 @@ const ebGaramond = EB_Garamond({
 });
 
 export const metadata: Metadata = {
-  title: "Puteri & Amir — Wedding Invitation",
+  title: "Ummi & Danish — Wedding Invitation",
   description:
-    "You are cordially invited to the wedding of Puteri & Amir on 31 August 2026.",
+    "You are cordially invited to the wedding of Ummi & Danish on 31 August 2026.",
 };
 
 // `viewportFit: "cover"` is required for iOS Safari to honour

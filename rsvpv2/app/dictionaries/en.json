@@ -1,6 +1,6 @@
 {
   "site": {
-    "title": "Puteri & Amir",
+    "title": "Ummi & Danish",
     "tagline": "We are getting married",
     "saveTheDate": "Save the Date"
   },
@@ -21,8 +21,8 @@
     "guest": "Guest",
     "invitation": "You are cordially invited to the wedding of",
     "and": "and",
-    "date": "Monday, 31 August 2026",
-    "venue": "The Glass Galore, Tamarind Square, Cyberjaya",
+    "date": "Saturday, 24 October 2026",
+    "venue": "Camelia Event Space @ Fiesta Mall, Axis Pandan",
     "openDoors": "Open Doors",
     "countdown": {
       "heading": "Counting down to the big day",
@@ -43,29 +43,31 @@
     "weddingOfDaughter": "to the wedding celebration of our son and daughter",
     "honorifics": "Tan Sri | Puan Sri | Dato' Seri | Dato' | Datin | Tuan | Puan",
     "bride": "Bride's Family",
-    "brideName": "Puteri Safa Natasha",
-    "brideParents": "Daughter of Megat Sharizal Amri bin Abdul Halim & Siti Rahayu",
+    "brideName": "Ummi Ishami",
+    "brideParents": "Daughter of Afandi & Julianah",
     "groom": "Groom's Family",
-    "groomName": "Amir Izzudin",
-    "groomParents": "Son of Zamri & Ritalaily",
+    "groomName": "Danish Putra",
+    "groomParents": "Son of Faiz & Azura",
     "dateLabel": "Date",
-    "dateValue": "Monday, 31 August 2026",
+    "dateValue": "Saturday, 24 October 2026",
     "venueLabel": "Venue",
-    "venueValue": "The Glass Galore, Tamarind Square, Cyberjaya",
+    "venueValue": "Camelia Event Space @ Fiesta Mall, Axis Pandan",
     "timeLabel": "Time",
-    "timeValue": "11:00 AM – 3:00 PM",
+    "timeValue": "11:00 AM – 4:00 PM",
     "dresscode": "Dress Code",
-    "dresscodeValue": "Ladies: Traditional attire or batik\nGentlemen: Traditional attire, batik, or a smart collared shirt",
+    "dresscodeValue": "Modest attire, in keeping with the formality of the wedding.",
+    "dressTheme": "Dress Theme",
+    "dressThemeValue": "Bride’s family: Dusty Pink\nGroom's family: Sage Green",
     "wishesTitle": "Wishes from Guests",
     "wishesEmpty": "Be the first to leave a wish for the couple.",
     "wishesFrom": "from"
   },
   "map": {
     "title": "Find Your Way",
-    "subtitle": "The Glass Galore, Tamarind Square, Cyberjaya",
+    "subtitle": "Camelia Event Space @ Fiesta Mall, Axis Pandan",
     "directions": "Get Directions",
     "parking": "Free parking available on-site",
-    "landmark": "Landmark: In the heart of Cyberjaya CBD",
+    "landmark": "Landmark: At Fiesta Mall, a central landmark of Axis Pandan, Ampang Jaya",
     "videoTitle": "Wedding Directions"
   },
   "itinerary": {
@@ -76,8 +78,8 @@
         "time": "11:00 AM",
         "label": "Guest Arrival"
       },
-      { "time": "1:00 PM", "label": "Arrival of the Bride & Groom" },
-      { "time": "3:00 PM", "label": "End of Ceremony" }
+      { "time": "12:30 PM", "label": "Arrival of the Bride & Groom" },
+      { "time": "4:00 PM", "label": "End of Ceremony" }
     ]
   },
   "rsvp": {
@@ -114,13 +116,13 @@
     "title": "Contact",
     "subtitle": "Reach out if you have any questions",
     "brideFamily": "Bride's Family",
-    "brideFather": "Megat Sharizal Amri bin Abdul Halim",
-    "brideMother": "Siti Rahayu binti Ahmad",
-    "brideContact": "+60 12-234 5678",
+    "brideFather": "Afandi Bin Samat",
+    "brideMother": "Julianah Binti Ramli",
+    "brideContact": "+60 11-3933 1968",
     "groomFamily": "Groom's Family",
-    "groomFather": "Zamri bin Marsid",
-    "groomMother": "Ritalaily binti Ishak",
-    "groomContact": "+60 19-345 6789"
+    "groomFather": "Mohd Faiz Bin Ismail",
+    "groomMother": "Azura Binti Zahari",
+    "groomContact": "+60 16-415 0970"
   },
   "footer": {
     "madeWith": "Made with love for",

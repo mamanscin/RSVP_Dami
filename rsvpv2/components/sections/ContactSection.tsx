@@ -11,7 +11,7 @@ export function ContactSection() {
     <div className="space-y-12">
       <header className="text-center space-y-2">
         <div className="divider-ornament" aria-hidden>
-          <span>🍋</span>
+          <span>🌹</span>
           <span>✦</span>
           <span>🌿</span>
         </div>

@@ -4,6 +4,15 @@ import { requireAdmin } from "@/lib/auth";
 
 type Params = { params: Promise<{ id: string }> };
 
+function isPrismaNotFound(error: unknown): boolean {
+  return (
+    typeof error === "object" &&
+    error !== null &&
+    "code" in error &&
+    error.code === "P2025"
+  );
+}
+
 // PATCH /api/wishes/[id] — update wish (approve, edit message, etc.).
 export async function PATCH(request: NextRequest, { params }: Params) {
   const auth = requireAdmin(request);
@@ -53,7 +62,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
     });
     return NextResponse.json({ ok: true, wish: updated });
   } catch (err) {
-    if ((err as any)?.code === "P2025") {
+    if (isPrismaNotFound(err)) {
       return NextResponse.json(
         { ok: false, error: "Wish not found" },
         { status: 404 },
@@ -78,7 +87,7 @@ export async function DELETE(request: NextRequest, { params }: Params) {
     await prisma.wish.delete({ where: { id } });
     return NextResponse.json({ ok: true });
   } catch (err) {
-    if ((err as any)?.code === "P2025") {
+    if (isPrismaNotFound(err)) {
       return NextResponse.json(
         { ok: false, error: "Wish not found" },
         { status: 404 },

@@ -2,6 +2,8 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
+import { wedding } from "@/lib/wedding-data";
 
 export function LoginForm({
   initialError,
@@ -59,7 +61,7 @@ export function LoginForm({
             Admin
           </h1>
           <p className="text-xs uppercase tracking-[0.25em]" style={{ color: "var(--ink-muted)" }}>
-            Puteri &amp; Amir
+            {wedding.bride.shortName} &amp; {wedding.groom.shortName}
           </p>
         </div>
 
@@ -115,9 +117,9 @@ export function LoginForm({
         </button>
 
         <p className="text-center text-xs" style={{ color: "var(--ink-muted)" }}>
-          <a href="/" style={{ textDecoration: "underline" }}>
+          <Link href="/" style={{ textDecoration: "underline" }}>
             Back to invitation
-          </a>
+          </Link>
         </p>
       </form>
     </main>

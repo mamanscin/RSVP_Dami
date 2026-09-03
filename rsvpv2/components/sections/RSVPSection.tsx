@@ -23,7 +23,7 @@ export function RSVPSection() {
       {/* Decorative thin rule above the heading — invitation card style */}
       <div className="mx-auto mb-8 flex max-w-md items-center justify-center gap-3 text-[var(--leaf-600)]/80">
         <span aria-hidden className="h-px w-16 bg-[var(--leaf-400)]/60" />
-        <span aria-hidden className="text-xl">🍋</span>
+        <span aria-hidden className="text-xl">🌹</span>
         <span aria-hidden className="h-px w-16 bg-[var(--leaf-400)]/60" />
       </div>
 

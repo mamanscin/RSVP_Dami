@@ -11,7 +11,7 @@ export function MapSection() {
     <div className="space-y-10">
       <header className="text-center space-y-2">
         <div className="divider-ornament" aria-hidden>
-          <span>🍋</span>
+          <span>🌹</span>
           <span>✦</span>
           <span>🌿</span>
         </div>
@@ -46,7 +46,7 @@ export function MapSection() {
         >
           <iframe
             title={t.map.videoTitle}
-            src="https://www.youtube.com/embed/ry6zyjr92xo"
+            src="https://www.youtube.com/embed/bZEcYYOFlTU"
             width="100%"
             height="100%"
             loading="lazy"

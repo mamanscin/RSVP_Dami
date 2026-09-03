@@ -1,10 +1,12 @@
 import { redirect } from "next/navigation";
 import { cookies } from "next/headers";
+import { connection } from "next/server";
 import { isAdminConfigured, isAdminRequest } from "@/lib/auth";
 import { LoginForm } from "@/components/admin/LoginForm";
+import { wedding } from "@/lib/wedding-data";
 
 export const metadata = {
-  title: "Admin Login · Puteri & Amir",
+  title: `Admin Login · ${wedding.bride.shortName} & ${wedding.groom.shortName}`,
   robots: { index: false, follow: false },
 };
 
@@ -13,6 +15,8 @@ export default async function AdminLoginPage({
 }: {
   searchParams: Promise<{ error?: string; next?: string }>;
 }) {
+  await connection();
+
   if (!isAdminConfigured()) {
     return (
       <main className="min-h-screen flex items-center justify-center px-4">
