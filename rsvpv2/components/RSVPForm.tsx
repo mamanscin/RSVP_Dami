@@ -61,19 +61,6 @@ export function RSVPForm() {
     });
   }
 
-  function setGuestCount(n: number) {
-    const safe = Math.min(10, Math.max(1, Math.floor(n) || 1));
-    setForm((f) => {
-      const guests = [...f.guests];
-      if (safe > guests.length) {
-        while (guests.length < safe) guests.push({ ...EMPTY_GUEST });
-      } else {
-        guests.length = safe;
-      }
-      return { ...f, guestCount: safe, guests };
-    });
-  }
-
   function setGuest(i: number, patch: Partial<Guest>) {
     setForm((f) => {
       const guests = f.guests.map((g, idx) =>
@@ -92,9 +79,6 @@ export function RSVPForm() {
     if (!form.attending) errs.attending = t.rsvp.errors.attendance;
 
     if (form.attending === "yes") {
-      if (!form.guestCount || form.guestCount < 1) {
-        errs.guestCount = t.rsvp.errors.guestCount;
-      }
       form.guests.forEach((g, i) => {
         if (!g.name.trim()) errs[`name-${i}`] = t.rsvp.errors.name;
         if (g.phone.trim() && !PHONE_RE.test(g.phone.trim())) {
@@ -150,8 +134,8 @@ export function RSVPForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           attending: form.attending,
-          guestCount: form.guestCount,
-          guests: form.guests,
+          guestCount: 1,
+          guests: form.guests.slice(0, 1),
           wishes: wishesText || null,
           locale,
         }),
@@ -269,15 +253,6 @@ export function RSVPForm() {
         onChange={setAttending}
         t={t}
       />
-
-      {form.attending === "yes" && (
-        <GuestCountField
-          value={form.guestCount}
-          error={errors.guestCount}
-          onChange={setGuestCount}
-          t={t}
-        />
-      )}
 
       {(form.attending === "yes" || form.attending === "no") && (
         <GuestList
@@ -403,61 +378,6 @@ function AttendanceField({
       </div>
       {error && <p className="field-error">{error}</p>}
     </fieldset>
-  );
-}
-
-function GuestCountField({
-  value,
-  error,
-  onChange,
-  t,
-}: {
-  value: number;
-  error?: string;
-  onChange: (n: number) => void;
-  t: Dictionary;
-}) {
-  return (
-    <div data-field="guestCount">
-      <label htmlFor="guestCount" className="field-label">
-        {t.rsvp.guestCount}
-      </label>
-      <div className="flex items-center gap-3 flex-wrap">
-        <button
-          type="button"
-          onClick={() => onChange(value - 1)}
-          className="btn btn-ghost"
-          style={{ width: "44px", height: "44px", padding: 0, fontSize: "1.25rem" }}
-          aria-label="−"
-        >
-          −
-        </button>
-        <input
-          id="guestCount"
-          type="number"
-          inputMode="numeric"
-          min={1}
-          max={10}
-          value={value}
-          onChange={(e) => onChange(Number(e.target.value))}
-          className="field-input text-center"
-          style={{ width: "84px" }}
-        />
-        <button
-          type="button"
-          onClick={() => onChange(value + 1)}
-          className="btn btn-ghost"
-          style={{ width: "44px", height: "44px", padding: 0, fontSize: "1.25rem" }}
-          aria-label="+"
-        >
-          +
-        </button>
-        <span className="text-xs italic ml-2" style={{ color: "var(--text-body)" }}>
-          {t.rsvp.guestCountHint}
-        </span>
-      </div>
-      {error && <p className="field-error">{error}</p>}
-    </div>
   );
 }
 
