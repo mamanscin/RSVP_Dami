@@ -50,22 +50,22 @@
 }
 /* ─── Design tokens ─────────────────────────────────────────
    Translated from the reference site's plum/sage/pink to a
-   lemon / forest-green palette while preserving the design DNA:
+  lemon / rose palette while preserving the design DNA:
    frosted glass, hairlines, pill buttons, Garamond serif body.
    ─────────────────────────────────────────────────────────── */
 
 :root {
-  /* Brand blue palette used by buttons, borders, navigation, and accents. */
-  --leaf-50:  #eff6ff;
-  --leaf-100: #dbeafe;
-  --leaf-200: #bfdbfe;
-  --leaf-300: #93c5fd;
-  --leaf-400: #60a5fa;
-  --leaf-500: #3b82f6;
-  --leaf-600: #2563eb;
-  --leaf-700: #1d4ed8;
-  --leaf-800: #1e40af;
-  --leaf-900: #1e3a8a;
+  /* Soft rose palette used by buttons, borders, navigation, and accents. */
+  --leaf-50:  #fff1f2;
+  --leaf-100: #ffe4e6;
+  --leaf-200: #fecdd3;
+  --leaf-300: #fda4af;
+  --leaf-400: #fb7185;
+  --leaf-500: #f43f5e;
+  --leaf-600: #e11d48;
+  --leaf-700: #be123c;
+  --leaf-800: #9f1239;
+  --leaf-900: #881337;
 
   /* Lemon — replaces the reference's soft pink accent */
   --lemon-50:  #fffbeb;
@@ -89,8 +89,8 @@
   --ink-faint:  #8fa1c2;
 
   /* Hairline (replaces plum 1px divider) */
-  --hairline: rgba(30, 64, 175, 0.22);
-  --hairline-strong: rgba(30, 64, 175, 0.45);
+  --hairline: rgba(190, 18, 60, 0.22);
+  --hairline-strong: rgba(190, 18, 60, 0.45);
 
   /* Error / danger */
   --danger: #b3402e;
@@ -282,7 +282,7 @@ body > main {
   -webkit-backdrop-filter: blur(20px) saturate(120%);
   border: 1px solid rgba(255, 255, 255, 0.55);
   border-radius: 20px;
-  box-shadow: 0 10px 40px rgba(45, 74, 34, 0.10);
+  box-shadow: 0 10px 40px rgba(136, 19, 55, 0.10);
 }
 
 .glass-soft {
@@ -473,7 +473,7 @@ body > main {
 .bottom-nav .nav-btn.active {
   background: linear-gradient(135deg, var(--leaf-500), var(--leaf-800));
   color: white;
-  box-shadow: 0 4px 12px rgba(45, 68, 34, 0.3);
+  box-shadow: 0 4px 12px rgba(136, 19, 55, 0.3);
   transform: translateY(-2px);
 }
 
@@ -539,7 +539,7 @@ body > main {
   color: var(--highlight);
 }
 .music-pill--playing:hover {
-  box-shadow: 0 4px 14px rgba(45, 74, 34, 0.18);
+  box-shadow: 0 4px 14px rgba(136, 19, 55, 0.18);
 }
 
 @keyframes music-wave-pulse {
