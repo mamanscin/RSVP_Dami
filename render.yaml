@@ -1,0 +1,17 @@
+services:
+  - type: web
+    name: rsvp
+    runtime: docker
+    rootDir: rsvpv2
+    dockerfilePath: ./Dockerfile
+    dockerContext: .
+    plan: starter
+    envVars:
+      - key: DATABASE_URL
+        value: file:/data/dev.db
+      - key: ADMIN_PASSWORD
+        sync: false
+    disk:
+      name: rsvp-data
+      mountPath: /data
+      sizeGB: 1
