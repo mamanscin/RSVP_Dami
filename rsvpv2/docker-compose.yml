@@ -1,30 +1,17 @@
 services:
-  db:
-    image: postgres:16-alpine
-    environment:
-      POSTGRES_DB: rsvp
-      POSTGRES_USER: rsvp
-      POSTGRES_PASSWORD: rsvp_dev_password
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U rsvp -d rsvp"]
-      interval: 5s
-      timeout: 5s
-      retries: 10
-    volumes:
-      - postgres-data:/var/lib/postgresql/data
-
   # Run pending Prisma migrations, then exit.
   migrate:
     build:
       context: .
       dockerfile: Dockerfile
       target: runner
-    command: npx prisma migrate deploy
-    depends_on:
-      db:
-        condition: service_healthy
+    user: root
+    command: >
+      sh -c "chown -R nextjs:nodejs /data && chmod 775 /data && npx prisma migrate deploy || (npx prisma db push && chown -R nextjs:nodejs /data && chmod 775 /data)"
     environment:
-      - DATABASE_URL=postgresql://rsvp:rsvp_dev_password@db:5432/rsvp?schema=public
+      - DATABASE_URL=file:/data/dev.db
+    volumes:
+      - rsvp-data:/data
 
   app:
     build:
@@ -36,8 +23,10 @@ services:
       migrate:
         condition: service_completed_successfully
     environment:
-      - DATABASE_URL=postgresql://rsvp:rsvp_dev_password@db:5432/rsvp?schema=public
+      - DATABASE_URL=file:/data/dev.db
       - ADMIN_PASSWORD=${ADMIN_PASSWORD:-}
+    volumes:
+      - rsvp-data:/data
     networks:
       - proxy
     labels:
@@ -51,7 +40,7 @@ services:
     restart: unless-stopped
 
 volumes:
-  postgres-data:
+  rsvp-data:
 
 networks:
   proxy:

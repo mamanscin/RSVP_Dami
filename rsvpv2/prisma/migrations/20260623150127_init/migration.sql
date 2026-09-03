@@ -1,26 +1,24 @@
 -- CreateTable
 CREATE TABLE "Rsvp" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "attending" BOOLEAN NOT NULL,
     "guestCount" INTEGER NOT NULL,
     "guests" JSONB NOT NULL,
     "wishes" TEXT,
-    "submittedAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "submittedAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "locale" TEXT NOT NULL DEFAULT 'en',
     "userAgent" TEXT,
-    "ipHash" TEXT,
-    CONSTRAINT "Rsvp_pkey" PRIMARY KEY ("id")
+    "ipHash" TEXT
 );
 
 -- CreateTable
 CREATE TABLE "Wish" (
-    "id" TEXT NOT NULL,
+    "id" TEXT NOT NULL PRIMARY KEY,
     "name" TEXT NOT NULL,
     "message" TEXT NOT NULL,
-    "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    "createdAt" DATETIME NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "locale" TEXT NOT NULL DEFAULT 'en',
-    "approved" BOOLEAN NOT NULL DEFAULT true,
-    CONSTRAINT "Wish_pkey" PRIMARY KEY ("id")
+    "approved" BOOLEAN NOT NULL DEFAULT true
 );
 
 -- CreateIndex

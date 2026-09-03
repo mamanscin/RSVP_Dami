@@ -28,32 +28,19 @@ choice is then persisted in a `locale` cookie.
 
 ## Run it
 
-The app uses **PostgreSQL**. Docker Compose starts a local Postgres database;
-Render provisions a managed Postgres database and injects its connection URL.
+The app uses **SQLite** by default — no external database required.
 
 ```bash
 npm install
-npm run db:generate
+npx prisma migrate dev --name init   # creates prisma/dev.db
 npm run dev                          # http://localhost:3000
 npm run build                        # production build (Turbopack)
 npm run lint
 ```
 
-For Docker Compose, run `docker compose up --build -d` from `rsvpv2`.
-For a direct local run, set `DATABASE_URL` to a PostgreSQL database and run
-`npx prisma migrate deploy` before `npm run dev`.
-
-## Deploy to Render
-
-The repository includes `render.yaml` at the repository root. In Render,
-create a **Blueprint** from the repository and select that file. It creates a
-web service from `rsvpv2/Dockerfile`, a managed PostgreSQL database, and wires
-the database's internal connection string into `DATABASE_URL`.
-
-Set `ADMIN_PASSWORD` as a secret environment variable in the web service.
-The container runs `prisma migrate deploy` before Next.js starts, so the
-database tables are created during the first deploy. Do not commit the real
-database URL or admin password.
+> Want Postgres instead? Change `provider = "sqlite"` to `"postgresql"`
+> in `prisma/schema.prisma`, point `DATABASE_URL` at your DB, and run
+> `npx prisma migrate dev` again. The API code does not need to change.
 
 ## Customise the wedding
 
@@ -75,8 +62,8 @@ database URL or admin password.
   dictionary pattern: `app/[lang]/dictionaries.ts` lazy-loads per-locale
   JSON, the root layout passes the dict into a small client-side
   `I18nProvider` context so client components can call `useI18n()`.
-- **RSVP persistence** — submissions are written to PostgreSQL via Prisma.
-  The `Rsvp` and `Wish` tables are defined in
+- **RSVP persistence** — submissions are written to SQLite via Prisma
+  (`prisma/dev.db`). The `Rsvp` and `Wish` tables are defined in
   `prisma/schema.prisma`. The browser calls `POST /api/rsvp` and
   `POST /api/wishes`; both route handlers live in `app/api/`.
 - **Google Maps iframe** is loaded directly — no API key required for
