@@ -59,7 +59,7 @@ export function InfoSection() {
             {wedding.groom.father}
           </h3>
           <p
-            className="couple-amp"
+            className="couple-amp self-center"
             style={{ fontSize: "1.4rem", color: "var(--highlight)", lineHeight: 1 }}
           >
             &amp;
@@ -83,7 +83,7 @@ export function InfoSection() {
             {wedding.bride.father}
           </h3>
           <p
-            className="couple-amp"
+            className="couple-amp self-center"
             style={{ fontSize: "1.4rem", color: "var(--highlight)", lineHeight: 1 }}
           >
             &amp;
