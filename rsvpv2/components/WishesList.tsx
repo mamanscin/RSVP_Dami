@@ -130,7 +130,7 @@ export function WishesList() {
   );
 
   return (
-    <InvitationCard>
+    <InvitationCard className="wishes-card">
       <div className="wishes-scroller" ref={scrollerRef}>
         {/* Rendered twice so the marquee can loop seamlessly */}
         <ul className="space-y-0">

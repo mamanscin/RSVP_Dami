@@ -633,6 +633,11 @@ body > main {
   scrollbar-width: none;
 }
 
+.wishes-card {
+  width: 100%;
+  max-width: 52rem;
+}
+
 .wishes-scroller ul {
   margin: 0;
   will-change: transform;
