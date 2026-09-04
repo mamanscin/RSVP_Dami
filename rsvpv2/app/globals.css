@@ -102,8 +102,8 @@
                       labels, ampersands, and other "stand-out" text.
        --text-body  → supporting body copy, descriptions, detail
                       values, form input text, and similar. */
-  --highlight: #64899c;
-  --text-body: #384955;
+  --highlight: #4a6c7c;
+  --text-body: #2d3c47;
 
   /* Theme aliases for tailwind v4 @theme inline */
   --color-background: var(--cream);
