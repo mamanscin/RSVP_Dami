@@ -184,11 +184,11 @@ export function ArrowDownIcon(props: IconProps) {
   );
 }
 
-export function FlowerIcon(props: IconProps) {
+export function ArrowUpIcon(props: IconProps) {
   return (
     <Base {...props}>
-      <path d="M12 10c-2.5-5.5-7.8-4.1-6.5.5-4.6-1.3-6 4-.5 6.5-2.5 4.5 2 7.8 6.5 3.5 4.5 4.3 9 1 6.5-3.5 5.5-2.5 4.1-7.8-.5-6.5 1.3-4.6-4-6-6.5-.5Z" fill="currentColor" stroke="none" />
-      <circle cx="12" cy="12" r="2.2" fill="var(--leaf-300)" stroke="none" />
+      <path d="M12 19V5" />
+      <path d="m6 11 6-6 6 6" />
     </Base>
   );
 }
