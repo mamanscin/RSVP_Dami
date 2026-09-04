@@ -161,9 +161,6 @@ export function InfoSection() {
         <DetailRow label={t.info.timeLabel} value={t.info.timeValue} />
         <DetailRow label={t.info.venueLabel} value={t.info.venueValue} />
         <DetailRow label={t.info.dresscode} value={t.info.dresscodeValue} />
-        <div className="sm:col-span-2">
-          <DetailRow label={t.info.dressTheme} value={t.info.dressThemeValue} />
-        </div>
       </dl>
 
       {/* Wishes */}
