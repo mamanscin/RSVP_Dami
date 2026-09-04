@@ -9,6 +9,7 @@ export const wedding = {
     mother: "Julianah Binti Ramli",
     fatherContact: "+60 12-918 9676",
     motherContact: "+60 12-357 8145",
+    thirdContact: "+60 1X-XXX XXXX",
   },
   groom: {
     fullName: "Muhammad Danish Putra Bin Mohd Faiz",
@@ -17,6 +18,7 @@ export const wedding = {
     mother: "Azura Binti Zahari",
     fatherContact: "+60 16-476 0747",
     motherContact: "+60 19-255 0970",
+    thirdContact: "+60 1X-XXX XXXX",
   },
   date: {
     iso: "2026-10-24T05:30:00+08:00",

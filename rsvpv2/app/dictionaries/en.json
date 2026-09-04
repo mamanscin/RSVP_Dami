@@ -118,10 +118,16 @@
     "brideFamily": "Bride's Family",
     "brideFather": "Afandi Bin Samat",
     "brideMother": "Julianah Binti Ramli",
+    "fatherRelation": "Father",
+    "motherRelation": "Mother",
+    "brideThird": "Ummar Bin Afandi",
+    "brideThirdRelation": "Younger brother",
     "brideContact": "+60 11-3933 1968",
     "groomFamily": "Groom's Family",
     "groomFather": "Mohd Faiz Bin Ismail",
     "groomMother": "Azura Binti Zahari",
+    "groomThird": "Muhamad Danish Haikal Bin Mohd Faiz",
+    "groomThirdRelation": "Younger brother",
     "groomContact": "+60 16-415 0970"
   },
   "footer": {

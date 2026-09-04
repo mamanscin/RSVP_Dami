@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from "react";
 import { AnimatePresence, motion } from "framer-motion";
-import { ArrowUpIcon } from "./Icons";
+import { FlowerIcon } from "./Icons";
 
 export function ScrollToTop() {
   const [visible, setVisible] = useState(false);
@@ -47,7 +47,7 @@ export function ScrollToTop() {
           }}
           whileHover={{ y: -2 }}
         >
-          <ArrowUpIcon size={20} />
+          <FlowerIcon size={20} />
         </motion.button>
       )}
     </AnimatePresence>
