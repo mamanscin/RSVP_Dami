@@ -112,7 +112,7 @@ export function WishesList() {
       }}
     >
       <p
-        className="text-lg italic whitespace-pre-wrap"
+        className="text-lg italic leading-relaxed whitespace-pre-wrap"
         style={{
           fontFamily: "var(--font-display)",
           color: "var(--text-body)",

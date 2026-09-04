@@ -628,7 +628,7 @@ body > main {
    seamlessly via the wishes-scroll keyframes. */
 .wishes-scroller {
   position: relative;
-  max-height: 280px;
+  max-height: 420px;
   overflow-y: hidden;
   scrollbar-width: none;
 }
