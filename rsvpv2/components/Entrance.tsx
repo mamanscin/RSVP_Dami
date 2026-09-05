@@ -315,6 +315,21 @@ export function Entrance() {
               24.10.2026
             </motion.span>
 
+            <span
+              aria-hidden
+              className="block mt-1"
+              style={{
+                color: "var(--highlight)",
+                fontFamily: "var(--font-serif)",
+                fontSize: "clamp(0.85rem, 2.8vw, 1.1rem)",
+                letterSpacing: "0.08em",
+                lineHeight: 1.2,
+                pointerEvents: "none",
+              }}
+            >
+              #DanishamiEternity
+            </span>
+
             {/* Tap indicator — paw icon at 50% opacity, pulsing like a finger tap */}
             <motion.span
               aria-hidden
@@ -337,21 +352,6 @@ export function Entrance() {
                 style={{ display: "block", pointerEvents: "none" }}
               />
             </motion.span>
-
-            <span
-              aria-hidden
-              className="block mt-1"
-              style={{
-                color: "var(--highlight)",
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(0.85rem, 2.8vw, 1.1rem)",
-                letterSpacing: "0.08em",
-                lineHeight: 1.2,
-                pointerEvents: "none",
-              }}
-            >
-              #DanishamiEternity
-            </span>
           </motion.button>
         )}
       </AnimatePresence>
