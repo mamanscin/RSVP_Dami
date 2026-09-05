@@ -22,6 +22,7 @@ model Rsvp {
   // Best-effort client info for analytics / spam-control.
   userAgent     String?
   ipHash        String?
+  wish          Wish?
 
   @@index([submittedAt])
 }
@@ -34,6 +35,8 @@ model Wish {
   locale    String   @default("en")
   // Set to true if approved by a moderator; null = auto-approved.
   approved  Boolean  @default(true)
+  rsvpId    String?  @unique
+  rsvp      Rsvp?    @relation(fields: [rsvpId], references: [id], onDelete: Cascade)
 
   @@index([createdAt])
 }

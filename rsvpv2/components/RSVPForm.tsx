@@ -155,22 +155,7 @@ export function RSVPForm() {
         throw new Error(payload?.error ?? "RSVP submission failed");
       }
 
-      // 2. If the user left a wish, persist it separately to Postgres.
-      if (wishesText) {
-        try {
-          await fetch("/api/wishes", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-              name: form.guests[0].name.trim(),
-              message: wishesText,
-              locale,
-            }),
-          });
-        } catch {
-          // Wish persistence is best-effort; the RSVP itself succeeded.
-        }
-      }
+      // Wishes are created with the RSVP in the same server transaction.
     } catch (err) {
       setSubmitting(false);
       setErrors({

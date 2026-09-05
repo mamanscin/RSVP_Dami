@@ -139,17 +139,32 @@ export async function POST(request: NextRequest) {
   const userAgent = request.headers.get("user-agent") ?? null;
 
   try {
-    const created = await prisma.rsvp.create({
-      data: {
-        attending: b.attending === "yes",
-        guestCount: guestCountRaw,
-        guests,
-        wishes,
-        locale,
-        userAgent,
-        ipHash,
-      },
-      select: { id: true, submittedAt: true },
+    const created = await prisma.$transaction(async (tx) => {
+      const rsvp = await tx.rsvp.create({
+        data: {
+          attending: b.attending === "yes",
+          guestCount: guestCountRaw,
+          guests,
+          wishes,
+          locale,
+          userAgent,
+          ipHash,
+        },
+        select: { id: true, submittedAt: true },
+      });
+
+      if (wishes) {
+        await tx.wish.create({
+          data: {
+            name: guests[0].name,
+            message: wishes,
+            locale,
+            rsvpId: rsvp.id,
+          },
+        });
+      }
+
+      return rsvp;
     });
 
     return NextResponse.json(
