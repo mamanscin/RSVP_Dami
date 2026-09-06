@@ -275,10 +275,10 @@ export function Entrance() {
             {/* Keep the monogram and hashtag as one centered visual group. */}
             <span className="flex flex-col items-center" aria-hidden>
               <span
-                className="block"
+                className="relative block overflow-hidden"
                 style={{
                   width: "min(25vw, 180px)",
-                  height: "auto",
+                  height: "clamp(74px, 12vw, 92px)",
                   pointerEvents: "none",
                 }}
               >
@@ -291,6 +291,8 @@ export function Entrance() {
                     display: "block",
                     width: "100%",
                     height: "auto",
+                    position: "absolute",
+                    top: "-29%",
                     pointerEvents: "none",
                     userSelect: "none",
                   }}
@@ -298,7 +300,7 @@ export function Entrance() {
               </span>
 
               <span
-                className="block mt-1"
+                className="block mt-0"
                 style={{
                   color: "var(--highlight)",
                   fontFamily: "var(--font-serif)",
