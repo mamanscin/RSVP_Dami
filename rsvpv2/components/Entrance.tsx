@@ -260,7 +260,7 @@ export function Entrance() {
             key="entrance-cta"
             type="button"
             onClick={handleOpen}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center cursor-pointer"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 cursor-pointer"
             style={{
               background: "transparent",
               border: "none",
@@ -272,52 +272,34 @@ export function Entrance() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* Keep the monogram and hashtag as one centered visual group. */}
-            <span className="flex flex-col items-center" aria-hidden>
-              <span
-                className="relative block overflow-hidden"
+            {/* DU.svg contains the complete monogram and tag artwork. */}
+            <span
+              className="block"
+              style={{
+                width: "min(25vw, 180px)",
+                height: "auto",
+                pointerEvents: "none",
+              }}
+            >
+              <img
+                src="/illustrations/SVG/DU.svg"
+                alt=""
+                aria-hidden
+                draggable={false}
                 style={{
-                  width: "min(25vw, 180px)",
-                  height: "clamp(108px, 18vw, 150px)",
+                  display: "block",
+                  width: "100%",
+                  height: "auto",
                   pointerEvents: "none",
+                  userSelect: "none",
                 }}
-              >
-                <img
-                  src="/illustrations/SVG/DU.svg"
-                  alt=""
-                  aria-hidden
-                  draggable={false}
-                  style={{
-                    display: "block",
-                    width: "100%",
-                    height: "auto",
-                    position: "absolute",
-                    top: "-29%",
-                    pointerEvents: "none",
-                    userSelect: "none",
-                  }}
-                />
-              </span>
-
-              <span
-                className="block mt-4"
-                style={{
-                  color: "var(--highlight)",
-                  fontFamily: "var(--font-serif)",
-                  fontSize: "clamp(0.85rem, 2.8vw, 1.1rem)",
-                  letterSpacing: "0.08em",
-                  lineHeight: 1.2,
-                  pointerEvents: "none",
-                }}
-              >
-                #DanishamiEternity
-              </span>
+              />
             </span>
 
             {/* Tap indicator — paw icon at 50% opacity, pulsing like a finger tap */}
             <motion.span
               aria-hidden
-              className="mt-10 flex justify-center"
+              className="block"
               style={{ color: "var(--leaf-700)", opacity: 0.5, pointerEvents: "none" }}
               animate={{ scale: [1, 1, 0.78, 1, 1] }}
               transition={{
@@ -333,7 +315,7 @@ export function Entrance() {
                 width={80}
                 height={80}
                 draggable={false}
-                style={{ display: "block", pointerEvents: "none", margin: "0 auto" }}
+                style={{ display: "block", pointerEvents: "none" }}
               />
             </motion.span>
           </motion.button>
