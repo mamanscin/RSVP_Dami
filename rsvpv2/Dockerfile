@@ -58,5 +58,4 @@ COPY --from=builder /app/tsconfig.json ./
 
 EXPOSE 3000
 
-# Apply pending migrations before starting the Next.js server.
-CMD ["sh", "-c", "npx prisma migrate deploy && npm start"]
+CMD ["npm", "start"]

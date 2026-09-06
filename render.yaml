@@ -5,6 +5,7 @@ services:
     rootDir: rsvpv2
     dockerfilePath: ./Dockerfile
     dockerContext: .
+    preDeployCommand: npx prisma migrate deploy
     plan: free
     envVars:
       - key: DATABASE_URL
