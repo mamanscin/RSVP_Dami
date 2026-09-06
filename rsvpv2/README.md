@@ -33,12 +33,13 @@ connection automatically through `render.yaml`.
 
 The free Render web service can sleep after inactivity. The repository includes
 `.github/workflows/keep-render-awake.yml`, which pings
-`https://rsvp-dami.onrender.com/api/health` every 10 minutes.
+`https://rsvp-dami.onrender.com/api/health` every 10 minutes from 6:00 AM to
+1:00 AM Malaysia time.
 
-This keeps the service available without waiting for a cold start, but it uses
-the free web service's monthly hours continuously (about 720 hours in a
-30-day month). GitHub Actions scheduled jobs can be delayed occasionally, so a
-short cold start remains possible.
+This keeps the service available during those hours while using about 570
+Render hours in a 30-day month, leaving roughly 180 hours for another free
+service in the same workspace. GitHub Actions scheduled jobs can be delayed
+occasionally, so a short cold start remains possible.
 
 ```bash
 npm install
