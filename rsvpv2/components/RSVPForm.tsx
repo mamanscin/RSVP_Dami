@@ -261,12 +261,14 @@ export function RSVPForm() {
         t={t}
       />
 
-      <InvitationFamilyField
-        value={form.invitationFamily}
-        error={errors.invitationFamily}
-        onChange={setInvitationFamily}
-        t={t}
-      />
+      {form.attending && (
+        <InvitationFamilyField
+          value={form.invitationFamily}
+          error={errors.invitationFamily}
+          onChange={setInvitationFamily}
+          t={t}
+        />
+      )}
 
       {form.attending === "yes" && (
         <GuestCountField
