@@ -260,7 +260,7 @@ export function Entrance() {
             key="entrance-cta"
             type="button"
             onClick={handleOpen}
-            className="absolute inset-0 z-20 flex flex-col items-center justify-center gap-3 cursor-pointer"
+            className="absolute inset-0 z-20 flex flex-col items-center justify-center cursor-pointer"
             style={{
               background: "transparent",
               border: "none",
@@ -272,68 +272,50 @@ export function Entrance() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
           >
-            {/* AP.svg as the button */}
-            <span
-              className="block"
-              style={{
-                width: "min(25vw, 180px)",
-                height: "auto",
-                pointerEvents: "none",
-              }}
-            >
-              <img
-                src="/illustrations/SVG/DU.svg"
-                alt=""
-                aria-hidden
-                draggable={false}
+            {/* Keep the monogram and hashtag as one centered visual group. */}
+            <span className="flex flex-col items-center" aria-hidden>
+              <span
+                className="block"
                 style={{
-                  display: "block",
-                  width: "100%",
+                  width: "min(25vw, 180px)",
                   height: "auto",
                   pointerEvents: "none",
-                  userSelect: "none",
                 }}
-              />
-            </span>
+              >
+                <img
+                  src="/illustrations/SVG/DU.svg"
+                  alt=""
+                  aria-hidden
+                  draggable={false}
+                  style={{
+                    display: "block",
+                    width: "100%",
+                    height: "auto",
+                    pointerEvents: "none",
+                    userSelect: "none",
+                  }}
+                />
+              </span>
 
-            {/* Wedding date — sits between the monogram and the paw icon */}
-            <motion.span
-              aria-hidden
-              className="block -mt-5"
-              style={{
-                fontFamily: "var(--font-serif)",
-                fontStyle: "italic",
-                fontSize: "clamp(1rem, 2.2vw, 1.35rem)",
-                letterSpacing: "0.25em",
-                color: "var(--ink)",
-                opacity: 0.75,
-                pointerEvents: "none",
-              }}
-              animate={{ opacity: [0.6, 0.85, 0.6] }}
-              transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
-            >
-              {/* 24.10.2026 */}
-            </motion.span>
-
-            <span
-              aria-hidden
-              className="block mt-1"
-              style={{
-                color: "var(--highlight)",
-                fontFamily: "var(--font-serif)",
-                fontSize: "clamp(0.85rem, 2.8vw, 1.1rem)",
-                letterSpacing: "0.08em",
-                lineHeight: 1.2,
-                pointerEvents: "none",
-              }}
-            >
-              #DanishamiEternity
+              <span
+                className="block mt-1"
+                style={{
+                  color: "var(--highlight)",
+                  fontFamily: "var(--font-serif)",
+                  fontSize: "clamp(0.85rem, 2.8vw, 1.1rem)",
+                  letterSpacing: "0.08em",
+                  lineHeight: 1.2,
+                  pointerEvents: "none",
+                }}
+              >
+                #DanishamiEternity
+              </span>
             </span>
 
             {/* Tap indicator — paw icon at 50% opacity, pulsing like a finger tap */}
             <motion.span
               aria-hidden
-              className="block"
+              className="mt-10 flex justify-center"
               style={{ color: "var(--leaf-700)", opacity: 0.5, pointerEvents: "none" }}
               animate={{ scale: [1, 1, 0.78, 1, 1] }}
               transition={{
@@ -349,7 +331,7 @@ export function Entrance() {
                 width={80}
                 height={80}
                 draggable={false}
-                style={{ display: "block", pointerEvents: "none" }}
+                style={{ display: "block", pointerEvents: "none", margin: "0 auto" }}
               />
             </motion.span>
           </motion.button>
