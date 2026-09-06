@@ -278,7 +278,7 @@ export function Entrance() {
                 className="relative block overflow-hidden"
                 style={{
                   width: "min(25vw, 180px)",
-                  height: "clamp(74px, 12vw, 92px)",
+                  height: "clamp(108px, 18vw, 150px)",
                   pointerEvents: "none",
                 }}
               >
@@ -300,7 +300,7 @@ export function Entrance() {
               </span>
 
               <span
-                className="block mt-10"
+                className="block mt-4"
                 style={{
                   color: "var(--highlight)",
                   fontFamily: "var(--font-serif)",
