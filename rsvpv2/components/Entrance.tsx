@@ -312,7 +312,7 @@ export function Entrance() {
               animate={{ opacity: [0.6, 0.85, 0.6] }}
               transition={{ duration: 3.2, repeat: Infinity, ease: "easeInOut" }}
             >
-              24.10.2026
+              {/* 24.10.2026 */}
             </motion.span>
 
             <span

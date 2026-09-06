@@ -634,8 +634,24 @@ body > main {
 }
 
 .wishes-card {
-  width: 100%;
-  max-width: 52rem;
+  width: min(100%, 44rem);
+  max-width: calc(100% - 2rem);
+}
+
+.wishes-scroller li {
+  padding-left: clamp(1.25rem, 5vw, 3rem);
+  padding-right: clamp(1rem, 3vw, 2rem);
+}
+
+@media (max-width: 640px) {
+  .wishes-card {
+    max-width: calc(100% - 1rem);
+  }
+
+  .wishes-scroller li {
+    padding-left: 1rem;
+    padding-right: 0.75rem;
+  }
 }
 
 .wishes-scroller ul {
