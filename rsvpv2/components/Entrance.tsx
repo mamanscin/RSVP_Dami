@@ -300,7 +300,7 @@ export function Entrance() {
               </span>
 
               <span
-                className="block mt-4"
+                className="block mt-10"
                 style={{
                   color: "var(--highlight)",
                   fontFamily: "var(--font-serif)",
