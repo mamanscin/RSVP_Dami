@@ -41,6 +41,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   const b = body as {
     attending?: unknown;
+    invitationFamily?: unknown;
     guestCount?: unknown;
     guests?: unknown;
     wishes?: unknown;
@@ -56,6 +57,16 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       );
     }
     data.attending = b.attending === "yes";
+  }
+
+  if (b.invitationFamily !== undefined) {
+    if (b.invitationFamily !== "groom" && b.invitationFamily !== "bride") {
+      return NextResponse.json(
+        { ok: false, error: "invitationFamily must be 'groom' or 'bride'" },
+        { status: 400 },
+      );
+    }
+    data.invitationFamily = b.invitationFamily;
   }
 
   if (b.guestCount !== undefined) {
@@ -138,6 +149,7 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       select: {
         id: true,
         attending: true,
+        invitationFamily: true,
         guestCount: true,
         guests: true,
         wishes: true,

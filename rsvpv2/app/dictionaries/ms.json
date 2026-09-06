@@ -56,6 +56,8 @@
     "timeValue": "11:00 pagi - 4:00 petang",
     "dresscode": "Kod Pakaian",
     "dresscodeValue": "Pakaian sopan, sesuai dengan suasana rasmi majlis",
+    "dressTheme": "Tema Pakaian",
+    "dressThemeValue": "Keluarga Pengantin Perempuan: Dusty Pink\nKeluarga Pengantin Lelaki: Sage Green",
     "wishesTitle": "Ucapan Tetamu",
     "wishesEmpty": "Jadilah yang pertama meninggalkan ucapan untuk pengantin.",
     "wishesFrom": "daripada"
@@ -84,6 +86,9 @@
     "title": "RSVP",
     "subtitle": "Sila maklumkan jika anda dapat hadir, kerana tempat duduk adalah terhad dan maklum balas anda akan membantu kami membuat persiapan yang diperlukan.",
     "attending": "Adakah anda akan hadir?",
+    "invitationFamily": "Jemputan daripada keluarga mana?",
+    "groomFamily": "Keluarga Pengantin Lelaki",
+    "brideFamily": "Keluarga Pengantin Perempuan",
     "yes": "Ya, saya akan hadir",
     "no": "Maaf, tidak dapat hadir",
     "guestCount": "Berapa ramai yang akan hadir?",
@@ -102,6 +107,7 @@
     "another": "Hantar RSVP Lain",
     "errors": {
       "attendance": "Sila pilih sama ada anda akan hadir.",
+      "invitationFamily": "Sila pilih keluarga yang menjemput anda.",
       "guestCount": "Sila masukkan bilangan tetamu (1â€“10).",
       "name": "Sila masukkan nama anda.",
       "phone": "Sila masukkan nombor telefon yang sah.",

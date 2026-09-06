@@ -5,7 +5,7 @@ Router) and React 19. Lemon-and-leaf themed, bilingual (English / Bahasa
 Melayu), text-only layout (no card containers), hairline section dividers,
 animated sliding doors, floating leaf particles, smooth scroll-revealed
 sections via [Framer Motion](https://www.framer.com/motion/), and a full
-RSVP flow that persists guest responses and wishes to `localStorage`.
+RSVP flow that persists guest responses and wishes to PostgreSQL via Prisma.
 
 ## Sections (all on one page)
 
@@ -15,7 +15,7 @@ RSVP flow that persists guest responses and wishes to `localStorage`.
 | `#info`      | General info + couple names + guest wishes wall |
 | `#itinerary` | Day-of timeline |
 | `#map`       | Embedded Google Map + directions link |
-| `#rsvp`      | Form (attendance, guest count, names, phones, wishes) |
+| `#rsvp`      | Form (invitation family, attendance, guest count, names, phones, wishes) |
 | `#contact`   | Bride & groom family contact blocks |
 
 The page is fully scrollable. Each section fades + lifts in as it enters
@@ -43,7 +43,8 @@ occasionally, so a short cold start remains possible.
 
 ```bash
 npm install
-npx prisma migrate dev --name init   # requires a PostgreSQL DATABASE_URL
+npx prisma migrate dev               # applies committed migrations; requires DATABASE_URL
+npm run db:generate                  # regenerate the Prisma client after schema changes
 npm run dev                          # http://localhost:3000
 npm run build                        # production build (Turbopack)
 npm run lint
@@ -72,7 +73,8 @@ running Prisma commands. The API code does not need a database-specific change.
   dictionary pattern: `app/[lang]/dictionaries.ts` lazy-loads per-locale
   JSON, the root layout passes the dict into a small client-side
   `I18nProvider` context so client components can call `useI18n()`.
-- **RSVP persistence** — submissions are written to PostgreSQL via Prisma.
+- **RSVP persistence** — submissions, including the selected groom's-family or
+  bride's-family invitation source, are written to PostgreSQL via Prisma.
   The `Rsvp` and `Wish` tables are defined in
   `prisma/schema.prisma`. The browser calls `POST /api/rsvp` and
   `POST /api/wishes`; both route handlers live in `app/api/`.

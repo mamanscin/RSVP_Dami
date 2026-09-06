@@ -1,0 +1,1 @@
+ALTER TABLE "Rsvp" ADD COLUMN "invitationFamily" TEXT NOT NULL DEFAULT 'unknown';

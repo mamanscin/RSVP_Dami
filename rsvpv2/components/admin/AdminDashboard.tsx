@@ -10,6 +10,7 @@ type Guest = { name: string; phone: string | null };
 export type AdminRsvp = {
   id: string;
   attending: boolean;
+  invitationFamily: "groom" | "bride" | "unknown";
   guestCount: number;
   guests: Guest[];
   wishes: string | null;
@@ -34,6 +35,8 @@ type Stats = {
   declined: number;
   totalGuests: number;
   wishTotal: number;
+  groomGuests: number;
+  brideGuests: number;
 };
 
 export function AdminDashboard({
@@ -84,6 +87,16 @@ export function AdminDashboard({
           declined: s.declined - (gone.attending ? 0 : 1),
           totalGuests: s.totalGuests - gone.guestCount,
           wishTotal: s.wishTotal,
+          groomGuests:
+            s.groomGuests -
+            (gone.attending && gone.invitationFamily === "groom"
+              ? gone.guestCount
+              : 0),
+          brideGuests:
+            s.brideGuests -
+            (gone.attending && gone.invitationFamily === "bride"
+              ? gone.guestCount
+              : 0),
         };
       });
     },
@@ -97,6 +110,7 @@ export function AdminDashboard({
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           attending: updated.attending ? "yes" : "no",
+          invitationFamily: updated.invitationFamily,
           guestCount: updated.guestCount,
           guests: updated.guests,
           wishes: updated.wishes,
@@ -227,6 +241,8 @@ export function AdminDashboard({
             value={stats.declined}
             accent="muted"
           />
+          <StatCard label="Groom family guests" value={stats.groomGuests} accent="leaf" />
+          <StatCard label="Bride family guests" value={stats.brideGuests} accent="lemon" />
         </section>
 
         <nav className="flex gap-1 border-b" style={{ borderColor: "var(--hairline)" }}>
@@ -467,6 +483,7 @@ function RsvpRow({
         <div className="flex-1 min-w-0 space-y-2">
           <div className="flex flex-wrap items-center gap-2">
             <AttendanceBadge attending={rsvp.attending} />
+            <InvitationFamilyBadge family={rsvp.invitationFamily} />
             <span
               className="text-sm font-medium"
               style={{ color: "var(--ink)" }}
@@ -567,6 +584,9 @@ function EditRsvpForm({
   onSave: (r: AdminRsvp) => Promise<boolean>;
 }) {
   const [attending, setAttending] = useState(rsvp.attending);
+  const [invitationFamily, setInvitationFamily] = useState<"groom" | "bride" | "unknown">(
+    rsvp.invitationFamily,
+  );
   const [guestCount, setGuestCount] = useState(rsvp.guestCount);
   const [guests, setGuests] = useState<Guest[]>(
     rsvp.guests.length > 0
@@ -608,6 +628,7 @@ function EditRsvpForm({
     const ok = await onSave({
       ...rsvp,
       attending,
+      invitationFamily,
       guestCount,
       guests,
       wishes: wishes.trim() ? wishes.trim() : null,
@@ -658,6 +679,32 @@ function EditRsvpForm({
             }}
           >
             Declined
+          </button>
+        </div>
+        <div className="flex gap-2 flex-wrap">
+          <button
+            type="button"
+            onClick={() => setInvitationFamily("groom")}
+            className="text-sm rounded-full px-3 py-1.5"
+            style={{
+              background: invitationFamily === "groom" ? "var(--leaf-700)" : "var(--cream-soft)",
+              color: invitationFamily === "groom" ? "var(--cream)" : "var(--ink-soft)",
+              border: "1px solid " + (invitationFamily === "groom" ? "var(--leaf-700)" : "var(--hairline)"),
+            }}
+          >
+            Groom family
+          </button>
+          <button
+            type="button"
+            onClick={() => setInvitationFamily("bride")}
+            className="text-sm rounded-full px-3 py-1.5"
+            style={{
+              background: invitationFamily === "bride" ? "var(--leaf-700)" : "var(--cream-soft)",
+              color: invitationFamily === "bride" ? "var(--cream)" : "var(--ink-soft)",
+              border: "1px solid " + (invitationFamily === "bride" ? "var(--leaf-700)" : "var(--hairline)"),
+            }}
+          >
+            Bride family
           </button>
         </div>
         <label
@@ -798,6 +845,31 @@ function AttendanceBadge({ attending }: { attending: boolean }) {
       }}
     >
       {attending ? "Yes" : "No"}
+    </span>
+  );
+}
+
+function InvitationFamilyBadge({
+  family,
+}: {
+  family: AdminRsvp["invitationFamily"];
+}) {
+  const label =
+    family === "groom"
+      ? "Groom family"
+      : family === "bride"
+        ? "Bride family"
+        : "Family unknown";
+  return (
+    <span
+      className="text-[10px] uppercase tracking-[0.12em] font-medium px-2 py-0.5 rounded-full"
+      style={{
+        background: family === "unknown" ? "var(--cream)" : "var(--lemon-50)",
+        color: "var(--ink-soft)",
+        border: "1px solid var(--hairline)",
+      }}
+    >
+      {label}
     </span>
   );
 }

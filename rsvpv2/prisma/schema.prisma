@@ -13,6 +13,7 @@ datasource db {
 model Rsvp {
   id            String   @id @default(cuid())
   attending     Boolean
+  invitationFamily String   @default("unknown")
   guestCount    Int
   // Guests is stored as JSON (array of {name, phone}).
   guests        Json

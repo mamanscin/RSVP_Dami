@@ -52,6 +52,12 @@ export default async function AdminPage() {
   const totalGuests = stats._sum.guestCount ?? 0;
   const attending = rsvps.filter((r) => r.attending).length;
   const declined = rsvps.length - attending;
+  const groomGuests = rsvps
+    .filter((r) => r.attending && r.invitationFamily === "groom")
+    .reduce((sum, r) => sum + r.guestCount, 0);
+  const brideGuests = rsvps
+    .filter((r) => r.attending && r.invitationFamily === "bride")
+    .reduce((sum, r) => sum + r.guestCount, 0);
 
   return (
     <AdminDashboard
@@ -61,6 +67,10 @@ export default async function AdminPage() {
         // but the application always writes a Guest[] here. Narrow at the
         // boundary so the rest of the code can rely on the typed shape.
         guests: r.guests as unknown as AdminRsvp["guests"],
+        invitationFamily:
+          r.invitationFamily === "groom" || r.invitationFamily === "bride"
+            ? r.invitationFamily
+            : "unknown",
         submittedAt: r.submittedAt.toISOString(),
       }))}
       initialWishes={wishes.map((w) => ({
@@ -73,6 +83,8 @@ export default async function AdminPage() {
         declined,
         totalGuests,
         wishTotal: wishes.length,
+        groomGuests,
+        brideGuests,
       }}
     />
   );

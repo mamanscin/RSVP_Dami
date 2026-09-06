@@ -56,6 +56,8 @@
     "timeValue": "11:00 AM – 4:00 PM",
     "dresscode": "Dress Code",
     "dresscodeValue": "Modest attire, in keeping with the formality of the wedding.",
+    "dressTheme": "Dress Theme",
+    "dressThemeValue": "Bride's family: Dusty Pink\nGroom's family: Sage Green",
     "wishesTitle": "Wishes from Guests",
     "wishesEmpty": "Be the first to leave a wish for the couple.",
     "wishesFrom": "from"
@@ -84,6 +86,9 @@
     "title": "RSVP",
     "subtitle": "Kindly let us know if you’ll be able to make it, as seats are limited and your response will help us make the necessary arrangements.",
     "attending": "Will you attend?",
+    "invitationFamily": "Which family invited you?",
+    "groomFamily": "Groom's Family",
+    "brideFamily": "Bride's Family",
     "yes": "Yes, I'll be there",
     "no": "Sorry, can't make it",
     "guestCount": "How many will be attending?",
@@ -102,6 +107,7 @@
     "another": "Submit Another RSVP",
     "errors": {
       "attendance": "Please select whether you will attend.",
+      "invitationFamily": "Please select which family invited you.",
       "guestCount": "Please enter the number of guests (1–10).",
       "name": "Please enter your name.",
       "phone": "Please enter a valid phone number.",

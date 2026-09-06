@@ -46,6 +46,7 @@ export async function POST(request: NextRequest) {
 
   const b = body as {
     attending?: unknown;
+    invitationFamily?: unknown;
     guestCount?: unknown;
     guests?: unknown;
     wishes?: unknown;
@@ -58,6 +59,14 @@ export async function POST(request: NextRequest) {
       { status: 400 }
     );
   }
+
+  if (b.invitationFamily !== "groom" && b.invitationFamily !== "bride") {
+    return NextResponse.json(
+      { ok: false, error: "invitationFamily must be 'groom' or 'bride'" },
+      { status: 400 }
+    );
+  }
+  const invitationFamily = b.invitationFamily;
 
   const guestCountRaw = Number(b.guestCount);
   if (
@@ -143,6 +152,7 @@ export async function POST(request: NextRequest) {
       const rsvp = await tx.rsvp.create({
         data: {
           attending: b.attending === "yes",
+          invitationFamily,
           guestCount: guestCountRaw,
           guests,
           wishes,

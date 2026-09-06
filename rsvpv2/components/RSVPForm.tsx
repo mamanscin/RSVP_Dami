@@ -12,6 +12,7 @@ type Guest = {
 
 type FormState = {
   attending: "yes" | "no" | "";
+  invitationFamily: "groom" | "bride" | "";
   guestCount: number;
   guests: Guest[];
   wishes: string;
@@ -26,6 +27,7 @@ export function RSVPForm() {
   const initial: FormState = useMemo(
     () => ({
       attending: "",
+      invitationFamily: "",
       guestCount: 1,
       guests: [{ ...EMPTY_GUEST }],
       wishes: "",
@@ -61,6 +63,15 @@ export function RSVPForm() {
     });
   }
 
+  function setInvitationFamily(value: "groom" | "bride") {
+    setForm((f) => ({ ...f, invitationFamily: value }));
+    setErrors((prev) => {
+      const next = { ...prev };
+      delete next.invitationFamily;
+      return next;
+    });
+  }
+
   function setGuestCount(n: number) {
     const safe = Math.min(10, Math.max(1, Math.floor(n) || 1));
     setForm((f) => ({ ...f, guestCount: safe }));
@@ -82,6 +93,9 @@ export function RSVPForm() {
   function validate(): Record<string, string> {
     const errs: Record<string, string> = {};
     if (!form.attending) errs.attending = t.rsvp.errors.attendance;
+    if (!form.invitationFamily) {
+      errs.invitationFamily = t.rsvp.errors.invitationFamily;
+    }
 
     if (form.attending === "yes") {
       if (!form.guestCount || form.guestCount < 1) {
@@ -141,6 +155,7 @@ export function RSVPForm() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           attending: form.attending,
+          invitationFamily: form.invitationFamily,
           guestCount: form.guestCount,
           guests: form.guests.slice(0, 1),
           wishes: wishesText || null,
@@ -243,6 +258,13 @@ export function RSVPForm() {
         value={form.attending}
         error={errors.attending}
         onChange={setAttending}
+        t={t}
+      />
+
+      <InvitationFamilyField
+        value={form.invitationFamily}
+        error={errors.invitationFamily}
+        onChange={setInvitationFamily}
         t={t}
       />
 
@@ -431,6 +453,56 @@ function AttendanceField({
           <EnvelopeIcon size={18} />
           <span>{t.rsvp.no}</span>
         </button>
+      </div>
+      {error && <p className="field-error">{error}</p>}
+    </fieldset>
+  );
+}
+
+function InvitationFamilyField({
+  value,
+  error,
+  onChange,
+  t,
+}: {
+  value: "groom" | "bride" | "";
+  error?: string;
+  onChange: (v: "groom" | "bride") => void;
+  t: Dictionary;
+}) {
+  return (
+    <fieldset data-field="invitationFamily">
+      <legend className="field-label">{t.rsvp.invitationFamily}</legend>
+      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+        {([
+          ["groom", t.rsvp.groomFamily],
+          ["bride", t.rsvp.brideFamily],
+        ] as const).map(([family, label]) => (
+          <button
+            key={family}
+            type="button"
+            onClick={() => onChange(family)}
+            className="rounded-2xl border-2 px-4 py-3 transition inline-flex items-center justify-center hover:shadow-md"
+            style={{
+              fontFamily:
+                '"Minion Display", "Cormorant Garamond", "Playfair Display", Georgia, serif',
+              fontSize: "1.1rem",
+              ...(value === family
+                ? {
+                    borderColor: "var(--leaf-500)",
+                    background: "var(--leaf-50)",
+                    color: "var(--highlight)",
+                  }
+                : {
+                    borderColor: "var(--leaf-200)",
+                    color: "var(--text-body)",
+                    background: "transparent",
+                  }),
+            }}
+          >
+            {label}
+          </button>
+        ))}
       </div>
       {error && <p className="field-error">{error}</p>}
     </fieldset>
