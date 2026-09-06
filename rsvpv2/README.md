@@ -31,6 +31,15 @@ choice is then persisted in a `locale` cookie.
 The app uses **PostgreSQL** in production. Render supplies the database
 connection automatically through `render.yaml`.
 
+The free Render web service can sleep after inactivity. The repository includes
+`.github/workflows/keep-render-awake.yml`, which pings
+`https://rsvp-dami.onrender.com/api/health` every 10 minutes.
+
+This keeps the service available without waiting for a cold start, but it uses
+the free web service's monthly hours continuously (about 720 hours in a
+30-day month). GitHub Actions scheduled jobs can be delayed occasionally, so a
+short cold start remains possible.
+
 ```bash
 npm install
 npx prisma migrate dev --name init   # requires a PostgreSQL DATABASE_URL
