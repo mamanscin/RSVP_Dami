@@ -293,6 +293,39 @@ body > main {
   border-radius: 20px;
 }
 
+/* A quiet veil at the top keeps scrolling content from competing with the
+   fixed floral artwork. It fades in only after the first small scroll. */
+.scroll-top-blur {
+  position: fixed;
+  z-index: 30;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: calc(5.5rem + env(safe-area-inset-top, 0px));
+  padding-top: env(safe-area-inset-top, 0px);
+  pointer-events: none;
+  opacity: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 250, 240, 0.78) 0%,
+    rgba(255, 250, 240, 0.52) 48%,
+    rgba(255, 250, 240, 0) 100%
+  );
+  backdrop-filter: blur(12px) saturate(108%);
+  -webkit-backdrop-filter: blur(12px) saturate(108%);
+  transition: opacity 420ms ease;
+}
+
+.scroll-top-blur.is-visible {
+  opacity: 1;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-top-blur {
+    transition: none;
+  }
+}
+
 /* ─── Pills, badges, buttons ──────────────────────────────── */
 .btn {
   display: inline-flex;

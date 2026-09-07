@@ -15,6 +15,7 @@ import { ScrollToTop } from "@/components/ScrollToTop";
 import { ScrollToHash } from "@/components/ScrollToHash";
 import { FloatingNav } from "@/components/FloatingNav";
 import { I18nProvider } from "@/components/I18nProvider";
+import { ScrollTopBlur } from "@/components/ScrollTopBlur";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -82,6 +83,7 @@ export default async function RootLayout({
           <FloatingLeaves count={14} />
           <MusicPlayer />
           <LanguageSwitcher />
+          <ScrollTopBlur />
           <main className="flex-1 w-full">{children}</main>
           <FloatingNav />
           <ScrollToHash />
