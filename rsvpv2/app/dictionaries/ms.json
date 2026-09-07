@@ -92,7 +92,7 @@
     "yes": "Ya, saya akan hadir",
     "no": "Maaf, tidak dapat hadir",
     "guestCount": "Berapa ramai yang akan hadir?",
-    "guestCountHint": "Termasuk diri sendiri (1-10 tetamu)",
+    "guestCountHint": "Termasuk diri sendiri (1-5 tetamu)",
     "childAttendance": "Adakah anda membawa kanak-kanak (berumur 7 tahun atau ke bawah)?",
     "childCount": "Bilangan kanak-kanak",
     "childCountHint": "kanak-kanak (tidak termasuk dalam kiraan tetamu)",
@@ -111,7 +111,7 @@
     "errors": {
       "attendance": "Sila pilih sama ada anda akan hadir.",
       "invitationFamily": "Sila pilih keluarga yang menjemput anda.",
-      "guestCount": "Sila masukkan bilangan tetamu (1â€“10).",
+      "guestCount": "Sila masukkan bilangan tetamu (1â€“5).",
       "childCount": "Sila masukkan bilangan kanak-kanak (1-10).",
       "name": "Sila masukkan nama anda.",
       "phone": "Sila masukkan nombor telefon yang sah.",

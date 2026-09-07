@@ -73,9 +73,9 @@ export async function PATCH(request: NextRequest, { params }: Params) {
 
   if (b.guestCount !== undefined) {
     const n = Number(b.guestCount);
-    if (!Number.isInteger(n) || n < 1 || n > 10) {
+    if (!Number.isInteger(n) || n < 1 || n > 5) {
       return NextResponse.json(
-        { ok: false, error: "guestCount must be an integer 1..10" },
+        { ok: false, error: "guestCount must be an integer 1..5" },
         { status: 400 },
       );
     }

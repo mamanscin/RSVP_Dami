@@ -98,10 +98,10 @@ export async function POST(request: NextRequest) {
     !Number.isFinite(guestCountRaw) ||
     !Number.isInteger(guestCountRaw) ||
     guestCountRaw < 1 ||
-    guestCountRaw > 10
+    guestCountRaw > 5
   ) {
     return NextResponse.json(
-      { ok: false, error: "guestCount must be an integer 1..10" },
+      { ok: false, error: "guestCount must be an integer 1..5" },
       { status: 400 }
     );
   }

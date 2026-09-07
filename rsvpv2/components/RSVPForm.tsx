@@ -77,7 +77,7 @@ export function RSVPForm() {
   }
 
   function setGuestCount(n: number) {
-    const safe = Math.min(10, Math.max(1, Math.floor(n) || 1));
+    const safe = Math.min(5, Math.max(1, Math.floor(n) || 1));
     setForm((f) => ({ ...f, guestCount: safe }));
   }
 
@@ -400,7 +400,7 @@ function GuestCountField({
           type="number"
           inputMode="numeric"
           min={1}
-          max={10}
+          max={5}
           value={value}
           onChange={(e) => onChange(Number(e.target.value))}
           className="field-input text-center"
