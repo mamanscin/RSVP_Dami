@@ -15,6 +15,8 @@ model Rsvp {
   attending     Boolean
   invitationFamily String   @default("unknown")
   guestCount    Int
+  bringsChildAge7OrBelow Boolean @default(false)
+  childCount    Int?
   // Guests is stored as JSON (array of {name, phone}).
   guests        Json
   wishes        String?

@@ -1,0 +1,1 @@
+ALTER TABLE "Rsvp" ADD COLUMN "childCount" INTEGER;

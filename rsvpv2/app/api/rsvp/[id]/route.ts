@@ -43,6 +43,8 @@ export async function PATCH(request: NextRequest, { params }: Params) {
     attending?: unknown;
     invitationFamily?: unknown;
     guestCount?: unknown;
+    bringsChildAge7OrBelow?: unknown;
+    childCount?: unknown;
     guests?: unknown;
     wishes?: unknown;
   };
@@ -78,6 +80,31 @@ export async function PATCH(request: NextRequest, { params }: Params) {
       );
     }
     data.guestCount = n;
+  }
+
+  if (b.bringsChildAge7OrBelow !== undefined) {
+    if (typeof b.bringsChildAge7OrBelow !== "boolean") {
+      return NextResponse.json(
+        { ok: false, error: "bringsChildAge7OrBelow must be a boolean" },
+        { status: 400 },
+      );
+    }
+    data.bringsChildAge7OrBelow = b.bringsChildAge7OrBelow;
+  }
+
+  if (b.childCount !== undefined) {
+    if (b.childCount === null) {
+      data.childCount = null;
+    } else {
+      const n = Number(b.childCount);
+      if (!Number.isInteger(n) || n < 1 || n > 10) {
+        return NextResponse.json(
+          { ok: false, error: "childCount must be an integer 1..10" },
+          { status: 400 },
+        );
+      }
+      data.childCount = n;
+    }
   }
 
   if (b.guests !== undefined) {
@@ -151,6 +178,8 @@ export async function PATCH(request: NextRequest, { params }: Params) {
         attending: true,
         invitationFamily: true,
         guestCount: true,
+        bringsChildAge7OrBelow: true,
+        childCount: true,
         guests: true,
         wishes: true,
         submittedAt: true,

@@ -1,0 +1,1 @@
+ALTER TABLE "Rsvp" ADD COLUMN "bringsChildAge7OrBelow" BOOLEAN NOT NULL DEFAULT false;

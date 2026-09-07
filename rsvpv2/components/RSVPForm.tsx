@@ -14,6 +14,8 @@ type FormState = {
   attending: "yes" | "no" | "";
   invitationFamily: "groom" | "bride" | "";
   guestCount: number;
+  bringsChildAge7OrBelow: boolean;
+  childCount: number;
   guests: Guest[];
   wishes: string;
 };
@@ -29,6 +31,8 @@ export function RSVPForm() {
       attending: "",
       invitationFamily: "",
       guestCount: 1,
+      bringsChildAge7OrBelow: false,
+      childCount: 1,
       guests: [{ ...EMPTY_GUEST }],
       wishes: "",
     }),
@@ -77,6 +81,15 @@ export function RSVPForm() {
     setForm((f) => ({ ...f, guestCount: safe }));
   }
 
+  function setBringsChildAge7OrBelow(value: boolean) {
+    setForm((f) => ({ ...f, bringsChildAge7OrBelow: value }));
+  }
+
+  function setChildCount(n: number) {
+    const safe = Math.min(10, Math.max(1, Math.floor(n) || 1));
+    setForm((f) => ({ ...f, childCount: safe }));
+  }
+
   function setGuest(i: number, patch: Partial<Guest>) {
     setForm((f) => {
       const guests = f.guests.map((g, idx) =>
@@ -100,6 +113,12 @@ export function RSVPForm() {
     if (form.attending === "yes") {
       if (!form.guestCount || form.guestCount < 1) {
         errs.guestCount = t.rsvp.errors.guestCount;
+      }
+      if (
+        form.bringsChildAge7OrBelow &&
+        (!form.childCount || form.childCount < 1)
+      ) {
+        errs.childCount = t.rsvp.errors.childCount;
       }
       const primary = form.guests[0];
       if (!primary.name.trim()) errs["name-0"] = t.rsvp.errors.name;
@@ -157,6 +176,8 @@ export function RSVPForm() {
           attending: form.attending,
           invitationFamily: form.invitationFamily,
           guestCount: form.guestCount,
+          bringsChildAge7OrBelow: form.bringsChildAge7OrBelow,
+          childCount: form.bringsChildAge7OrBelow ? form.childCount : null,
           guests: form.guests.slice(0, 1),
           wishes: wishesText || null,
           locale,
@@ -279,6 +300,17 @@ export function RSVPForm() {
         />
       )}
 
+      {form.attending === "yes" && (
+        <ChildAttendanceField
+          value={form.bringsChildAge7OrBelow}
+          childCount={form.childCount}
+          onChange={setBringsChildAge7OrBelow}
+          onCountChange={setChildCount}
+          error={errors.childCount}
+          t={t}
+        />
+      )}
+
       {(form.attending === "yes" || form.attending === "no") && (
         <GuestList
           guests={form.guests}
@@ -387,6 +419,73 @@ function GuestCountField({
           {t.rsvp.guestCountHint}
         </span>
       </div>
+      {error && <p className="field-error">{error}</p>}
+    </div>
+  );
+}
+
+function ChildAttendanceField({
+  value,
+  childCount,
+  onChange,
+  onCountChange,
+  error,
+  t,
+}: {
+  value: boolean;
+  childCount: number;
+  onChange: (value: boolean) => void;
+  onCountChange: (value: number) => void;
+  error?: string;
+  t: Dictionary;
+}) {
+  return (
+    <div data-field="childCount" className="space-y-2">
+      <label className="inline-flex items-center gap-2 text-sm cursor-pointer" style={{ color: "var(--text-body)" }}>
+        <input
+          type="checkbox"
+          checked={value}
+          onChange={(e) => onChange(e.target.checked)}
+          className="h-4 w-4 accent-[var(--leaf-700)]"
+        />
+        <span>{t.rsvp.childAttendance}</span>
+      </label>
+      {value && (
+        <div className="flex items-center gap-3 pl-6">
+          <button
+            type="button"
+            onClick={() => onCountChange(childCount - 1)}
+            className="btn btn-ghost"
+            style={{ width: "36px", height: "36px", padding: 0 }}
+            aria-label="−"
+          >
+            −
+          </button>
+          <input
+            type="number"
+            inputMode="numeric"
+            min={1}
+            max={10}
+            value={childCount}
+            onChange={(e) => onCountChange(Number(e.target.value))}
+            className="field-input text-center"
+            style={{ width: "64px", height: "36px" }}
+            aria-label={t.rsvp.childCount}
+          />
+          <button
+            type="button"
+            onClick={() => onCountChange(childCount + 1)}
+            className="btn btn-ghost"
+            style={{ width: "36px", height: "36px", padding: 0 }}
+            aria-label="+"
+          >
+            +
+          </button>
+          <span className="text-xs italic" style={{ color: "var(--text-body)" }}>
+            {t.rsvp.childCountHint}
+          </span>
+        </div>
+      )}
       {error && <p className="field-error">{error}</p>}
     </div>
   );

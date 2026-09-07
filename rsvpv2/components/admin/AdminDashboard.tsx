@@ -12,6 +12,8 @@ export type AdminRsvp = {
   attending: boolean;
   invitationFamily: "groom" | "bride" | "unknown";
   guestCount: number;
+  bringsChildAge7OrBelow: boolean;
+  childCount: number | null;
   guests: Guest[];
   wishes: string | null;
   submittedAt: string;
@@ -112,6 +114,8 @@ export function AdminDashboard({
           attending: updated.attending ? "yes" : "no",
           invitationFamily: updated.invitationFamily,
           guestCount: updated.guestCount,
+          bringsChildAge7OrBelow: updated.bringsChildAge7OrBelow,
+          childCount: updated.bringsChildAge7OrBelow ? updated.childCount : null,
           guests: updated.guests,
           wishes: updated.wishes,
         }),
@@ -121,7 +125,9 @@ export function AdminDashboard({
         alert(data?.error ?? "Save failed");
         return false;
       }
-      setRsvps((cur) => cur.map((r) => (r.id === updated.id ? updated : r)));
+      setRsvps((cur) =>
+        cur.map((r) => (r.id === updated.id ? data.rsvp : r)),
+      );
       setEditingId(null);
       // Recompute totals
       await refresh();
@@ -484,6 +490,18 @@ function RsvpRow({
           <div className="flex flex-wrap items-center gap-2">
             <AttendanceBadge attending={rsvp.attending} />
             <InvitationFamilyBadge family={rsvp.invitationFamily} />
+            {rsvp.bringsChildAge7OrBelow && (
+              <span
+                className="text-[10px] uppercase tracking-[0.12em] font-medium px-2 py-0.5 rounded-full"
+                style={{
+                  background: "var(--lemon-50)",
+                  color: "var(--ink-soft)",
+                  border: "1px solid var(--lemon-100)",
+                }}
+              >
+                Children: {rsvp.childCount ?? "7 or under"}
+              </span>
+            )}
             <span
               className="text-sm font-medium"
               style={{ color: "var(--ink)" }}
@@ -588,6 +606,10 @@ function EditRsvpForm({
     rsvp.invitationFamily,
   );
   const [guestCount, setGuestCount] = useState(rsvp.guestCount);
+  const [bringsChildAge7OrBelow, setBringsChildAge7OrBelow] = useState(
+    rsvp.bringsChildAge7OrBelow,
+  );
+  const [childCount, setChildCount] = useState(rsvp.childCount ?? 1);
   const [guests, setGuests] = useState<Guest[]>(
     rsvp.guests.length > 0
       ? rsvp.guests
@@ -600,16 +622,6 @@ function EditRsvpForm({
   function syncGuestCount(n: number) {
     const safe = Math.min(10, Math.max(1, Math.floor(n) || 1));
     setGuestCount(safe);
-    setGuests((cur) => {
-      if (safe > cur.length) {
-        const extra = Array.from({ length: safe - cur.length }, () => ({
-          name: "",
-          phone: null,
-        }));
-        return [...cur, ...extra];
-      }
-      return cur.slice(0, safe);
-    });
   }
 
   async function handleSubmit(e: React.FormEvent) {
@@ -630,6 +642,8 @@ function EditRsvpForm({
       attending,
       invitationFamily,
       guestCount,
+          bringsChildAge7OrBelow,
+          childCount: bringsChildAge7OrBelow ? childCount : null,
       guests,
       wishes: wishes.trim() ? wishes.trim() : null,
     });
@@ -725,6 +739,29 @@ function EditRsvpForm({
               color: "var(--ink)",
             }}
           />
+        </label>
+        <label
+          className="flex items-center gap-2 text-sm"
+          style={{ color: "var(--ink-soft)" }}
+        >
+          <input
+            type="checkbox"
+            checked={bringsChildAge7OrBelow}
+            onChange={(e) => setBringsChildAge7OrBelow(e.target.checked)}
+          />
+          Children 7 or below
+          {bringsChildAge7OrBelow && (
+            <input
+              type="number"
+              min={1}
+              max={10}
+              value={childCount}
+              onChange={(e) => setChildCount(Math.min(10, Math.max(1, Number(e.target.value) || 1)))}
+              className="w-14 rounded-lg px-2 py-1 text-center"
+              style={{ background: "var(--cream-soft)", border: "1px solid var(--hairline)", color: "var(--ink)" }}
+              aria-label="Number of children"
+            />
+          )}
         </label>
       </div>
 

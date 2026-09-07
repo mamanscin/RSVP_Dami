@@ -48,6 +48,8 @@ export async function POST(request: NextRequest) {
     attending?: unknown;
     invitationFamily?: unknown;
     guestCount?: unknown;
+    bringsChildAge7OrBelow?: unknown;
+    childCount?: unknown;
     guests?: unknown;
     wishes?: unknown;
     locale?: unknown;
@@ -67,6 +69,29 @@ export async function POST(request: NextRequest) {
     );
   }
   const invitationFamily = b.invitationFamily;
+
+  if (
+    b.bringsChildAge7OrBelow !== undefined &&
+    typeof b.bringsChildAge7OrBelow !== "boolean"
+  ) {
+    return NextResponse.json(
+      { ok: false, error: "bringsChildAge7OrBelow must be a boolean" },
+      { status: 400 }
+    );
+  }
+  const bringsChildAge7OrBelow = b.bringsChildAge7OrBelow === true;
+
+  let childCount: number | null = null;
+  if (bringsChildAge7OrBelow) {
+    const childCountRaw = Number(b.childCount);
+    if (!Number.isInteger(childCountRaw) || childCountRaw < 1 || childCountRaw > 10) {
+      return NextResponse.json(
+        { ok: false, error: "childCount must be an integer 1..10 when bringing children" },
+        { status: 400 }
+      );
+    }
+    childCount = childCountRaw;
+  }
 
   const guestCountRaw = Number(b.guestCount);
   if (
@@ -154,6 +179,8 @@ export async function POST(request: NextRequest) {
           attending: b.attending === "yes",
           invitationFamily,
           guestCount: guestCountRaw,
+          bringsChildAge7OrBelow,
+          childCount,
           guests,
           wishes,
           locale,
