@@ -44,40 +44,16 @@ export function InfoSection() {
         </p>
       </div>
 
-      {/* Parents inviting — groom's on the left, bride's on the right */}
+      {/* Parents inviting — bride's on the left, groom's on the right */}
       <div className="grid grid-cols-2 items-center gap-8 sm:gap-16">
         <div className="flex flex-col items-center sm:items-end text-center sm:text-right">
           <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>
-            {t.info.groom}
+            {t.info.bride}
           </p>
           {/* Reserve the same vertical space for each father name so the inner
               "&" below lines up on both sides regardless of how the name wraps. */}
           <h3
             className="font-display text-xl sm:text-2xl w-full flex items-center justify-center sm:justify-end"
-            style={{ color: "var(--highlight)", minHeight: "3.8em" }}
-          >
-            {wedding.groom.father}
-          </h3>
-          <p
-            className="couple-amp"
-            style={{ fontSize: "1.4rem", color: "var(--highlight)", lineHeight: 1 }}
-          >
-            &amp;
-          </p>
-          <h3
-            className="font-display text-xl sm:text-2xl"
-            style={{ color: "var(--highlight)" }}
-          >
-            {wedding.groom.mother}
-          </h3>
-        </div>
-
-        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
-          <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>
-            {t.info.bride}
-          </p>
-          <h3
-            className="font-display text-xl sm:text-2xl w-full flex items-center justify-center sm:justify-start"
             style={{ color: "var(--highlight)", minHeight: "3.8em" }}
           >
             {wedding.bride.father}
@@ -93,6 +69,30 @@ export function InfoSection() {
             style={{ color: "var(--highlight)" }}
           >
             {wedding.bride.mother}
+          </h3>
+        </div>
+
+        <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+          <p className="text-xs uppercase tracking-[0.3em]" style={{ color: "var(--highlight)" }}>
+            {t.info.groom}
+          </p>
+          <h3
+            className="font-display text-xl sm:text-2xl w-full flex items-center justify-center sm:justify-start"
+            style={{ color: "var(--highlight)", minHeight: "3.8em" }}
+          >
+            {wedding.groom.father}
+          </h3>
+          <p
+            className="couple-amp"
+            style={{ fontSize: "1.4rem", color: "var(--highlight)", lineHeight: 1 }}
+          >
+            &amp;
+          </p>
+          <h3
+            className="font-display text-xl sm:text-2xl"
+            style={{ color: "var(--highlight)" }}
+          >
+            {wedding.groom.mother}
           </h3>
         </div>
       </div>
