@@ -6,6 +6,7 @@ import Link from "next/link";
 import { wedding } from "@/lib/wedding-data";
 
 type Guest = { name: string; phone: string | null };
+type FamilyFilter = "all" | AdminRsvp["invitationFamily"];
 
 export type AdminRsvp = {
   id: string;
@@ -27,6 +28,7 @@ export type AdminWish = {
   name: string;
   message: string;
   approved: boolean;
+  invitationFamily: AdminRsvp["invitationFamily"];
   createdAt: string;
   locale: string;
 };
@@ -56,6 +58,7 @@ export function AdminDashboard({
   const [stats, setStats] = useState<Stats>(initialStats);
   const [editingId, setEditingId] = useState<string | null>(null);
   const [filter, setFilter] = useState<"all" | "yes" | "no">("all");
+  const [familyFilter, setFamilyFilter] = useState<FamilyFilter>("all");
   const [search, setSearch] = useState("");
   const [activeTab, setActiveTab] = useState<"rsvps" | "wishes">("rsvps");
   const [, startTransition] = useTransition();
@@ -175,6 +178,9 @@ export function AdminDashboard({
     return rsvps.filter((r) => {
       if (filter === "yes" && !r.attending) return false;
       if (filter === "no" && r.attending) return false;
+      if (familyFilter !== "all" && r.invitationFamily !== familyFilter) {
+        return false;
+      }
       if (!q) return true;
       if (r.wishes && r.wishes.toLowerCase().includes(q)) return true;
       return r.guests.some(
@@ -183,7 +189,15 @@ export function AdminDashboard({
           (g.phone ?? "").toLowerCase().includes(q),
       );
     });
-  }, [rsvps, filter, search]);
+  }, [rsvps, filter, familyFilter, search]);
+
+  const filteredWishes = useMemo(
+    () =>
+      familyFilter === "all"
+        ? wishes
+        : wishes.filter((wish) => wish.invitationFamily === familyFilter),
+    [wishes, familyFilter],
+  );
 
   return (
     <main
@@ -284,6 +298,16 @@ export function AdminDashboard({
                 onClick={() => setFilter("no")}
                 label={`Declined (${stats.declined})`}
               />
+              <FamilyFilterButtons
+                value={familyFilter}
+                onChange={setFamilyFilter}
+                counts={{
+                  all: rsvps.length,
+                  groom: rsvps.filter((rsvp) => rsvp.invitationFamily === "groom").length,
+                  bride: rsvps.filter((rsvp) => rsvp.invitationFamily === "bride").length,
+                  unknown: rsvps.filter((rsvp) => rsvp.invitationFamily === "unknown").length,
+                }}
+              />
               <input
                 type="search"
                 value={search}
@@ -326,10 +350,26 @@ export function AdminDashboard({
 
         {activeTab === "wishes" && (
           <section className="space-y-3">
-            {wishes.length === 0 ? (
-              <EmptyState message="No wishes yet." />
+            <FamilyFilterButtons
+              value={familyFilter}
+              onChange={setFamilyFilter}
+              counts={{
+                all: wishes.length,
+                groom: wishes.filter((wish) => wish.invitationFamily === "groom").length,
+                bride: wishes.filter((wish) => wish.invitationFamily === "bride").length,
+                unknown: wishes.filter((wish) => wish.invitationFamily === "unknown").length,
+              }}
+            />
+            {filteredWishes.length === 0 ? (
+              <EmptyState
+                message={
+                  wishes.length === 0
+                    ? "No wishes yet."
+                    : "No wishes match the selected family."
+                }
+              />
             ) : (
-              wishes.map((w) => (
+              filteredWishes.map((w) => (
                 <WishRow
                   key={w.id}
                   wish={w}
@@ -342,6 +382,41 @@ export function AdminDashboard({
         )}
       </div>
     </main>
+  );
+}
+
+function FamilyFilterButtons({
+  value,
+  onChange,
+  counts,
+}: {
+  value: FamilyFilter;
+  onChange: (filter: FamilyFilter) => void;
+  counts: Record<FamilyFilter, number>;
+}) {
+  return (
+    <div className="flex flex-wrap gap-2 items-center">
+      <FilterChip
+        active={value === "all"}
+        onClick={() => onChange("all")}
+        label={`All families (${counts.all})`}
+      />
+      <FilterChip
+        active={value === "groom"}
+        onClick={() => onChange("groom")}
+        label={`Groom family (${counts.groom})`}
+      />
+      <FilterChip
+        active={value === "bride"}
+        onClick={() => onChange("bride")}
+        label={`Bride family (${counts.bride})`}
+      />
+      <FilterChip
+        active={value === "unknown"}
+        onClick={() => onChange("unknown")}
+        label={`Unknown (${counts.unknown})`}
+      />
+    </div>
   );
 }
 
@@ -938,6 +1013,7 @@ function WishRow({
             >
               {wish.name}
             </span>
+            <InvitationFamilyBadge family={wish.invitationFamily} />
             <span className="text-xs" style={{ color: "var(--ink-muted)" }}>
               {formatDate(wish.createdAt)} · {wish.locale.toUpperCase()}
             </span>

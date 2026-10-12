@@ -45,7 +45,10 @@ export default async function AdminPage() {
   // Pre-load data on the server so the page is responsive on first paint.
   const [rsvps, wishes, stats] = await Promise.all([
     prisma.rsvp.findMany({ orderBy: { submittedAt: "desc" } }),
-    prisma.wish.findMany({ orderBy: { createdAt: "desc" } }),
+    prisma.wish.findMany({
+      orderBy: { createdAt: "desc" },
+      include: { rsvp: { select: { invitationFamily: true } } },
+    }),
     prisma.rsvp.aggregate({ _sum: { guestCount: true } }),
   ]);
 
@@ -73,9 +76,13 @@ export default async function AdminPage() {
             : "unknown",
         submittedAt: r.submittedAt.toISOString(),
       }))}
-      initialWishes={wishes.map((w) => ({
-        ...w,
-        createdAt: w.createdAt.toISOString(),
+      initialWishes={wishes.map(({ rsvp, ...wish }) => ({
+        ...wish,
+        invitationFamily:
+          rsvp?.invitationFamily === "groom" || rsvp?.invitationFamily === "bride"
+            ? rsvp.invitationFamily
+            : "unknown",
+        createdAt: wish.createdAt.toISOString(),
       }))}
       initialStats={{
         totalRsvps: rsvps.length,
