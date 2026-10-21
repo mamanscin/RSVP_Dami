@@ -46,7 +46,7 @@ export function MapSection() {
         >
           <iframe
             title={t.map.videoTitle}
-            src="https://youtu.be/Klge2vcooiA"
+            src="https://youtu.be/Klge2vcooiA?si=FD6Q8z-nqfUvqRi8"
             width="100%"
             height="100%"
             loading="lazy"
